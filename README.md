@@ -212,7 +212,7 @@ public class MyClass {
 
 单个的大写字母，后面可以跟一个数字(如：E, T, X, T2)。
 
-以类命名方式(参考[类名](#类名))，后面加个大写的T(如：RequestT, FooBarT)。
+以类命名方式(参考[2. 类名](#2. 类名))，后面加个大写的T(如：RequestT, FooBarT)。
 
 
 更多还可参考～[阿里巴巴Java开发手册][阿里巴巴Java开发手册]
@@ -546,11 +546,6 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 [Google Java编程风格指南][Google Java编程风格指南]
 
 
-## 版本日志
-
-* 17/03/06: version1.0, powered by Blankj(蔡梦杰)
-
-
 ## 附录
 
 表1 UI控件缩写表
@@ -610,6 +605,11 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 | window               | wnd(win)                                 |
 
 程序中使用单词缩写原则：不要用缩写，除非该缩写是约定俗成的。
+
+
+## 版本日志
+
+* 17/03/06: version1.0, powered by Blankj(蔡梦杰)
 
 
 
