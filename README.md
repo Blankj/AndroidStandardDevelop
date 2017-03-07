@@ -212,7 +212,7 @@ public class MyClass {
 
 单个的大写字母，后面可以跟一个数字(如：E, T, X, T2)。
 
-以类命名方式(参考[2. 类名](#2.类名))，后面加个大写的T(如：RequestT, FooBarT)。
+以类命名方式(参考2. 类名)，后面加个大写的T(如：RequestT, FooBarT)。
 
 
 更多还可参考～[阿里巴巴Java开发手册][阿里巴巴Java开发手册]
@@ -223,42 +223,75 @@ public class MyClass {
 #### 1. 资源布局文件（XML文件（layout布局文件））
 
 全部小写，采用下划线命名法
-1) contentview 命名
+
+##### 1) contentview 命名
+
 必须以全部单词小写，单词间以下划线分割，使用名词或名词词组。
+
 所有Activity或Fragment的contentView必须与其类名对应，对应规则为：
+
 将所有字母都转为小写，将类型和功能调换（也就是后缀变前缀）。
+
 例如：`activity_main.xml`
-2) Dialog命名：`dialog_描述.xml`
+
+
+##### 2) Dialog命名：`dialog_描述.xml`
+
 例如：`dialog_hint.xml`
-3) PopupWindow命名：`ppw_描述.xml`
+
+
+##### 3) PopupWindow命名：`ppw_描述.xml`
+
 例如：`ppw_info.xml`
-4) 列表项命名：`item_描述.xml`
+
+
+##### 4) 列表项命名：`item_描述.xml`
+
 例如：`item_city.xml`
-5) 包含项命名：`模块_(位置)描述.xml`
+
+
+##### 5) 包含项命名：`模块_(位置)描述.xml`
+
 例如：`activity_main_head.xml`、`activity_main_bottom.xml`
+
 注意：通用的包含项命名采用：`项目名称缩写_描述.xml`
+
 例如：`xxxx_title.xml`
 
 
 #### 2. 资源文件（图片drawable文件夹下）
 
 全部小写，采用下划线命名法，加前缀区分
+
 命名模式：可加后缀 `_small` 表示小图, `_big` 表示大图，逻辑名称可由多个单词加下划线组成，采用以下规则：
+
 `用途_模块名_逻辑名称`
 `用途_模块名_颜色`
 `用途_逻辑名称`
 `用途_颜色`
+
 说明：用途也指控件类型（具体见UI控件缩写表）
+
 例如：
+
 `btn_main_home.png` 按键
+
 `divider_maket_white.png` 分割线
+
 `ic_edit.png` 图标
+
 `bg_main.png` 背景
+
 `btn_red.png` 红色按键
+
 `btn_red_big.png` 红色大按键
+
 `ic_head_small.png` 小头像
+
 `bg_input.png` 输入框背景
+
 `divider_white.png` 白色分割线
+
 如果有多种形态如按钮等除外如 `btn_xx.xml`（selector）
 
 | 名称                     | 功能                           |
@@ -280,20 +313,25 @@ public class MyClass {
 | `seg_list_line`        | 具有分隔特征的图片使用`seg_功能_说明`       |
 | `sel_ok`               | 选择图标使用`sel_功能_说明`            |
 
-注意：
-使用AndroidStudio的插件SelectorChapek可以快速生成selector，前提是命名要规范。
+> 注意：使用AndroidStudio的插件SelectorChapek可以快速生成selector，前提是命名要规范。
 
 
 #### 3. 动画文件（anim文件夹下）
 
 全部小写，采用下划线命名法，加前缀区分。
+
 具体动画采用以下规则：
+
 `模块名_逻辑名称`
+
 逻辑名称
+
 `refresh_progress.xml`
 `market_cart_add.xml`
 `market_cart_remove.xml`
+
 普通的tween动画采用如下表格中的命名方式
+
 // 前面为动画的类型，后面为方向
 
 | 动画命名例子              | 规范写法    |
@@ -311,7 +349,9 @@ public class MyClass {
 
 #### 4. values中name命名
 
-* colors.xml: colors的name命名使用下划线命名法，在你的`colors.xml`文件中应该只是映射颜色的名称一个ARGB值，而没有其它的。不要使用它为不同的按钮来定义ARGB值。
+##### 1) colors.xml
+
+colors的name命名使用下划线命名法，在你的`colors.xml`文件中应该只是映射颜色的名称一个ARGB值，而没有其它的。不要使用它为不同的按钮来定义ARGB值。
 
 *不要这样做*
 
@@ -352,7 +392,10 @@ public class MyClass {
 
 向应用设计者那里要这个调色板，名称不需要跟"green", "blue", 等等相同。 "brand_primary", "brand_secondary", "brand_negative" 这样的名字也是完全可以接受的。 像这样规范的颜色很容易修改或重构，会使应用一共使用了多少种不同的颜色变得非常清晰。 通常一个具有审美价值的UI来说，减少使用颜色的种类是非常重要的。
 
-* dimens.xml: 像对待colors.xml一样对待dimens.xml文件 与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。 一个好的例子，如下所示：
+
+##### 2) dimens.xml
+
+像对待colors.xml一样对待dimens.xml文件 与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。 一个好的例子，如下所示：
 
 ``` xml
 <resources>
@@ -381,17 +424,25 @@ public class MyClass {
 
 布局时在写 margins 和 paddings 时，你应该使用spacing_xxxx尺寸格式来布局，而不是像对待String字符串一样直接写值。 这样写会非常有感觉，会使组织和改变风格或布局是非常容易。
 
-* strings.xml: strings的name命名使用下划线命名法，采用以下规则：模块名+逻辑名称
-  例如：
-  main_menu_about 主菜单按键文字
-  friend_title 好友模块标题栏
-  friend_dialog_del 好友删除提示
-  login_check_email 登录验证
-  dialog_title 弹出框标题
-  button_ok 确认键
-  loading 加载文字
 
-* styles.xml: 几乎每个项目都需要适当的使用style文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（colors, padding, font）放在style文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的style文件，例如：
+##### 3) strings.xml
+
+strings的name命名使用下划线命名法，采用以下规则：模块名+逻辑名称
+
+例如：
+
+`main_menu_about` 主菜单按键文字
+`friend_title` 好友模块标题栏
+`friend_dialog_del` 好友删除提示
+`login_check_email` 登录验证
+`dialog_title` 弹出框标题
+`button_ok` 确认键
+`loading` 加载文字
+
+
+##### 4) styles.xml
+
+几乎每个项目都需要适当的使用style文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（colors, padding, font）放在style文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的style文件，例如：
 
 ```
 <style name="ContentText">
@@ -535,17 +586,6 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 3. 不要忘了内存泄漏的检测
 
 
-## 参考
-
-[Android 开发最佳实践][Android 开发最佳实践]
-
-[Android 编码规范][Android 编码规范]
-
-[阿里巴巴Java开发手册][阿里巴巴Java开发手册]
-
-[Google Java编程风格指南][Google Java编程风格指南]
-
-
 ## 附录
 
 表1 UI控件缩写表
@@ -607,9 +647,21 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 程序中使用单词缩写原则：不要用缩写，除非该缩写是约定俗成的。
 
 
+## 参考
+
+[Android 开发最佳实践][Android 开发最佳实践]
+
+[Android 编码规范][Android 编码规范]
+
+[阿里巴巴Java开发手册][阿里巴巴Java开发手册]
+
+[Google Java编程风格指南][Google Java编程风格指南]
+
+
 ## 版本日志
 
 * 17/03/06: version1.0, powered by Blankj(蔡梦杰)
+
 
 
 [安卓开发规范(updating)]: https://github.com/Blankj/AndroidStandardDevelop
