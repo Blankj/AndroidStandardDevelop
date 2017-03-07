@@ -32,7 +32,7 @@
 
 ### 命名规范
 
-1. #### 包名
+#### 1. 包名
 
 包名全部小写，连续的单词只是简单地连接起来，不使用下划线。
 
@@ -57,7 +57,7 @@
    > 注意：如果项目采用MVP，所有M、V、P抽取出来的接口都放置在相应模块的i包下，所有的实现都放置在相应模块的impl下
 
 
-2. #### 类名
+#### 2. 类名
 
 类名都以`UpperCamelCase`风格编写。
 
@@ -85,7 +85,7 @@ interface Runnable , interface Accessible。
 > 注意：如果项目采用MVP，所有Model、View、Presenter的接口都以I为前缀，不加后缀，其他的接口采用上述命名规则。
 
 
-3. #### 方法名
+#### 3. 方法名
 
 方法名都以`lowerCamelCase`风格编写。
 
@@ -106,7 +106,7 @@ interface Runnable , interface Accessible。
 | removeXX()             | 移除数据或者视图等，如removeView();             |
 | drawXXX()              | 绘制数据或效果相关的，使用draw前缀标识                |
 
-4. #### 常量名
+#### 4. 常量名
 
 常量名命名模式为`CONSTANT_CASE`，全部字母大写，用下划线分隔单词。那，到底什么算是一个常量？
 
@@ -129,7 +129,7 @@ static final String[] nonEmptyArray = {"these", "can", "change"};
 ```
 
 
-5. #### 非常量字段名
+#### 5. 非常量字段名
 
 非常量字段名以`lowerCamelCase`风格的基础上改造为如下风格：基本结构为`scopeVariableNameType`。
 
@@ -186,13 +186,13 @@ public class MyClass {
 > 注意：所有的VO（值对象）统一采用标准的lowerCamelCase风格编写，所有的DTO（数据传输对象）就按照接口文档中定义的字段名编写。
 
 
-6. #### 参数名
+#### 6. 参数名
 
 参数名以`lowerCamelCase`风格编写。
 参数应该避免用单个字符命名。
 
 
-7. #### 局部变量名
+#### 7. 局部变量名
 
 局部变量名以`lowerCamelCase`风格编写，比起其它类型的名称，局部变量名可以有更为宽松的缩写。
 
@@ -201,12 +201,12 @@ public class MyClass {
 即使局部变量是final和不可改变的，也不应该把它示为常量，自然也不能用常量的规则去命名它。
 
 
-8. #### 临时变量
+#### 8. 临时变量
 
 临时变量通常被取名为i，j，k，m和n，它们一般用于整型；c，d，e，它们一般用于字符型。 如： for (int i = 0; i < len ; i++)。
 
 
-9. #### 类型变量名
+#### 9. 类型变量名
 
 类型变量可用以下两种风格之一进行命名：
 
@@ -220,7 +220,7 @@ public class MyClass {
 
 ### 资源文件规范
 
-1. #### 资源布局文件（XML文件（layout布局文件））
+#### 1. 资源布局文件（XML文件（layout布局文件））
 
 全部小写，采用下划线命名法
 1) contentview 命名
@@ -240,7 +240,7 @@ public class MyClass {
 例如：`xxxx_title.xml`
 
 
-2. #### 资源文件（图片drawable文件夹下）
+#### 2. 资源文件（图片drawable文件夹下）
 
 全部小写，采用下划线命名法，加前缀区分
 命名模式：可加后缀 `_small` 表示小图, `_big` 表示大图，逻辑名称可由多个单词加下划线组成，采用以下规则：
@@ -284,7 +284,7 @@ public class MyClass {
 使用AndroidStudio的插件SelectorChapek可以快速生成selector，前提是命名要规范。
 
 
-3. #### 动画文件（anim文件夹下）
+#### 3. 动画文件（anim文件夹下）
 
 全部小写，采用下划线命名法，加前缀区分。
 具体动画采用以下规则：
@@ -309,7 +309,7 @@ public class MyClass {
 | `shrink_to_middle`  | 中间缩小    |
 
 
-4. #### values中name命名
+#### 4. values中name命名
 
 * colors.xml: colors的name命名使用下划线命名法，在你的`colors.xml`文件中应该只是映射颜色的名称一个ARGB值，而没有其它的。不要使用它为不同的按钮来定义ARGB值。
 
@@ -416,7 +416,7 @@ public class MyClass {
 **将一个大的style文件分割成多个文件**， 你可以有多个`styles.xml` 文件。Android SDK支持其它文件，`styles`这个文件名称并没有作用，起作用的是在文件 里xml的`<style>`标签。因此你可以有多个style文件`styles.xml`,`style_home.xml`,`style_item_details.xml`,`styles_forms.xml`。 不同于资源文件路径需要为系统构建起的有意义，在`res/values`目录下的文件可以任意命名。
 
 
-5. #### layout中的id命名
+#### 5. layout中的id命名
 
 命名模式为：`view缩写_模块名_逻辑名`，比如btn_main_search
 使用 AndroidStudio 的插件 ButterKnife Zelezny，生成注解非常方便，或者也可以使用Android Code Generator插件。
@@ -445,7 +445,7 @@ Android开发存在着众多版本的不同，比如compileSdkVersion、minSdkVe
 
 为了让他人可以容易看懂你的代码，请在关键地方做好注释。
 
-1. #### 类注释
+#### 1. 类注释
 
 每个类完成后应该有作者姓名和联系方式的注释，对自己的代码负责。
 
@@ -481,7 +481,7 @@ public class WelcomeActivity {
 这样便可在每次新建类的时候自动加上该注释。
 
 
-2. #### 方法注释
+#### 2. 方法注释
 
 每一个成员方法（包括自定义成员方法、覆盖方法、属性方法）的方法头都必须做方法头注释，在方法前一行输入/\*\*回车，AS便会帮你生成模板，我们只需要补全参数即可，如下所示。
 
@@ -501,7 +501,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 }
 ```
 
-3. #### 块注释
+#### 3. 块注释
 
 块注释与其周围的代码在同一缩进级别。它们可以是`/* ... */`风格，也可以是`// ...`风格(**// 后最好带一个空格**）。对于多行的`/* ... */`注释，后续行必须从`*`开始， 并且与前一行的`*`对齐。以下示例注释都是OK的。
 
@@ -513,7 +513,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 ```
 注释不要封闭在由星号或其它字符绘制的框架里。
 
-> Tip：在写多行注释时，如果你希望在必要时能重新换行(即注释像段落风格一样)，那么使用/* ... */。
+> Tip：在写多行注释时，如果你希望在必要时能重新换行(即注释像段落风格一样)，那么使用/\* ... \*/。
 
 
 ### 测试规范
