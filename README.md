@@ -16,7 +16,7 @@
 
 ### 前言
 
-为了利于项目维护以及规范开发，促进成员之间Code Review的效率，故提出以下开发规范，如有更好建议，欢迎提issue。
+为了利于项目维护以及规范开发，促进成员之间Code Review的效率，故提出以下开发规范，如有更好建议，欢迎到GitHub提issue，[原文地址][安卓开发规范(updating)]
 
 
 ### AS规范
@@ -612,7 +612,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 * 17/03/06: version1.0, powered by Blankj(蔡梦杰)
 
 
-
+[安卓开发规范(updating)]: https://github.com/Blankj/AndroidStandardDevelop
 [AS常用开发插件]: http://www.jianshu.com/p/c76b0d8a642d
 [Android Studio下对资源进行分包]: http://www.jianshu.com/p/8e893581b9c7
 [Android开发之版本统一规范]: http://www.jianshu.com/p/db6ef4cfa5d1
