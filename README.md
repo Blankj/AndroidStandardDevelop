@@ -2,41 +2,43 @@
 
 ## 摘要
 
-* [前言](#前言)
-* [AS规范](#AS规范)
-* [命名规范](#命名规范)
-* [资源文件规范](#资源文件规范)
-* [版本统一规范](#版本统一规范)
-* [第三方库规范](#第三方库规范)
-* [注释规范](#注释规范)
-* [测试规范](#测试规范)
-* [RN规范](#RN规范)
-* [其他的一些规范](#其他的一些规范)
+* [1 前言](#1 前言)
+* [2 AS规范](#2 AS规范)
+* [3 命名规范](#3 命名规范)
+* [4 资源文件规范](#4 资源文件规范)
+* [5 版本统一规范](#5 版本统一规范)
+* [6 第三方库规范](#6 第三方库规范)
+* [7 注释规范](#7 注释规范)
+* [8 测试规范](#8 测试规范)
+* [9 RN规范](#9 RN规范)
+* [10 其他的一些规范](#10 其他的一些规范)
 
 
-### 前言
+### 1 前言
 
 为了利于项目维护以及规范开发，促进成员之间Code Review的效率，故提出以下开发规范，如有更好建议，欢迎到GitHub提issue，原文地址: [安卓开发规范(updating)][安卓开发规范(updating)]
 
 
-### AS规范
+### 2 AS规范
 
 工欲善其事，必先利其器。
 
 1. 尽量使用最新版的IDE进行开发；
 2. 编码格式统一为**UTF-8**；
-3. 编辑完.java、.xml等文件后一定要**格式化**（缩进对齐与AS默认一致即可）；
+3. 编辑完`.java`, `.xml`等文件后一定要**格式化**（缩进对齐与AS默认一致即可）；
 4. 删除多余的import，减少警告出现，可利用AS的`Optimize Imports`快捷键；
 5. AS常用开发插件可以参考这里～[AS常用开发插件][AS常用开发插件]
 
 
-### 命名规范
+### 3 命名规范
 
-#### 1. 包名
+代码中的命名严禁使用拼音与英文混合的方式,更不允许直接使用中文的方式。正确的英文拼写和语法可以让阅读者易于理解,避免歧义。注意,即使纯拼音命名方式也要避免采用。但 `alibaba`,  `taobao`, `youku`, `hangzhou` 等国际通用的名称,可视同英文。
+
+#### 3.1 包名
 
 包名全部小写，连续的单词只是简单地连接起来，不使用下划线。
 
-采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为com, edu, gov, net, org等，二级包名为公司名，三级包名根据应用进行命名，四级包名为模块名或层级名。
+采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为`com`, `edu`, `gov`, `net`, `org`等，二级包名为公司名，三级包名根据应用进行命名，四级包名为模块名或层级名。
 
 | 包名                                       | 此包中包含                          |
 | :--------------------------------------- | :----------------------------- |
@@ -52,12 +54,12 @@
 | com.xx.应用名称缩写.view (或者 com.xx.应用名称缩写.widget ) | 自定义的View类等                     |
 | com.xx.应用名称缩写.service                    | Service服务                      |
 | com.xx.应用名称缩写.receiver                   | BroadcastReceiver服务            |
-| com.xx.应用名称缩写.confing                    | 所有的配置相关的类                      |
+| com.xx.应用名称缩写.config                     | 所有的配置相关的类                      |
 
-   > 注意：如果项目采用MVP，所有M、V、P抽取出来的接口都放置在相应模块的i包下，所有的实现都放置在相应模块的impl下
+> 注意：如果项目采用MVP，所有M、V、P抽取出来的接口都放置在相应模块的i包下，所有的实现都放置在相应模块的impl下
 
 
-#### 2. 类名
+#### 3.2 类名
 
 类名都以`UpperCamelCase`风格编写。
 
@@ -65,17 +67,17 @@
 
 名词，采用大驼峰命名法，尽量避免缩写，除非该缩写是众所周知的， 比如HTML,URL，如果类名称中包含单词缩写，则单词缩写的每个字母均应大写。
 
-| 类               | 描述                                       | 例如                                       |
-| :-------------- | :--------------------------------------- | :--------------------------------------- |
-| Activity 类      | Activity为后缀标识                            | 欢迎页面类WelcomeActivity                     |
-| Adapter类        | Adapter 为后缀标识                            | 新闻详情适配器 NewDetailAdapter                 |
-| 解析类             | Parser为后缀标识                              | 首页解析类HomePosterParser                    |
-| 工具方法类           | Utils或Manager为后缀标识（与系统或第三方的Utils区分）或功能+Utils | 线程池管理类：ThreadPoolManager日志工具类：LogUtils（Logger也可）打印工具类：PrinterUtils |
-| 数据库类            | 以DBHelper后缀标识                            | 新闻数据库：NewDBHelper                        |
-| Service类        | 以Service为后缀标识                            | 时间服务TimeServiceBroadcast                 |
-| Receiver类       | 以Receiver为后缀标识                           | 推送接收JPushReceiver                        |
-| ContentProvider | 以Provider为后缀标识                           |                                          |
-| 自定义的共享基础类       | 以Base开头                                  | BaseActivity,BaseFragment                |
+| 类                  | 描述                                       | 例如                                       |
+| :----------------- | :--------------------------------------- | :--------------------------------------- |
+| Activity 类         | Activity为后缀标识                            | 欢迎页面类WelcomeActivity                     |
+| Adapter类           | Adapter 为后缀标识                            | 新闻详情适配器 NewDetailAdapter                 |
+| 解析类                | Parser为后缀标识                              | 首页解析类HomePosterParser                    |
+| 工具方法类              | Utils或Manager为后缀标识（与系统或第三方的Utils区分）或功能+Utils | 线程池管理类：ThreadPoolManager日志工具类：LogUtils（Logger也可）打印工具类：PrinterUtils |
+| 数据库类               | 以DBHelper后缀标识                            | 新闻数据库：NewDBHelper                        |
+| Service类           | 以Service为后缀标识                            | 时间服务TimeService                          |
+| BroadcastReceiver类 | 以Receiver为后缀标识                           | 推送接收JPushReceiver                        |
+| ContentProvider类   | 以Provider为后缀标识                           | ShareProvider                            |
+| 自定义的共享基础类          | 以Base开头                                  | BaseActivity,BaseFragment                |
 
 测试类的命名以它要测试的类的名称开始，以Test结束。例如：HashTest 或 HashIntegrationTest。
 
@@ -85,7 +87,7 @@ interface Runnable , interface Accessible。
 > 注意：如果项目采用MVP，所有Model、View、Presenter的接口都以I为前缀，不加后缀，其他的接口采用上述命名规则。
 
 
-#### 3. 方法名
+#### 3.3 方法名
 
 方法名都以`lowerCamelCase`风格编写。
 
@@ -104,9 +106,9 @@ interface Runnable , interface Accessible。
 | resetXX()              | 重置数据                                 |
 | clearXX()              | 清除数据                                 |
 | removeXX()             | 移除数据或者视图等，如removeView();             |
-| drawXXX()              | 绘制数据或效果相关的，使用draw前缀标识                |
+| drawXX()               | 绘制数据或效果相关的，使用draw前缀标识                |
 
-#### 4. 常量名
+#### 3.4 常量名
 
 常量名命名模式为`CONSTANT_CASE`，全部字母大写，用下划线分隔单词。那，到底什么算是一个常量？
 
@@ -119,6 +121,7 @@ static final ImmutableListNAMES = ImmutableList.of("Ed", "Ann");
 static final Joiner COMMA_JOINER = Joiner.on(','); // because Joiner is immutable
 static final SomeMutableType[] EMPTY_ARRAY = {};
 enum SomeEnum { ENUM_CONSTANT }
+
 // Not constants
 static String nonFinal = "non-final";
 final String nonStatic = "non-static";
@@ -129,7 +132,7 @@ static final String[] nonEmptyArray = {"these", "can", "change"};
 ```
 
 
-#### 5. 非常量字段名
+#### 3.5 非常量字段名
 
 非常量字段名以`lowerCamelCase`风格的基础上改造为如下风格：基本结构为`scopeVariableNameType`。
 
@@ -186,13 +189,13 @@ public class MyClass {
 > 注意：所有的VO（值对象）统一采用标准的lowerCamelCase风格编写，所有的DTO（数据传输对象）就按照接口文档中定义的字段名编写。
 
 
-#### 6. 参数名
+#### 3.6 参数名
 
 参数名以`lowerCamelCase`风格编写。
 参数应该避免用单个字符命名。
 
 
-#### 7. 局部变量名
+#### 3.7 局部变量名
 
 局部变量名以`lowerCamelCase`风格编写，比起其它类型的名称，局部变量名可以有更为宽松的缩写。
 
@@ -201,30 +204,30 @@ public class MyClass {
 即使局部变量是final和不可改变的，也不应该把它示为常量，自然也不能用常量的规则去命名它。
 
 
-#### 8. 临时变量
+#### 3.8 临时变量
 
 临时变量通常被取名为i，j，k，m和n，它们一般用于整型；c，d，e，它们一般用于字符型。 如： for (int i = 0; i < len ; i++)。
 
 
-#### 9. 类型变量名
+#### 3.9 类型变量名
 
 类型变量可用以下两种风格之一进行命名：
 
 单个的大写字母，后面可以跟一个数字(如：E, T, X, T2)。
 
-以类命名方式(参考2. 类名)，后面加个大写的T(如：RequestT, FooBarT)。
+以类命名方式(参考3.2 类名)，后面加个大写的T(如：RequestT, FooBarT)。
 
 
 更多还可参考～[阿里巴巴Java开发手册][阿里巴巴Java开发手册]
 
 
-### 资源文件规范
+### 4 资源文件规范
 
-#### 1. 资源布局文件（XML文件（layout布局文件））
+#### 4.1 资源布局文件（XML文件（layout布局文件））
 
 全部小写，采用下划线命名法
 
-##### 1) contentview 命名
+##### 4.1.1 contentView 命名
 
 必须以全部单词小写，单词间以下划线分割，使用名词或名词词组。
 
@@ -235,22 +238,22 @@ public class MyClass {
 例如：`activity_main.xml`
 
 
-##### 2) Dialog命名：`dialog_描述.xml`
+##### 4.1.2 Dialog命名：`dialog_描述.xml`
 
 例如：`dialog_hint.xml`
 
 
-##### 3) PopupWindow命名：`ppw_描述.xml`
+##### 4.1.3 PopupWindow命名：`ppw_描述.xml`
 
 例如：`ppw_info.xml`
 
 
-##### 4) 列表项命名：`item_描述.xml`
+##### 4.1.4 列表项命名：`item_描述.xml`
 
 例如：`item_city.xml`
 
 
-##### 5) 包含项命名：`模块_(位置)描述.xml`
+##### 4.1.5 包含项命名：`模块_(位置)描述.xml`
 
 例如：`activity_main_head.xml`、`activity_main_bottom.xml`
 
@@ -259,7 +262,7 @@ public class MyClass {
 例如：`xxxx_title.xml`
 
 
-#### 2. 资源文件（图片drawable文件夹下）
+#### 4.2 资源文件（图片drawable文件夹下）
 
 全部小写，采用下划线命名法，加前缀区分
 
@@ -316,7 +319,7 @@ public class MyClass {
 > 注意：使用AndroidStudio的插件SelectorChapek可以快速生成selector，前提是命名要规范。
 
 
-#### 3. 动画文件（anim文件夹下）
+#### 4.3 动画文件（anim文件夹下）
 
 全部小写，采用下划线命名法，加前缀区分。
 
@@ -347,13 +350,13 @@ public class MyClass {
 | `shrink_to_middle`  | 中间缩小    |
 
 
-#### 4. values中name命名
+#### 4.4 values中name命名
 
-##### 1) colors.xml
+##### 4.4.1 colors.xml
 
 colors的name命名使用下划线命名法，在你的`colors.xml`文件中应该只是映射颜色的名称一个ARGB值，而没有其它的。不要使用它为不同的按钮来定义ARGB值。
 
-*不要这样做*
+**不要这样做**
 
 ``` xml
   <resources>
@@ -367,9 +370,9 @@ colors的name命名使用下划线命名法，在你的`colors.xml`文件中应�
       <color name="comment_shadow">#323232</color>
 ```
 
-使用这种格式，你会非常容易的开始重复定义RGBA值，这使如果需要改变基本色变的很复杂。同时，这些定义是跟一些环境关联起来的，如`button`或者`comment`, 应该放到一个按钮风格中，而不是在`color.xml`文件中。
+使用这种格式，你会非常容易的开始重复定义ARGB值，这使如果需要改变基本色变的很复杂。同时，这些定义是跟一些环境关联起来的，如`button`或者`comment`, 应该放到一个按钮风格中，而不是在`color.xml`文件中。
 
-  相反，这样做:
+**相反，这样做**
 
 ``` xml
   <resources>
@@ -393,7 +396,7 @@ colors的name命名使用下划线命名法，在你的`colors.xml`文件中应�
 向应用设计者那里要这个调色板，名称不需要跟"green", "blue", 等等相同。 "brand_primary", "brand_secondary", "brand_negative" 这样的名字也是完全可以接受的。 像这样规范的颜色很容易修改或重构，会使应用一共使用了多少种不同的颜色变得非常清晰。 通常一个具有审美价值的UI来说，减少使用颜色的种类是非常重要的。
 
 
-##### 2) dimens.xml
+##### 4.4.2 dimens.xml
 
 像对待colors.xml一样对待dimens.xml文件 与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。 一个好的例子，如下所示：
 
@@ -425,7 +428,7 @@ colors的name命名使用下划线命名法，在你的`colors.xml`文件中应�
 布局时在写 margins 和 paddings 时，你应该使用spacing_xxxx尺寸格式来布局，而不是像对待String字符串一样直接写值。 这样写会非常有感觉，会使组织和改变风格或布局是非常容易。
 
 
-##### 3) strings.xml
+##### 4.4.3 strings.xml
 
 strings的name命名使用下划线命名法，采用以下规则：模块名+逻辑名称
 
@@ -440,7 +443,7 @@ strings的name命名使用下划线命名法，采用以下规则：模块名+�
 `loading` 加载文字
 
 
-##### 4) styles.xml
+##### 4.4.4 styles.xml
 
 几乎每个项目都需要适当的使用style文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（colors, padding, font）放在style文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的style文件，例如：
 
@@ -467,7 +470,7 @@ strings的name命名使用下划线命名法，采用以下规则：模块名+�
 **将一个大的style文件分割成多个文件**， 你可以有多个`styles.xml` 文件。Android SDK支持其它文件，`styles`这个文件名称并没有作用，起作用的是在文件 里xml的`<style>`标签。因此你可以有多个style文件`styles.xml`,`style_home.xml`,`style_item_details.xml`,`styles_forms.xml`。 不同于资源文件路径需要为系统构建起的有意义，在`res/values`目录下的文件可以任意命名。
 
 
-#### 5. layout中的id命名
+#### 4.5 layout中的id命名
 
 命名模式为：`view缩写_模块名_逻辑名`，比如btn_main_search
 使用 AndroidStudio 的插件 ButterKnife Zelezny，生成注解非常方便，或者也可以使用Android Code Generator插件。
@@ -476,14 +479,14 @@ strings的name命名使用下划线命名法，采用以下规则：模块名+�
 如果想对资源文件进行分包可以参考我这篇文章～[Android Studio下对资源进行分包][Android Studio下对资源进行分包]
 
 
-### 版本统一规范
+### 5 版本统一规范
 
 Android开发存在着众多版本的不同，比如compileSdkVersion、minSdkVersion、targetSdkVersion以及项目中依赖第三方库的版本，不同的module及不同的开发人员都有不同的版本，所以需要一个统一版本规范的文件。
 
 具体可以参考我写的这篇博文～[Android开发之版本统一规范][Android开发之版本统一规范]
 
 
-### 第三方库规范
+### 6 第三方库规范
 
 别再闭门造车了，用用最新最火的技术吧，安利一波～[Android 流行框架查速表][Android 流行框架查速表]，顺便带上自己的干货～[Android开发人员不得不收集的代码][Android开发人员不得不收集的代码]
 
@@ -492,11 +495,11 @@ Android开发存在着众多版本的不同，比如compileSdkVersion、minSdkVe
 个人推荐team使用Retrofit,  RxAndroid, OkHttp, Glide/Fresco, Gson/Fastjson, EventBus/AndroidEventBus, GreenDao,(Dagger2, Tinker)。
 
 
-### 注释规范
+### 7 注释规范
 
 为了让他人可以容易看懂你的代码，请在关键地方做好注释。
 
-#### 1. 类注释
+#### 7.1 类注释
 
 每个类完成后应该有作者姓名和联系方式的注释，对自己的代码负责。
 
@@ -510,6 +513,9 @@ Android开发存在着众多版本的不同，比如compileSdkVersion、minSdkVe
  *     version: 1.0
  * </pre>
  */
+public class WelcomeActivity {
+       ...
+}
 ```
 
 具体可以在AS中自己配制，Setting → Editor → File and Code Templates → Includes → File Header，输入
@@ -524,15 +530,12 @@ Android开发存在着众多版本的不同，比如compileSdkVersion、minSdkVe
  *     version: 1.0
  * </pre>
  */
-public class WelcomeActivity {
-       ...
-}
 ```
 
 这样便可在每次新建类的时候自动加上该注释。
 
 
-#### 2. 方法注释
+#### 7.2 方法注释
 
 每一个成员方法（包括自定义成员方法、覆盖方法、属性方法）的方法头都必须做方法头注释，在方法前一行输入/\*\*回车，AS便会帮你生成模板，我们只需要补全参数即可，如下所示。
 
@@ -552,7 +555,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 }
 ```
 
-#### 3. 块注释
+#### 7.3 块注释
 
 块注释与其周围的代码在同一缩进级别。它们可以是`/* ... */`风格，也可以是`// ...`风格(**// 后最好带一个空格**）。对于多行的`/* ... */`注释，后续行必须从`*`开始， 并且与前一行的`*`对齐。以下示例注释都是OK的。
 
@@ -567,19 +570,19 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 > Tip：在写多行注释时，如果你希望在必要时能重新换行(即注释像段落风格一样)，那么使用/\* ... \*/。
 
 
-### 测试规范
+### 8 测试规范
 
 业务开发完成之后，开发人员做单元测试，单元测试完成之后，保证单元测试全部通过同时单元测试代码覆盖率达到一定程度（这个需要开发和测试约定，理论上越高越好），开发提测。
 
 // TODO...
 
 
-### RN规范
+### 9 RN规范
 
 // TODO...
 
 
-### 其他的一些规范
+### 10 其他的一些规范
 
 1. 合理布局，有效运用`<merge>`, `<ViewStub>`, `<include>`标签
 2. 相关联的方法尽量放在一起
