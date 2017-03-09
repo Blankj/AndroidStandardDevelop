@@ -34,7 +34,7 @@
 
 代码中的命名严禁使用拼音与英文混合的方式,更不允许直接使用中文的方式。正确的英文拼写和语法可以让阅读者易于理解,避免歧义。
 
-> 注意：即使纯拼音命名方式也要避免采用。但`alibaba`, `taobao`, `youku`, `hangzhou`等国际通用的名称,可视同英文。
+> 注意：即使纯拼音命名方式也要避免采用。但`alibaba`、`taobao`、`youku`、`hangzhou`等国际通用的名称,可视同英文。
 
 #### 3.1 包名
 
@@ -84,7 +84,7 @@
 测试类的命名以它要测试的类的名称开始，以Test结束。例如：`HashTest`或`HashIntegrationTest`。
 
 接口（interface）：命名规则与类一样采用大驼峰命名法，多以able或ible结尾，如
-`interface Runnable`, `interface Accessible`。
+`interface Runnable`、`interface Accessible`。
 
 > 注意：如果项目采用MVP，所有Model、View、Presenter的接口都以I为前缀，不加后缀，其他的接口采用上述命名规则。
 
@@ -208,16 +208,15 @@ public class MyClass {
 
 #### 3.8 临时变量
 
-临时变量通常被取名为`i`，`j`，`k`，`m`和`n`，它们一般用于整型；`c`，`d`，`e`，它们一般用于字符型。 如：`for (int i = 0; i < len ; i++)`。
+临时变量通常被取名为`i`、`j`、`k`、`m`和`n`，它们一般用于整型；`c`、`d`、`e`，它们一般用于字符型。 如：`for (int i = 0; i < len ; i++)`。
 
 
 #### 3.9 类型变量名
 
 类型变量可用以下两种风格之一进行命名：
 
-单个的大写字母，后面可以跟一个数字(如：`E`, `T`, `X`, `T2`)。
-
-以类命名方式(参考[3.2 类名](#32-类名))，后面加个大写的`T`(如：`RequestT`, `FooBarT`)。
+1. 单个的大写字母，后面可以跟一个数字(如：`E`, `T`, `X`, `T2`)。
+2. 以类命名方式(参考[3.2 类名](#32-类名))，后面加个大写的`T`(如：`RequestT`, `FooBarT`)。
 
 
 更多还可参考～**[阿里巴巴Java开发手册][阿里巴巴Java开发手册]**
@@ -263,7 +262,7 @@ public class MyClass {
 
 规则：`模块_(位置)描述.xml`
 
-例如：`activity_main_head.xml`, `activity_main_bottom.xml`
+例如：`activity_main_head.xml`、`activity_main_bottom.xml`
 
 注意：通用的包含项命名采用：`项目名称缩写_描述.xml`
 
@@ -297,7 +296,7 @@ public class MyClass {
 | bg_input.png            | 输入框背景 |
 | divider_white.png       | 白色分割线 |
 
-如果有多种形态，如按钮选择器 `btn_xx.xml`(selector)
+如果有多种形态，如按钮选择器：`btn_xx.xml`(selector)
 
 | 名称                   | 说明                           |
 | -------------------- | ---------------------------- |
@@ -327,7 +326,7 @@ public class MyClass {
 
 具体动画采用以下规则：`模块名_逻辑名称`。
 
-例如：`refresh_progress.xml`,`market_cart_add.xml`,`market_cart_remove.xml`。
+例如：`refresh_progress.xml`、`market_cart_add.xml`、`market_cart_remove.xml`。
 
 普通的tween动画采用如下表格中的命名方式：`动画类型_方向`
 
@@ -387,7 +386,7 @@ public class MyClass {
   </resources>
 ```
 
-向应用设计者那里要这个调色板，名称不需要跟`"green"`, `"blue"`, 等等相同。`"brand_primary"`, `"brand_secondary"`, `"brand_negative"`这样的名字也是完全可以接受的。 像这样规范的颜色很容易修改或重构，会使应用一共使用了多少种不同的颜色变得非常清晰。 通常一个具有审美价值的UI来说，减少使用颜色的种类是非常重要的。
+向应用设计者那里要这个调色板，名称不需要跟`"green"`、`"blue"`等等相同。`"brand_primary"`、`"brand_secondary"`、`"brand_negative"`这样的名字也是完全可以接受的。 像这样规范的颜色很容易修改或重构，会使应用一共使用了多少种不同的颜色变得非常清晰。 通常一个具有审美价值的UI来说，减少使用颜色的种类是非常重要的。
 
 
 ##### 4.4.2 dimens.xml
@@ -439,7 +438,7 @@ public class MyClass {
 
 ##### 4.4.4 styles.xml
 
-几乎每个项目都需要适当的使用`style`文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（`colors`, `padding`, `font`）放在`style`文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的style文件，例如：
+几乎每个项目都需要适当的使用`style`文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在`style`文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的style文件，例如：
 
 ```
 <style name="ContentText">
@@ -461,7 +460,7 @@ public class MyClass {
 
 你或许需要为按钮控件做同样的事情，不要停止在那里。将一组相关的和重复`android:****`的属性放到一个通用的`style`中。
 
-**将一个大的`style`文件分割成多个文件**， 你可以有多个`styles.xml` 文件。Android SDK支持其它文件，`styles`这个文件名称并没有作用，起作用的是在文件 里xml的`<style>`标签。因此你可以有多个style文件`styles.xml`,`style_home.xml`,`style_item_details.xml`,`styles_forms.xml`。 不同于资源文件路径需要为系统构建起的有意义，在`res/values`目录下的文件可以任意命名。
+**将一个大的`style`文件分割成多个文件**， 你可以有多个`styles.xml` 文件。Android SDK支持其它文件，`styles`这个文件名称并没有作用，起作用的是在文件 里xml的`<style>`标签。因此你可以有多个style文件`styles.xml`、`style_home.xml`、`style_item_details.xml`、`styles_forms.xml`。 不同于资源文件路径需要为系统构建起的有意义，在`res/values`目录下的文件可以任意命名。
 
 
 #### 4.5 layout中的id命名
@@ -475,7 +474,7 @@ public class MyClass {
 
 ### 5 版本统一规范
 
-Android开发存在着众多版本的不同，比如`compileSdkVersion`,`minSdkVersion`,`targetSdkVersion`以及项目中依赖第三方库的版本，不同的module及不同的开发人员都有不同的版本，所以需要一个统一版本规范的文件。
+Android开发存在着众多版本的不同，比如`compileSdkVersion`、`minSdkVersion`、`targetSdkVersion`以及项目中依赖第三方库的版本，不同的module及不同的开发人员都有不同的版本，所以需要一个统一版本规范的文件。
 
 具体可以参考我写的这篇博文～**[Android开发之版本统一规范][Android开发之版本统一规范]**
 
@@ -589,7 +588,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 ### 10 其他的一些规范
 
-1. 合理布局，有效运用`<merge>`,`<ViewStub>`,`<include>`标签；
+1. 合理布局，有效运用`<merge>`、`<ViewStub>`、`<include>`标签；
 2. `Activity`和`Fragment`里面有许多重复的操作以及操作步骤，所以我们都需要提供一个`BaseActivity`和`BaseFragment`，让所有的`Activity`和`Fragment`都继承这个基类。
 3. 方法基本上都按照调用的先后顺序在各自区块中排列；
 4. 相关功能作为小区块放在一起（或者封装掉）；
@@ -678,8 +677,10 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 ## 版本日志
 
-* 17/03/06: version1.0, powered by Blankj(蔡梦杰)
-
+* 17/03/06: 发布初版 ；
+* 17/03/07: 修订目录排版，完善某些细节；
+* 17/03/08: 规范排版，修复typor及新增一些规范；
+									——powered by Blankj(蔡梦杰)
 
 [安卓开发规范(updating)]: https://github.com/Blankj/AndroidStandardDevelop
 [AS常用开发插件]: http://www.jianshu.com/p/c76b0d8a642d
