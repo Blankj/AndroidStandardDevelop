@@ -607,7 +607,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 ### UI控件缩写表
 
-| 名称           | 缩写      |
+| 名称             | 缩写      |
 | -------------- | ------- |
 | TextView       | txt     |
 | EditText       | edit    |
@@ -680,7 +680,8 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 * 17/03/06: 发布初版 ；
 * 17/03/07: 修订目录排版，完善某些细节；
 * 17/03/08: 规范排版，修复typor及新增一些规范；
-									——powered by Blankj(蔡梦杰)
+
+　　　　　　　　　　　　　　　——powered by Blankj(蔡梦杰)
 
 [安卓开发规范(updating)]: https://github.com/Blankj/AndroidStandardDevelop
 [AS常用开发插件]: http://www.jianshu.com/p/c76b0d8a642d
