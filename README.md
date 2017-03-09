@@ -25,14 +25,16 @@
 
 1. 尽量使用最新版的IDE进行开发；
 2. 编码格式统一为**UTF-8**；
-3. 编辑完`.java`, `.xml`等文件后一定要**格式化**（缩进对齐与AS默认一致即可）；
-4. 删除多余的import，减少警告出现，可利用AS的`Optimize Imports`快捷键；
+3. 编辑完`.java`, `.xml`等文件后一定要**格式化**（基本格式方面使用 AS 默认模板即可）；
+4. 删除多余的import，减少警告出现，可利用AS的`Optimize Imports`(Settings → Keymap → Optimize Imports)快捷键；
 5. AS常用开发插件可以参考这里～**[AS常用开发插件][AS常用开发插件]**
 
 
 ### 3 命名规范
 
-代码中的命名严禁使用拼音与英文混合的方式,更不允许直接使用中文的方式。正确的英文拼写和语法可以让阅读者易于理解,避免歧义。注意,即使纯拼音命名方式也要避免采用。但`alibaba`, `taobao`, `youku`, `hangzhou`等国际通用的名称,可视同英文。
+代码中的命名严禁使用拼音与英文混合的方式,更不允许直接使用中文的方式。正确的英文拼写和语法可以让阅读者易于理解,避免歧义。
+
+> 注意：即使纯拼音命名方式也要避免采用。但`alibaba`, `taobao`, `youku`, `hangzhou`等国际通用的名称,可视同英文。
 
 #### 3.1 包名
 
@@ -274,12 +276,12 @@ public class MyClass {
 
 命名模式：可加后缀 `_small` 表示小图， `_big` 表示大图，逻辑名称可由多个单词加下划线组成，采用以下规则：
 
-*`用途_模块名_逻辑名称`
-*`用途_模块名_颜色`
-*`用途_逻辑名称`
-*`用途_颜色`
+* `用途_模块名_逻辑名称`
+* `用途_模块名_颜色`
+* `用途_逻辑名称`
+* `用途_颜色`
 
-说明：用途也指控件类型（具体见UI控件缩写表）
+说明：用途也指控件类型（具体见附录[UI控件缩写表](#ui控件缩写表)）
 
 例如：
 
@@ -300,21 +302,21 @@ public class MyClass {
 | 名称                   | 说明                           |
 | -------------------- | ---------------------------- |
 | btn_xx               | 按钮图片使用`btn_整体效果`（selector）   |
-| btn_xx_normal        | 按钮图片使用`btn_正常情况效果`          |
-| btn_xx_pressed       | 按钮图片使用`btn_点击时候效果`          |
-| btn_xx_focused       |`state_focused`聚焦效果          |
-| btn_xx_disabled      |`state_enabled` (false)不可用效果 |
-| btn_xx_checked       |`state_checked`选中效果          |
-| btn_xx_selected      |`state_selected`选中效果         |
-| btn_xx_hovered       |`state_hovered`悬停效果          |
-| btn_xx_checkable     |`state_checkable`可选效果        |
-| btn_xx_activated     |`state_activated`激活的         |
-| btn_xx_windowfocused |`state_window_focused`      |
-| bg_head              | 背景图片使用`bg_功能_说明`            |
-| def_search_cell      | 默认图片使用`def_功能_说明`           |
-| ic_more_help         | 图标图片使用`ic_功能_说明`            |
-| seg_list_line        | 具有分隔特征的图片使用`seg_功能_说明`      |
-| sel_ok               | 选择图标使用`sel_功能_说明`           |
+| btn_xx_normal        | 按钮图片使用`btn_正常情况效果`           |
+| btn_xx_pressed       | 按钮图片使用`btn_点击时候效果`           |
+| btn_xx_focused       | `state_focused`聚焦效果          |
+| btn_xx_disabled      | `state_enabled` (false)不可用效果 |
+| btn_xx_checked       | `state_checked`选中效果          |
+| btn_xx_selected      | `state_selected`选中效果         |
+| btn_xx_hovered       | `state_hovered`悬停效果          |
+| btn_xx_checkable     | `state_checkable`可选效果        |
+| btn_xx_activated     | `state_activated`激活的         |
+| btn_xx_windowfocused | `state_window_focused`       |
+| bg_head              | 背景图片使用`bg_功能_说明`             |
+| def_search_cell      | 默认图片使用`def_功能_说明`            |
+| ic_more_help         | 图标图片使用`ic_功能_说明`             |
+| seg_list_line        | 具有分隔特征的图片使用`seg_功能_说明`       |
+| sel_ok               | 选择图标使用`sel_功能_说明`            |
 
 > 注意：使用AndroidStudio的插件`SelectorChapek`可以快速生成selector，前提是命名要规范。
 
@@ -486,15 +488,15 @@ Android开发存在着众多版本的不同，比如`compileSdkVersion`,`minSdkV
 
 个人推荐Team可使用如下优秀轮子：
 
-* Retrofit
-* RxAndroid
-* OkHttp
-* Glide/Fresco
-* Gson/Fastjson
-* EventBus/AndroidEventBus
-* GreenDao
-* Dagger2(选用)
-* Tinker(选用)
+* **[Retrofit][Retrofit]**
+* **[RxAndroid][RxAndroid]**
+* **[OkHttp][OkHttp]**
+* **[Glide][Glide]**/**[Fresco]/Fresco]**
+* **[Gson][Gson]**/**[Fastjson][Fastjson]**
+* **[EventBus][EventBus]**/**[AndroidEventBus][AndroidEventBus]**
+* **[GreenDao][GreenDao]**
+* **[Dagger2][Dagger2]**(选用)
+* **[Tinker][Tinker]**(选用)
 
 
 ### 7 注释规范
@@ -520,7 +522,7 @@ public class WelcomeActivity {
 }
 ```
 
-具体可以在AS中自己配制，Setting → Editor → File and Code Templates → Includes → File Header，输入
+具体可以在AS中自己配制，Settings → Editor → File and Code Templates → Includes → File Header，输入
 
 ```java
 /**
@@ -539,7 +541,7 @@ public class WelcomeActivity {
 
 #### 7.2 方法注释
 
-每一个成员方法（包括自定义成员方法、覆盖方法、属性方法）的方法头都必须做方法头注释，在方法前一行输入`/** + 回车`，AS便会帮你生成模板，我们只需要补全参数即可，如下所示。
+每一个成员方法（包括自定义成员方法、覆盖方法、属性方法）的方法头都必须做方法头注释，在方法前一行输入`/** + 回车`或者设置`Fix doc comment`(Settings → Keymap → Fix doc comment)快捷键，AS便会帮你生成模板，我们只需要补全参数即可，如下所示。
 
 ```java
 /**
@@ -587,17 +589,19 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 ### 10 其他的一些规范
 
-1. 合理布局，有效运用`<merge>`,`<ViewStub>`,`<include>`标签。
-2. 相关联的方法尽量放在一起。
-3. 不要忘了内存泄漏的检测。
-4. 子module依赖尽可能使用provided。
+1. 合理布局，有效运用`<merge>`,`<ViewStub>`,`<include>`标签；
+2. 方法基本上都按照调用的先后顺序在各自区块中排列；
+3. 相关功能作为小区块放在一起（或者封装掉）；
+4. 当一个类有多个构造函数，或是多个同名方法，这些函数/方法应该按顺序出现在一起，中间不要放进其它函数/方法；
+5. 子module中的依赖尽可能使用provided；
+6. 不要忘了内存泄漏的检测；
 
 
 ## 附录
 
-表1 UI控件缩写表
+### UI控件缩写表
 
-| View           | 缩写      |
+| 名称           | 缩写      |
 | -------------- | ------- |
 | TextView       | txt     |
 | EditText       | edit    |
@@ -620,7 +624,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 | TabHost        | thost   |
 | TabWidget      | twidget |
 
-表2 常见的英文单词缩写:
+### 常见的英文单词缩写表
 
 | 名称                   | 缩写                                       |
 | -------------------- | ---------------------------------------- |
@@ -670,13 +674,24 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 * 17/03/06: version1.0, powered by Blankj(蔡梦杰)
 
 
-
 [安卓开发规范(updating)]: https://github.com/Blankj/AndroidStandardDevelop
 [AS常用开发插件]: http://www.jianshu.com/p/c76b0d8a642d
 [Android Studio下对资源进行分包]: http://www.jianshu.com/p/8e893581b9c7
 [Android开发之版本统一规范]: http://www.jianshu.com/p/db6ef4cfa5d1
 [Android 流行框架查速表]: http://www.ctolib.com/cheatsheets-Android-ch.html
 [Android开发人员不得不收集的代码]: https://github.com/Blankj/AndroidUtilCode
+[Retrofit]: https://github.com/square/retrofit
+[RxAndroid]: https://github.com/ReactiveX/RxAndroid
+[OkHttp]: https://github.com/square/okhttp
+[Glide]: https://github.com/bumptech/glide
+[Fresco]: https://github.com/facebook/fresco
+[Gson]: https://github.com/google/gson
+[Fastjson]: https://github.com/alibaba/fastjson
+[EventBus]: https://github.com/greenrobot/EventBus
+[AndroidEventBus]: https://github.com/bboyfeiyu/AndroidEventBus
+[GreenDao]: https://github.com/greenrobot/greenDAO
+[Dagger2]: https://github.com/google/dagger
+[Tinker]: https://github.com/Tencent/tinker
 [Android 开发最佳实践]: https://github.com/futurice/android-best-practices/blob/master/translations/Chinese/README.cn.md
 [Android 编码规范]: http://www.jianshu.com/p/0a984f999592
 [阿里巴巴Java开发手册]: https://102.alibaba.com/newsInfo.htm?newsId=6
