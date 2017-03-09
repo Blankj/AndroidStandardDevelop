@@ -490,7 +490,7 @@ Android开发存在着众多版本的不同，比如`compileSdkVersion`、`minSd
 * **[Retrofit][Retrofit]**
 * **[RxAndroid][RxAndroid]**
 * **[OkHttp][OkHttp]**
-* **[Glide][Glide]**/**[Fresco]/Fresco]**
+* **[Glide][Glide]**/**[Fresco][Fresco]**
 * **[Gson][Gson]**/**[Fastjson][Fastjson]**
 * **[EventBus][EventBus]**/**[AndroidEventBus][AndroidEventBus]**
 * **[GreenDao][GreenDao]**
