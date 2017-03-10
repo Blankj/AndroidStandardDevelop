@@ -438,7 +438,7 @@ public class MyClass {
 
 ##### 4.4.4 styles.xml
 
-几乎每个项目都需要适当的使用`style`文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在`style`文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的style文件，例如：
+几乎每个项目都需要适当的使用`style`文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在`style`文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的`style`文件，例如：
 
 ```
 <style name="ContentText">
@@ -490,9 +490,9 @@ Android开发存在着众多版本的不同，比如`compileSdkVersion`、`minSd
 * **[Retrofit][Retrofit]**
 * **[RxAndroid][RxAndroid]**
 * **[OkHttp][OkHttp]**
-* **[Glide][Glide]**/**[Fresco][Fresco]**
-* **[Gson][Gson]**/**[Fastjson][Fastjson]**
-* **[EventBus][EventBus]**/**[AndroidEventBus][AndroidEventBus]**
+* **[Glide][Glide]** / **[Fresco][Fresco]**
+* **[Gson][Gson]** / **[Fastjson][Fastjson]**
+* **[EventBus][EventBus]** / **[AndroidEventBus][AndroidEventBus]**
 * **[GreenDao][GreenDao]**
 * **[Dagger2][Dagger2]**(选用)
 * **[Tinker][Tinker]**(选用)
@@ -599,8 +599,62 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 9. 可引入 Dagger2 减少模块之间的耦合性。Dagger2 是一个依赖注入框架，使用代码自动生成创建依赖关系需要的代码。减少很多模板化的代码，更易于测试，降低耦合，创建可复用可互换的模块；
 10. 项目引入`RxJava` + `RxAndroid`这些响应式编程，可以极大的减少逻辑代码；
 11. 通过引入事件总线，如：`EventBus`、`AndroidEventBus`、`RxBus`，它允许我们在`DataLayer`中发送事件，以便`ViewLayer`中的多个组件都能够订阅到这些事件，减少回调；
-12. 使用AS自带的Lint来优化代码结构（什么，你不会？右键module、目录或者文件，选择Analyze → Inspect Code）；
-13. 最后不要忘了内存泄漏的检测；
+12. 尽可能使用局部变量；
+13. 及时关闭流；
+14. 尽量减少对变量的重复计算；
+
+  如下面的操作：
+
+  ``` java
+  for (int i = 0; i < list.size(); i++) {
+      ...
+  }
+  ```
+
+  建议替换为：
+
+  ``` java
+  for (int i = 0, int length = list.size(); i < length; i++) {
+      ...
+  }
+  ```
+
+15. 尽量采用懒加载的策略，即在需要的时候才创建；
+
+  例如：
+
+  ``` java
+  String str = "aaa";
+  if (i == 1) {
+      list.add(str);
+  }
+  ```
+
+  建议替换为：
+
+  ``` java
+  if (i == 1) {
+      String str = "aaa";
+      list.add(str);
+  }
+  ```
+
+16. 不要在循环中使用try…catch…，应该把其放在最外层；
+17. 使用带缓冲的输入输出流进行IO操作；
+18. 尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销；
+19. 尽量在合适的场合使用单例；
+
+  使用单例可以减轻加载的负担、缩短加载的时间、提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面：
+
+  （1）控制资源的使用，通过线程同步来控制资源的并发访问
+
+  （2）控制实例的产生，以达到节约资源的目的
+
+  （3）控制数据的共享，在不建立直接关联的条件下，让多个不相关的进程或线程之间实现通信
+
+20. 把一个基本数据类型转为字符串，`基本数据类型.toString()`是最快的方式、`String.valueOf(数据)`次之、`数据 + ""`最慢；
+21. 使用AS自带的Lint来优化代码结构（什么，你不会？右键module、目录或者文件，选择Analyze → Inspect Code）；
+22. 最后不要忘了内存泄漏的检测；
 
 
 ## 附录
@@ -674,6 +728,8 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 [Google Java编程风格指南][Google Java编程风格指南]
 
+[小细节，大用途，35 个 Java 代码性能优化总结！][小细节，大用途，35 个 Java 代码性能优化总结！]
+
 
 ## 版本日志
 
@@ -705,3 +761,4 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 [Android 编码规范]: http://www.jianshu.com/p/0a984f999592
 [阿里巴巴Java开发手册]: https://102.alibaba.com/newsInfo.htm?newsId=6
 [Google Java编程风格指南]: http://www.hawstein.com/posts/google-java-style.html
+[小细节，大用途，35 个 Java 代码性能优化总结！]: http://www.jianshu.com/p/436943216526
