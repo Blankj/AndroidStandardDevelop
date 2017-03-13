@@ -300,7 +300,7 @@ public class MyClass {
 | ic_more_help            | 更多帮助图标`用途_逻辑名称`         |
 | divider_list_line       | 列表分割线`用途_逻辑名称`          |
 | selector_search_ok      | 搜索界面确认选择器`用途_模块名_逻辑名称`  |
-| shape_music_ring        | 音乐界面环状图片`用途_模块名_逻辑名称`   |
+| shape_music_ring        | 音乐界面环形形状`用途_模块名_逻辑名称`   |
 
 如果有多种形态，如按钮选择器：`btn_xx.xml`(selector)
 
@@ -426,7 +426,7 @@ public class MyClass {
 
 ##### 4.4.3 strings.xml
 
-`strings`的`name`命名使用下划线命名法，采用以下规则：`模块名+逻辑名称`
+`strings`的`name`命名使用下划线命名法，采用以下规则：`模块名+逻辑名称`，这样方便同一个界面的所有string都放到一起，方便查找。
 
 | 名称                | 说明      |
 | ----------------- | ------- |
@@ -441,7 +441,7 @@ public class MyClass {
 
 ##### 4.4.4 styles.xml
 
-几乎每个项目都需要适当的使用`style`文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在`style`文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的`style`文件，例如：
+`style`的`name`命名使用大驼峰命名法，几乎每个项目都需要适当的使用`style`文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在`style`文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的`style`文件，例如：
 
 ```
 <style name="ContentText">
@@ -659,6 +659,14 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 21. 使用AS自带的Lint来优化代码结构（什么，你不会？右键module、目录或者文件，选择Analyze → Inspect Code）；
 22. 最后不要忘了内存泄漏的检测；
 
+---
+
+最后啰嗦几句：
+
+* 好的命名规则能够提高代码质量，使得新人加入项目的时候降低理解代码的难度；
+* 规矩终究是死的，适合团队的才是最好的；
+* 命名规范需要团队一起齐心协力来维护执行，在团队生活里，谁都不可能独善其身；
+* 一开始可能会有些不习惯，持之以恒，总会成功的。
 
 ## 附录
 
