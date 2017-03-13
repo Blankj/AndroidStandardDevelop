@@ -25,7 +25,7 @@
 
 1. 尽量使用最新版的IDE进行开发；
 2. 编码格式统一为**UTF-8**；
-3. 编辑完`.java`, `.xml`等文件后一定要**格式化**（基本格式方面使用 AS 默认模板即可）；
+3. 编辑完`.java`、 `.xml`等文件后一定要**格式化**（基本格式方面使用 AS 默认模板即可）；
 4. 删除多余的import，减少警告出现，可利用AS的`Optimize Imports`(Settings → Keymap → Optimize Imports)快捷键；
 5. AS常用开发插件可以参考这里～**[AS常用开发插件][AS常用开发插件]**
 
@@ -284,17 +284,23 @@ public class MyClass {
 
 例如：
 
-| 名称                      | 说明    |
-| ----------------------- | ----- |
-| btn_main_home.png       | 按键    |
-| divider_maket_white.png | 分割线   |
-| ic_edit.png             | 图标    |
-| bg_main.png             | 背景    |
-| btn_red.png             | 红色按键  |
-| btn_red_big.png         | 红色大按键 |
-| ic_head_small.png       | 小头像   |
-| bg_input.png            | 输入框背景 |
-| divider_white.png       | 白色分割线 |
+| 名称                      | 说明                      |
+| ----------------------- | ----------------------- |
+| btn_main_home.png       | 按键`用途_模块名_逻辑名称`         |
+| divider_maket_white.png | 分割线`用途_模块名_颜色`          |
+| ic_edit.png             | 图标`用途_逻辑名称`             |
+| bg_main.png             | 背景`用途_逻辑名称`             |
+| btn_red.png             | 红色按键`用途_颜色`             |
+| btn_red_big.png         | 红色大按键`用途_颜色`            |
+| ic_head_small.png       | 小头像`用途_逻辑名称`            |
+| bg_input.png            | 输入框背景`用途_逻辑名称`          |
+| divider_white.png       | 白色分割线`用途_颜色`            |
+| bg_main_head            | 主模块头部背景图片`用途_模块名_逻辑名称`  |
+| def_search_cell         | 默认搜索界面单元图片`用途_模块名_逻辑名称` |
+| ic_more_help            | 更多帮助图标`用途_逻辑名称`         |
+| divider_list_line       | 列表分割线`用途_逻辑名称`          |
+| selector_search_ok      | 搜索界面确认选择器`用途_模块名_逻辑名称`  |
+| shape_music_ring        | 音乐界面环状图片`用途_模块名_逻辑名称`   |
 
 如果有多种形态，如按钮选择器：`btn_xx.xml`(selector)
 
@@ -311,11 +317,6 @@ public class MyClass {
 | btn_xx_checkable     | `state_checkable`可选效果        |
 | btn_xx_activated     | `state_activated`激活的         |
 | btn_xx_windowfocused | `state_window_focused`       |
-| bg_head              | 背景图片使用`bg_功能_说明`             |
-| def_search_cell      | 默认图片使用`def_功能_说明`            |
-| ic_more_help         | 图标图片使用`ic_功能_说明`             |
-| seg_list_line        | 具有分隔特征的图片使用`seg_功能_说明`       |
-| sel_ok               | 选择图标使用`sel_功能_说明`            |
 
 > 注意：使用AndroidStudio的插件`SelectorChapek`可以快速生成selector，前提是命名要规范。
 
@@ -387,6 +388,8 @@ public class MyClass {
 ```
 
 向应用设计者那里要这个调色板，名称不需要跟`"green"`、`"blue"`等等相同。`"brand_primary"`、`"brand_secondary"`、`"brand_negative"`这样的名字也是完全可以接受的。 像这样规范的颜色很容易修改或重构，会使应用一共使用了多少种不同的颜色变得非常清晰。 通常一个具有审美价值的UI来说，减少使用颜色的种类是非常重要的。
+
+> 注意：如果某些颜色和主题有关，那就独立出去写。
 
 
 ##### 4.4.2 dimens.xml
@@ -661,59 +664,58 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 ### UI控件缩写表
 
-| 名称             | 缩写      |
-| -------------- | ------- |
-| TextView       | txt     |
-| EditText       | edit    |
-| Button         | btn     |
-| ImageButton    | ibtn    |
-| ImageView      | img     |
-| ListView       | lv      |
-| RadioGroup     | rgroup  |
-| RadioButton    | rbtn    |
-| ProgressBar    | rbar    |
-| SeekBar        | seek    |
-| CheckBox       | cb      |
-| Spinner        | spinner |
-| TableLayout    | table   |
-| TableRow       | row     |
-| LinearLayout   | ll      |
-| RelativeLayout | rl      |
-| ScrollView     | scroll  |
-| SearchView     | search  |
-| TabHost        | thost   |
-| TabWidget      | twidget |
+| 名称             | 缩写   |
+| -------------- | ---- |
+| TextView       | tv   |
+| EditText       | et   |
+| ImageButton    | ib   |
+| Button         | btn  |
+| ImageView      | iv   |
+| ListView       | lv   |
+| GridView       | gv   |
+| ProgressBar    | pb   |
+| SeekBar        | sb   |
+| RadioButtion   | rb   |
+| CheckBox       | cb   |
+| ScrollView     | sv   |
+| LinearLayout   | ll   |
+| FrameLayout    | fl   |
+| RelativeLayout | rl   |
+| RecyclerView   | rv   |
+| WebView        | wv   |
+| VideoView      | vv   |
+| Spinner        | spn  |
+| ToggleButton   | tb   |
 
 ### 常见的英文单词缩写表
 
-| 名称                   | 缩写                                       |
-| -------------------- | ---------------------------------------- |
-| icon                 | ic （主要用在app的图标）                          |
-| color                | cl（主要用于颜色值）                              |
-| divider              | di（主要用于分隔线，不仅包括Listview中的divider，还包括普通布局中的线） |
-| selector             | sl（主要用于某一view多种状态，不仅包括Listview中的selector，还包括按钮的selector） |
-| average              | avg                                      |
-| background           | bg（主要用于布局和子布局的背景）                        |
-| buffer               | buf                                      |
-| control              | ctrl                                     |
-| delete               | del                                      |
-| document             | doc                                      |
-| error                | err                                      |
-| escape               | esc                                      |
-| increment            | inc                                      |
-| infomation           | info                                     |
-| initial              | init                                     |
-| image                | img                                      |
-| Internationalization | I18N                                     |
-| length               | len                                      |
-| library              | lib                                      |
-| message              | msg                                      |
-| password             | pwd                                      |
-| position             | pos                                      |
-| server               | srv                                      |
-| string               | str                                      |
-| temp                 | tmp                                      |
-| window               | wnd(win)                                 |
+| 名称                   | 缩写                |
+| -------------------- | ----------------- |
+| icon                 | ic （主要用在app的图标）   |
+| color                | cl（主要用于颜色值）       |
+| average              | avg               |
+| background           | bg（主要用于布局和子布局的背景） |
+| buffer               | buf               |
+| control              | ctrl              |
+| default              | def               |
+| delete               | del               |
+| document             | doc               |
+| error                | err               |
+| escape               | esc               |
+| increment            | inc               |
+| infomation           | info              |
+| initial              | init              |
+| image                | img               |
+| Internationalization | I18N              |
+| length               | len               |
+| library              | lib               |
+| message              | msg               |
+| password             | pwd               |
+| position             | pos               |
+| server               | srv               |
+| string               | str               |
+| temp                 | tmp               |
+| window               | wnd(win)          |
 
 程序中使用单词缩写原则：不要用缩写，除非该缩写是约定俗成的。
 
