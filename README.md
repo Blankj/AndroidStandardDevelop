@@ -1006,6 +1006,7 @@ AS已帮你集成了一些注释模板，我们只需要直接使用即可，在
 
 
 ## 参考
+[Android包命名规范][Android包命名规范]
 
 [Android 开发最佳实践][Android 开发最佳实践]
 
@@ -1048,6 +1049,7 @@ AS已帮你集成了一些注释模板，我们只需要直接使用即可，在
 [GreenDao]: https://github.com/greenrobot/greenDAO
 [Dagger2]: https://github.com/google/dagger
 [Tinker]: https://github.com/Tencent/tinker
+[Android包命名规范]: http://www.ayqy.net/blog/android%E5%8C%85%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/
 [Android 开发最佳实践]: https://github.com/futurice/android-best-practices/blob/master/translations/Chinese/README.cn.md
 [Android 编码规范]: http://www.jianshu.com/p/0a984f999592
 [阿里巴巴Java开发手册]: https://102.alibaba.com/newsInfo.htm?newsId=6
