@@ -38,28 +38,296 @@
 
 #### 3.1 包名
 
-包名全部小写，连续的单词只是简单地连接起来，不使用下划线。
+包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为`com`,`edu`,`gov`,`net`,`org`等，二级包名为公司名，三级包名根据应用进行命名，后面就是对包名的划分了，关于包名的划分，推荐使用按功能分，一开始我们也是按照层去分包的，很坑爹。按照功能分可能你不是很好区分在哪个功能中，不过也比你按照层区分要好找很多。具体可以参考这篇博文～**[Package by features, not layers][Package by features, not layers]**，当然，我们大谷歌也有相应的sample～**[iosched][iosched]**，其结构如下所示，很值得学习。
 
-采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为`com`,`edu`,`gov`,`net`,`org`等，二级包名为公司名，三级包名根据应用进行命名，四级包名为模块名或层级名。
+```
+java
+└─com
+    └─google
+        └─samples
+            └─apps
+                └─iosched
+                    │  AppApplication.java  定义Application类
+                    │  Config.java          定义配置数据（常量）
+                    │
+                    ├─about
+                    │      AboutActivity.java
+                    │
+                    ├─appwidget
+                    │      ScheduleWidgetProvider.java
+                    │      ScheduleWidgetRemoteViewsService.java
+                    │
+                    ├─debug
+                    │  │  DebugAction.java
+                    │  │  DebugActivity.java
+                    │  │  DebugFragment.java
+                    │  │
+                    │  └─actions
+                    │          DisplayUserDataDebugAction.java
+                    │          ForceAppDataSyncNowAction.java
+                    │          ForceSyncNowAction.java
+                    │          ...
+                    │
+                    ├─explore
+                    │  │  ExploreIOActivity.java
+                    │  │  ExploreIOFragment.java
+                    │  │  ExploreModel.java
+                    │  │  ...
+                    │  │
+                    │  └─data
+                    │          ItemGroup.java
+                    │          LiveStreamData.java
+                    │          MessageData.java
+                    │          ...
+                    │
+                    ├─feedback
+                    │      FeedbackApiHelper.java
+                    │      FeedbackConstants.java
+                    │      FeedbackHelper.java
+                    │      ...
+                    │
+                    ├─framework
+                    │      FragmentListener.java
+                    │      LoaderIdlingResource.java
+                    │      Model.java
+                    │      ...定义interface并实现
+                    │
+                    ├─gcm
+                    │  │  GCMCommand.java
+                    │  │  GCMIntentService.java
+                    │  │  GCMRedirectedBroadcastReceiver.java
+                    │  │  ...
+                    │  │
+                    │  └─command
+                    │          AnnouncementCommand.java
+                    │          NotificationCommand.java
+                    │          SyncCommand.java
+                    │          ...
+                    │
+                    ├─io
+                    │  │  BlocksHandler.java
+                    │  │  HandlerException.java
+                    │  │  HashtagsHandler.java
+                    │  │  ...处理model
+                    │  │
+                    │  ├─map
+                    │  │  └─model
+                    │  │          MapData.java
+                    │  │          Marker.java
+                    │  │          Tile.java
+                    │  │
+                    │  └─model
+                    │          Block.java
+                    │          DataManifest.java
+                    │          Hashtag.java
+                    │          ...
+                    │
+                    ├─map
+                    │  │  InlineInfoFragment.java
+                    │  │  MapActivity.java
+                    │  │  MapFragment.java
+                    │  │  ...
+                    │  │
+                    │  └─util
+                    │          CachedTileProvider.java
+                    │          MarkerLoadingTask.java
+                    │          MarkerModel.java
+                    │          ...
+                    │
+                    ├─model
+                    │      ScheduleHelper.java
+                    │      ScheduleItem.java
+                    │      ScheduleItemHelper.java
+                    │      ...定义model以及实现model相关操作
+                    │
+                    ├─myschedule
+                    │      MyScheduleActivity.java
+                    │      MyScheduleAdapter.java
+                    │      MyScheduleFragment.java
+                    │      ...
+                    │
+                    ├─provider
+                    │      ScheduleContract.java
+                    │      ScheduleContractHelper.java
+                    │      ScheduleDatabase.java
+                    │      ...实现ContentProvider
+                    │      （也在此处定义provider依赖的其它类，比如db操作）
+                    │
+                    ├─receiver
+                    │      SessionAlarmReceiver.java
+                    │
+                    ├─service
+                    │      DataBootstrapService.java
+                    │      SessionAlarmService.java
+                    │      SessionCalendarService.java
+                    │
+                    ├─session
+                    │      SessionDetailActivity.java
+                    │      SessionDetailConstants.java
+                    │      SessionDetailFragment.java
+                    │      ...
+                    │
+                    ├─settings
+                    │      ConfMessageCardUtils.java
+                    │      SettingsActivity.java
+                    │      SettingsUtils.java
+                    │
+                    ├─social
+                    │      SocialActivity.java
+                    │      SocialFragment.java
+                    │      SocialModel.java
+                    │
+                    ├─sync
+                    │  │  ConferenceDataHandler.java
+                    │  │  RemoteConferenceDataFetcher.java
+                    │  │  SyncAdapter.java
+                    │  │  ...
+                    │  │
+                    │  └─userdata
+                    │      │  AbstractUserDataSyncHelper.java
+                    │      │  OnSuccessListener.java
+                    │      │  UserAction.java
+                    │      │  ...
+                    │      │
+                    │      ├─gms
+                    │      │      DriveHelper.java
+                    │      │      GMSUserDataSyncHelper.java
+                    │      │
+                    │      └─util
+                    │              UserActionHelper.java
+                    │              UserDataHelper.java
+                    │
+                    ├─ui
+                    │  │  BaseActivity.java
+                    │  │  CheckableLinearLayout.java
+                    │  │  SearchActivity.java
+                    │  │  ...BaseActivity以及自定义UI组件
+                    │  │
+                    │  └─widget
+                    │          AspectRatioView.java
+                    │          BakedBezierInterpolator.java
+                    │          BezelImageView.java
+                    │          ...自定义小UI控件
+                    │
+                    ├─util
+                    │      AboutUtils.java
+                    │      AccountUtils.java
+                    │      AnalyticsHelper.java
+                    │      ...工具类，提供静态方法
+                    │
+                    ├─videolibrary
+                    │      VideoLibraryActivity.java
+                    │      VideoLibraryFilteredActivity.java
+                    │      VideoLibraryFilteredFragment.java
+                    │      ...
+                    │
+                    └─welcome
+                            AccountFragment.java
+                            AttendingFragment.java
+                            ConductFragment.java
+                            ...
+```
 
-| 包名                                       | 此包中包含                          |
-| :--------------------------------------- | :----------------------------- |
-| com.xx.应用名称缩写.activity                   | 用户界面中所有的Activity类              |
-| com.xx.应用名称缩写.fragment                   | 界面中所有的Fragment类                |
-| com.xx.应用名称缩写.base                       | 基础共享的类                         |
-| com.xx.应用名称缩写.adapter                    | 页面用到的Adapter类 (适配器的类)          |
-| com.xx.应用名称缩写.view                       | 自定义的View类                      |
-| com.xx.应用名称缩写.util                       | 此包中包含：公共工具方法类（util模块名）         |
-| com.xx.应用名称缩写.bean                       | 下面可分：vo、po、dto 此包中包含：JavaBean类 |
-| com.xx.应用名称缩写.model                      | 此包中包含：模型类                      |
-| com.xx.应用名称缩写.db                         | 数据库操作类                         |
-| com.xx.应用名称缩写.view (或者 com.xx.应用名称缩写.widget ) | 自定义的View类等                     |
-| com.xx.应用名称缩写.service                    | Service服务                      |
-| com.xx.应用名称缩写.receiver                   | BroadcastReceiver服务            |
-| com.xx.应用名称缩写.config                     | 所有的配置相关的类                      |
+参考Google I/O 2015的代码结构，按功能分包具体可以这样做：
 
-> 注意：如果项目采用MVP，所有M、V、P抽取出来的接口都放置在相应模块的i包下，所有的实现都放置在相应模块的impl下
+```
+src
+└─com
+    └─domain
+        └─app
+            │  AppApplication.java  定义Application类
+            │  Config.java          定义配置数据（常量）
+            │
+            ├─framework
+            │      定义interface以及相关基类
+            │
+            ├─io
+            │      数据定义（model）、数据操作（比如json解析，但不包括db操作）
+            │
+            ├─model
+            │      定义model（数据结构以及getter/setter、compareTo、equals等等，不含复杂操作）
+            │      以及modelHelper（提供便于操作model的api）
+            │
+            ├─provider
+            │      实现ContentProvider，及其依赖的db操作
+            │
+            ├─receiver
+            │      实现Receiver
+            │
+            ├─service
+            │      实现Service（比如IntentService），用于在独立线程中异步do stuff
+            │
+            ├─ui
+            │      实现BaseActivity，以及自定义view和widget，相关的Adapter也放这里
+            │
+            ├─util
+            │      实现工具类，提供静态方法
+            │
+            ├─feature1
+            │      Item.java                定义model
+            │      ItemHelper.java          实现modelHelper
+            │      feature1Activity.java    定义UI
+            │      feature1DAO.java         私有db操作
+            │      feature1Utils.java       私有工具函数
+            │      ...其它私有class
+            │
+            ├─...其它feature
+```
 
+PBF(按功能分包Package By Feature)与PBL(按层分包Package By Layer)相比较有如下优势：
+
+* package内高内聚，package间低耦合
+
+哪块要添新功能，只改某一个package下的东西
+
+按class职能分层（PBL）降低了代码耦合，但带来了package耦合，要添新功能，需要改model、dbHelper、view、service等等，需要改动好几个package下的代码，改动的地方越多，越容易产生新问题，不是吗？
+
+按功能分包（PBF），featureA相关的所有东西都在featureA包，feature内高内聚高度模块化，不同feature之间低耦合，相关的东西都放在一起，还好找
+
+* package有私有作用域（package-private scope）
+
+你负责开发这块功能，这个目录下所有东西都是你的
+
+PBL的方式是把所有工具方法都放在util包下，小张开发新功能时候发现需要一个xxUtil，但它又不是通用的，那应该放在哪里？没办法，按照分层原则，我们还得放在util包下，好像不太合适，但放在其它包更不合适，功能越来越多，util类也越定义越多。后来小李负责开发一块功能时发现需要一个xxUtil，同样不通用，去util包一看，怎么已经有了，而且还没法复用，只好放弃xx这个名字，改为xxxUtil……因为PBL的package没有私有作用域，每一个包都是public（跨包方法调用是很平常的事情，每一个包对其它包来说都是可访问的）
+
+如果是PBF，小张的xxUtil自然放在feautreA下，小李的xxUtil在featureB下，如果觉得util好像是通用的，就去util包看看要不要把工具方法添进xxUtil，class命名冲突没有了
+
+PBF的package有私有作用域，featureA不应该访问featureB下的任何东西（如果非访问不可，那就说明接口定义有问题）
+
+* 很容易删除功能
+
+统计发现新功能没人用，这个版本那块功能得去掉
+
+如果是PBL，得从功能入口到整个业务流程把受到牵连的所有能删的代码和class都揪出来删掉，一不小心就完蛋
+
+如果是PBF，好说，先删掉对应包，再删掉功能入口（删掉包后入口肯定报错了），完事
+
+* 高度抽象
+
+解决问题的一般方法是从抽象到具体，PBF包名是对功能模块的抽象，包内的class是实现细节，符合从抽象到具体，而PBL弄反了
+
+PBF从确定AppName开始，根据功能模块划分package，再考虑每块的具体实现细节，而PBL从一开始就要考虑要不要dao层，要不要com层等等
+
+* 只通过class来分离逻辑代码
+
+PBL既分离class又分离package，而PBF只通过class来分离逻辑代码
+
+没有必要通过package分离，因为PBL中也可能出现尴尬的情况：
+
+```
+├─service
+        │      MainServ.java
+```
+
+按照PBL，service包下的所有东西都是Controller，应该不需要Serv后缀，但实际上通常为了码起来方便，直接import service包，Serv后缀是为了避免引入的class和当前包下的class命名冲突，当然，不用后缀也可以，得写清楚包路径，比如new net.ayqy.service.Main()，麻烦
+
+而PBF就很方便，无需import，直接new MainServ()即可
+
+* package的大小有意义了
+
+PBL中包的大小无限增长是合理的，因为功能越添越多
+
+而PBF中包太大（包里class太多）表示这块需要重构（划分子包）
 
 #### 3.2 类名
 
@@ -755,9 +1023,13 @@ AS已帮你集成了一些注释模板，我们只需要直接使用即可，在
 * 17/03/06: 发布初版 ；
 * 17/03/07: 修订目录排版，完善某些细节；
 * 17/03/08: 规范排版，修复typor及新增一些规范；
+* 17/03/13: 新增其他注释；
+* 17/03/14: 包名划分为按功能划分；
 
 　　　　　　　　　　　　　　　——powered by Blankj(蔡梦杰)
 
+[Package by features, not layers]: https://medium.com/@cesarmcferreira/package-by-features-not-layers-2d076df1964d#.mp782izhh
+[iosched]: https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched
 [安卓开发规范(updating)]: https://github.com/Blankj/AndroidStandardDevelop
 [AS常用开发插件]: http://www.jianshu.com/p/c76b0d8a642d
 [Android Studio下对资源进行分包]: http://www.jianshu.com/p/8e893581b9c7
