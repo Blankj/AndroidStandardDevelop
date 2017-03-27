@@ -572,9 +572,9 @@ public class MyClass {
 
 如果有多种形态，如按钮选择器：`sel_btn_xx.xml`
 
-| 名称                       | 说明                           |
-| ------------------------ | ---------------------------- |
-| sel_btn_xx               | 按钮图片使用`btn_整体效果`（selector）   |
+| 名称                   | 说明                           |
+| -------------------- | ---------------------------- |
+| sel_btn_xx           | 按钮图片使用`btn_整体效果`（selector）   |
 | btn_xx_normal        | 按钮图片使用`btn_正常情况效果`           |
 | btn_xx_pressed       | 按钮图片使用`btn_点击时候效果`           |
 | btn_xx_focused       | `state_focused`聚焦效果          |
@@ -616,7 +616,7 @@ public class MyClass {
 
 ##### 4.4.1 colors.xml
 
-`colors`的`name`命名使用下划线命名法，在你的`colors.xml`文件中应该只是映射颜色的名称一个ARGB值，而没有其它的。不要使用它为不同的按钮来定义ARGB值。
+`colors.xml`的`name`命名使用下划线命名法，在你的`colors.xml`文件中应该只是映射颜色的名称一个ARGB值，而没有其它的。不要使用它为不同的按钮来定义ARGB值。
 
 **不要这样做**
 
@@ -632,7 +632,7 @@ public class MyClass {
       <color name="comment_shadow">#323232</color>
 ```
 
-使用这种格式，你会非常容易的开始重复定义ARGB值，这使如果需要改变基本色变的很复杂。同时，这些定义是跟一些环境关联起来的，如`button`或者`comment`, 应该放到一个按钮风格中，而不是在`color.xml`文件中。
+使用这种格式，你会非常容易的开始重复定义ARGB值，这使如果需要改变基本色变的很复杂。同时，这些定义是跟一些环境关联起来的，如`button`或者`comment`, 应该放到一个按钮风格中，而不是在`colors.xml`文件中。
 
 **相反，这样做**
 
@@ -657,7 +657,7 @@ public class MyClass {
 
 向应用设计者那里要这个调色板，名称不需要跟`"green"`、`"blue"`等等相同。`"brand_primary"`、`"brand_secondary"`、`"brand_negative"`这样的名字也是完全可以接受的。 像这样规范的颜色很容易修改或重构，会使应用一共使用了多少种不同的颜色变得非常清晰。 通常一个具有审美价值的UI来说，减少使用颜色的种类是非常重要的。
 
-> 注意：如果某些颜色和主题有关，那就独立出去写。
+> 注意：如果某些颜色和主题有关，那就单独写一个`colors_theme.xml`。
 
 
 ##### 4.4.2 dimens.xml
@@ -731,7 +731,7 @@ public class MyClass {
 
 你或许需要为按钮控件做同样的事情，不要停止在那里。将一组相关的和重复`android:****`的属性放到一个通用的`style`中。
 
-**将一个大的`style`文件分割成多个文件**， 你可以有多个`styles.xml` 文件。Android SDK支持其它文件，`styles`这个文件名称并没有作用，起作用的是在文件 里xml的`<style>`标签。因此你可以有多个style文件`styles.xml`、`style_home.xml`、`style_item_details.xml`、`styles_forms.xml`。 不同于资源文件路径需要为系统构建起的有意义，在`res/values`目录下的文件可以任意命名。
+**将一个大的`styles.xml`文件分割成多个文件**， 你可以有多个`styles.xml` 文件。Android SDK支持其它文件，`styles.xml`这个文件名称并没有作用，起作用的是在文件里的`<style>`标签。因此你可以有多个style文件，如`styles.xml`、`styles_home.xml`、`styles_item_details.xml`、`styles_forms.xml`。 不同于资源文件路径需要为系统构建起的有意义，在`res/values`目录下的文件可以任意命名。
 
 
 #### 4.5 layout中的id命名
