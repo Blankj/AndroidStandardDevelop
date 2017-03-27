@@ -567,14 +567,14 @@ public class MyClass {
 | def_search_cell         | 默认搜索界面单元图片`用途_模块名_逻辑名称` |
 | ic_more_help            | 更多帮助图标`用途_逻辑名称`         |
 | divider_list_line       | 列表分割线`用途_逻辑名称`          |
-| selector_search_ok      | 搜索界面确认选择器`用途_模块名_逻辑名称`  |
+| sel_search_ok           | 搜索界面确认选择器`用途_模块名_逻辑名称`  |
 | shape_music_ring        | 音乐界面环形形状`用途_模块名_逻辑名称`   |
 
-如果有多种形态，如按钮选择器：`btn_xx.xml`(selector)
+如果有多种形态，如按钮选择器：`sel_btn_xx.xml`
 
-| 名称                   | 说明                           |
-| -------------------- | ---------------------------- |
-| btn_xx               | 按钮图片使用`btn_整体效果`（selector）   |
+| 名称                       | 说明                           |
+| ------------------------ | ---------------------------- |
+| sel_btn_xx               | 按钮图片使用`btn_整体效果`（selector）   |
 | btn_xx_normal        | 按钮图片使用`btn_正常情况效果`           |
 | btn_xx_pressed       | 按钮图片使用`btn_点击时候效果`           |
 | btn_xx_focused       | `state_focused`聚焦效果          |
@@ -974,33 +974,34 @@ AS已帮你集成了一些注释模板，我们只需要直接使用即可，在
 
 ### 常见的英文单词缩写表
 
-| 名称                   | 缩写                |
-| -------------------- | ----------------- |
-| icon                 | ic （主要用在app的图标）   |
-| color                | cl（主要用于颜色值）       |
-| average              | avg               |
-| background           | bg（主要用于布局和子布局的背景） |
-| buffer               | buf               |
-| control              | ctrl              |
-| default              | def               |
-| delete               | del               |
-| document             | doc               |
-| error                | err               |
-| escape               | esc               |
-| increment            | inc               |
-| infomation           | info              |
-| initial              | init              |
-| image                | img               |
-| Internationalization | I18N              |
-| length               | len               |
-| library              | lib               |
-| message              | msg               |
-| password             | pwd               |
-| position             | pos               |
-| server               | srv               |
-| string               | str               |
-| temp                 | tmp               |
-| window               | wnd(win)          |
+| 名称                   | 缩写                                       |
+| -------------------- | ---------------------------------------- |
+| icon                 | ic （主要用在app的图标）                          |
+| color                | cl（主要用于颜色值）                              |
+| average              | avg                                      |
+| background           | bg（主要用于布局和子布局的背景）                        |
+| selector             | sel主要用于某一view多种状态，不仅包括Listview中的selector，还包括按钮的selector） |
+| buffer               | buf                                      |
+| control              | ctrl                                     |
+| default              | def                                      |
+| delete               | del                                      |
+| document             | doc                                      |
+| error                | err                                      |
+| escape               | esc                                      |
+| increment            | inc                                      |
+| infomation           | info                                     |
+| initial              | init                                     |
+| image                | img                                      |
+| Internationalization | I18N                                     |
+| length               | len                                      |
+| library              | lib                                      |
+| message              | msg                                      |
+| password             | pwd                                      |
+| position             | pos                                      |
+| server               | srv                                      |
+| string               | str                                      |
+| temp                 | tmp                                      |
+| window               | wnd(win)                                 |
 
 程序中使用单词缩写原则：不要用缩写，除非该缩写是约定俗成的。
 
