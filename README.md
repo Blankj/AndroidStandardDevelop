@@ -668,28 +668,28 @@ public class MyClass {
 <resources>
 
     <!-- font sizes -->
-    <dimen name="font_larger">22sp</dimen>
-    <dimen name="font_large">18sp</dimen>
-    <dimen name="font_normal">15sp</dimen>
-    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_22">22sp</dimen>
+    <dimen name="font_18">18sp</dimen>
+    <dimen name="font_15">15sp</dimen>
+    <dimen name="font_12">12sp</dimen>
 
     <!-- typical spacing between two views -->
-    <dimen name="spacing_huge">40dp</dimen>
-    <dimen name="spacing_large">24dp</dimen>
-    <dimen name="spacing_normal">14dp</dimen>
-    <dimen name="spacing_small">10dp</dimen>
-    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_40">40dp</dimen>
+    <dimen name="spacing_24">24dp</dimen>
+    <dimen name="spacing_14">14dp</dimen>
+    <dimen name="spacing_10">10dp</dimen>
+    <dimen name="spacing_4">4dp</dimen>
 
     <!-- typical sizes of views -->
-    <dimen name="button_height_tall">60dp</dimen>
-    <dimen name="button_height_normal">40dp</dimen>
-    <dimen name="button_height_short">32dp</dimen>
+    <dimen name="button_height_60">60dp</dimen>
+    <dimen name="button_height_40">40dp</dimen>
+    <dimen name="button_height_32">32dp</dimen>
 
 </resources>
 
 ```
 
-布局时在写`margins`和`paddings`时，你应该使用`spacing_xxxx`尺寸格式来布局，而不是像对待`string`字符串一样直接写值。 这样写会非常有感觉，会使组织和改变风格或布局是非常容易。
+布局时在写`margins`和`paddings`时，你应该使用`spacing_xx`尺寸格式来布局，而不是像对待`string`字符串一样直接写值，像这样规范的尺寸很容易修改或重构，会使应用所有用到的尺寸一目了然。 这样写会非常有感觉，会使组织和改变风格或布局是非常容易。
 
 
 ##### 4.4.3 strings.xml
@@ -800,7 +800,7 @@ public class WelcomeActivity {
  *     author : ${USER}
  *     e-mail : xxx@xx
  *     time   : ${YEAR}/${MONTH}/${DAY}
- *     desc   : 
+ *     desc   :
  *     version: 1.0
  * </pre>
  */
