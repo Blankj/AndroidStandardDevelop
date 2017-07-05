@@ -1033,7 +1033,7 @@ AS已帮你集成了一些注释模板，我们只需要直接使用即可，在
 [Package by features, not layers]: https://medium.com/@cesarmcferreira/package-by-features-not-layers-2d076df1964d#.mp782izhh
 [iosched]: https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched
 [安卓开发规范(updating)]: https://github.com/Blankj/AndroidStandardDevelop
-[开发者工具]: http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0526/7973.html
+[Android开发者工具]: http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0526/7973.html
 [Android Studio下对资源进行分包]: http://www.jianshu.com/p/8e893581b9c7
 [Android开发之版本统一规范]: http://www.jianshu.com/p/db6ef4cfa5d1
 [Android 流行框架查速表]: http://www.ctolib.com/cheatsheets-Android-ch.html
