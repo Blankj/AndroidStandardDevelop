@@ -487,7 +487,7 @@ public class MyClass {
 2. 以类命名方式(参考[3.2 类名](#32-类名))，后面加个大写的`T`(如：`RequestT`, `FooBarT`)。
 
 
-更多还可参考～**[阿里巴巴Java开发手册][阿里巴巴Java开发手册]**
+更多还可参考～ **[阿里巴巴Java开发手册][阿里巴巴Java开发手册]**
 
 
 ### 4 资源文件规范
@@ -740,19 +740,19 @@ public class MyClass {
 使用`AndroidStudio`的插件`ButterKnife Zelezny`，生成注解非常方便，原生的话可以使用`Android Code Generator`插件。
 
 
-如果想对资源文件进行分包可以参考我这篇文章～**[Android Studio下对资源进行分包][Android Studio下对资源进行分包]**
+如果想对资源文件进行分包可以参考我这篇文章～ **[Android Studio下对资源进行分包][Android Studio下对资源进行分包]**
 
 
 ### 5 版本统一规范
 
 Android开发存在着众多版本的不同，比如`compileSdkVersion`、`minSdkVersion`、`targetSdkVersion`以及项目中依赖第三方库的版本，不同的module及不同的开发人员都有不同的版本，所以需要一个统一版本规范的文件。
 
-具体可以参考我写的这篇博文～**[Android开发之版本统一规范][Android开发之版本统一规范]**
+具体可以参考我写的这篇博文～ **[Android开发之版本统一规范][Android开发之版本统一规范]**
 
 
 ### 6 第三方库规范
 
-别再闭门造车了，用用最新最火的技术吧，安利一波～**[Android 流行框架查速表][Android 流行框架查速表]**，顺便带上自己的干货～**[Android开发人员不得不收集的代码][Android开发人员不得不收集的代码]**
+别再闭门造车了，用用最新最火的技术吧，安利一波～ **[Android 流行框架查速表][Android 流行框架查速表]**，顺便带上自己的干货～ **[Android开发人员不得不收集的代码][Android开发人员不得不收集的代码]**
 
 希望Team能用时下较新的技术，对开源库的选取，一般都需要选择比较稳定的版本，作者在维护的项目，要考虑作者对issue的解决，以及开发者的知名度等各方面。选取之后，一定的封装是必要的。
 
