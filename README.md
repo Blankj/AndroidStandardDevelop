@@ -869,19 +869,54 @@ AS已帮你集成了一些注释模板，我们只需要直接使用即可，在
 ### 10 其他的一些规范
 
 1. 合理布局，有效运用`<merge>`、`<ViewStub>`、`<include>`标签；
+
 2. `Activity`和`Fragment`里面有许多重复的操作以及操作步骤，所以我们都需要提供一个`BaseActivity`和`BaseFragment`，让所有的`Activity`和`Fragment`都继承这个基类。
-3. 方法基本上都按照调用的先后顺序在各自区块中排列；
-4. 相关功能作为小区块放在一起（或者封装掉）；
-5. 当一个类有多个构造函数，或是多个同名方法，这些函数/方法应该按顺序出现在一起，中间不要放进其它函数/方法；
-6. 数据提供统一的入口。无论是在 MVP、MVC 还是 MVVM 中，提供一个统一的数据入口，都可以让代码变得更加易于维护。比如可使用一个`DataManager`，把 `http`、`preference`、`eventpost`、`database` 都放在`DataManger`里面进行操作，我们只需要与`DataManger`打交道；
-7. 多用组合, 少用继承；
-8. 提取方法, 去除重复代码。对于必要的工具类抽取也很重要，这在以后的项目中是可以重用的。
-9. 可引入 Dagger2 减少模块之间的耦合性。Dagger2 是一个依赖注入框架，使用代码自动生成创建依赖关系需要的代码。减少很多模板化的代码，更易于测试，降低耦合，创建可复用可互换的模块；
-10. 项目引入`RxJava` + `RxAndroid`这些响应式编程，可以极大的减少逻辑代码；
-11. 通过引入事件总线，如：`EventBus`、`AndroidEventBus`、`RxBus`，它允许我们在`DataLayer`中发送事件，以便`ViewLayer`中的多个组件都能够订阅到这些事件，减少回调；
-12. 尽可能使用局部变量；
-13. 及时关闭流；
-14. 尽量减少对变量的重复计算；
+
+3. 启动`Activity`的话建议使用AS自带的模板，输入`starter`即可，如下所示：
+
+  ``` java
+  public static void start(Context context, String data) {
+      Intent starter = new Intent(context, MainActivity.class);
+      starter.putExtra("data", data);
+      context.startActivity(starter);
+  }
+  ```
+
+  同理，启动`Fragment`输入`newInstance`即可，如下所示：
+
+  ``` java
+  public static MainFragment newInstance(String data) {
+      Bundle args = new Bundle();
+      args.putString("data", data);
+      MainFragment fragment = new MainFragment();
+      fragment.setArguments(args);
+      return fragment;
+  }
+  ```
+
+4. 方法基本上都按照调用的先后顺序在各自区块中排列；
+
+5. 相关功能作为小区块放在一起（或者封装掉）；
+
+6. 当一个类有多个构造函数，或是多个同名方法，这些函数/方法应该按顺序出现在一起，中间不要放进其它函数/方法；
+
+7. 数据提供统一的入口。无论是在 MVP、MVC 还是 MVVM 中，提供一个统一的数据入口，都可以让代码变得更加易于维护。比如可使用一个`DataManager`，把 `http`、`preference`、`eventpost`、`database` 都放在`DataManger`里面进行操作，我们只需要与`DataManger`打交道；
+
+8. 多用组合, 少用继承；
+
+9. 提取方法, 去除重复代码。对于必要的工具类抽取也很重要，这在以后的项目中是可以重用的。
+
+10. 可引入 Dagger2 减少模块之间的耦合性。Dagger2 是一个依赖注入框架，使用代码自动生成创建依赖关系需要的代码。减少很多模板化的代码，更易于测试，降低耦合，创建可复用可互换的模块；
+
+11. 项目引入`RxJava` + `RxAndroid`这些响应式编程，可以极大的减少逻辑代码；
+
+12. 通过引入事件总线，如：`EventBus`、`AndroidEventBus`、`RxBus`，它允许我们在`DataLayer`中发送事件，以便`ViewLayer`中的多个组件都能够订阅到这些事件，减少回调；
+
+13. 尽可能使用局部变量；
+
+14. 及时关闭流；
+
+15. 尽量减少对变量的重复计算；
 
   如下面的操作：
 
@@ -894,12 +929,12 @@ AS已帮你集成了一些注释模板，我们只需要直接使用即可，在
   建议替换为：
 
   ``` java
-  for (int i = 0, int length = list.size(); i < length; i++) {
+  for (int i = 0, len = list.size(); i < len; i++) {
       ...
   }
   ```
 
-15. 尽量采用懒加载的策略，即在需要的时候才创建；
+16. 尽量采用懒加载的策略，即在需要的时候才创建；
 
   例如：
 
@@ -919,10 +954,13 @@ AS已帮你集成了一些注释模板，我们只需要直接使用即可，在
   }
   ```
 
-16. 不要在循环中使用try…catch…，应该把其放在最外层；
-17. 使用带缓冲的输入输出流进行IO操作；
-18. 尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销；
-19. 尽量在合适的场合使用单例；
+17. 不要在循环中使用try…catch…，应该把其放在最外层；
+
+18. 使用带缓冲的输入输出流进行IO操作；
+
+19. 尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销；
+
+20. 尽量在合适的场合使用单例；
 
   使用单例可以减轻加载的负担、缩短加载的时间、提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面：
 
@@ -932,9 +970,11 @@ AS已帮你集成了一些注释模板，我们只需要直接使用即可，在
 
   （3）控制数据的共享，在不建立直接关联的条件下，让多个不相关的进程或线程之间实现通信
 
-20. 把一个基本数据类型转为字符串，`基本数据类型.toString()`是最快的方式、`String.valueOf(数据)`次之、`数据 + ""`最慢；
-21. 使用AS自带的Lint来优化代码结构（什么，你不会？右键module、目录或者文件，选择Analyze → Inspect Code）；
-22. 最后不要忘了内存泄漏的检测；
+21. 把一个基本数据类型转为字符串，`基本数据类型.toString()`是最快的方式、`String.valueOf(数据)`次之、`数据 + ""`最慢；
+
+22. 使用AS自带的Lint来优化代码结构（什么，你不会？右键module、目录或者文件，选择Analyze → Inspect Code）；
+
+23. 最后不要忘了内存泄漏的检测；
 
 ---
 
