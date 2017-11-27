@@ -27,7 +27,7 @@
 2. 编码格式统一为**UTF-8**；
 3. 编辑完`.java`、 `.xml`等文件后一定要**格式化**（基本格式方面使用 AS 默认模板即可）；
 4. 删除多余的import，减少警告出现，可利用AS的`Optimize Imports`(Settings → Keymap → Optimize Imports)快捷键；
-5. Android开发者工具可以参考这里～ **[Android开发者工具][Android开发者工具]**
+5. Android开发者工具可以参考这里：**[Android开发者工具][Android开发者工具]**
 
 
 ### 3 命名规范
@@ -38,7 +38,7 @@
 
 #### 3.1 包名
 
-包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为`com`,`edu`,`gov`,`net`,`org`等，二级包名为公司名，三级包名根据应用进行命名，后面就是对包名的划分了，关于包名的划分，推荐使用按功能分，一开始我们也是按照层去分包的，很坑爹。按照功能分可能你不是很好区分在哪个功能中，不过也比你按照层区分要好找很多。具体可以参考这篇博文～ **[Package by features, not layers][Package by features, not layers]**，当然，我们大谷歌也有相应的sample～ **[iosched][iosched]**，其结构如下所示，很值得学习。
+包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为`com`、`edu`、`gov`、`net`、`org`等，二级包名为公司名，三级包名根据应用进行命名，后面就是对包名的划分了，关于包名的划分，推荐使用按功能分，一开始我们也是按照层去分包的，很坑爹。按照功能分可能你不是很好区分在哪个功能中，不过也比你按照层区分要好找很多。具体可以参考这篇博文：**[Package by features, not layers][Package by features, not layers]**，当然，我们大谷歌也有相应的sample：**[iosched][iosched]**，其结构如下所示，很值得学习。
 
 ```
 java
@@ -487,7 +487,7 @@ public class MyClass {
 2. 以类命名方式(参考[3.2 类名](#32-类名))，后面加个大写的`T`(如：`RequestT`, `FooBarT`)。
 
 
-更多还可参考～ **[阿里巴巴Java开发手册][阿里巴巴Java开发手册]**
+更多还可参考：**[阿里巴巴Java开发手册][阿里巴巴Java开发手册]**
 
 
 ### 4 资源文件规范
@@ -740,19 +740,19 @@ public class MyClass {
 使用`AndroidStudio`的插件`ButterKnife Zelezny`，生成注解非常方便，原生的话可以使用`Android Code Generator`插件。
 
 
-如果想对资源文件进行分包可以参考我这篇文章～ **[Android Studio下对资源进行分包][Android Studio下对资源进行分包]**
+如果想对资源文件进行分包可以参考我这篇文章：**[Android Studio下对资源进行分包][Android Studio下对资源进行分包]**
 
 
 ### 5 版本统一规范
 
 Android开发存在着众多版本的不同，比如`compileSdkVersion`、`minSdkVersion`、`targetSdkVersion`以及项目中依赖第三方库的版本，不同的module及不同的开发人员都有不同的版本，所以需要一个统一版本规范的文件。
 
-具体可以参考我写的这篇博文～ **[Android开发之版本统一规范][Android开发之版本统一规范]**
+具体可以参考我写的这篇博文：**[Android开发之版本统一规范][Android开发之版本统一规范]**
 
 
 ### 6 第三方库规范
 
-别再闭门造车了，用用最新最火的技术吧，安利一波～ **[Android 流行框架查速表][Android 流行框架查速表]**，顺便带上自己的干货～ **[Android开发人员不得不收集的代码][Android开发人员不得不收集的代码]**
+别再闭门造车了，用用最新最火的技术吧，安利一波：**[Android 流行框架查速表][Android 流行框架查速表]**，顺便带上自己的干货：**[Android开发人员不得不收集的代码][Android开发人员不得不收集的代码]**
 
 希望Team能用时下较新的技术，对开源库的选取，一般都需要选择比较稳定的版本，作者在维护的项目，要考虑作者对issue的解决，以及开发者的知名度等各方面。选取之后，一定的封装是必要的。
 
