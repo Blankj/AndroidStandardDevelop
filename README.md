@@ -24,7 +24,7 @@
 工欲善其事，必先利其器。
 
 1. 尽量使用最新版的 IDE 进行开发；
-2. 编码格式统一为**UTF-8**；
+2. 编码格式统一为 **UTF-8**；
 3. 编辑完 .java、.xml 等文件后一定要**格式化**（基本格式方面使用 AS 默认模板即可）；
 4. 删除多余的 import，减少警告出现，可利用 AS 的 Optimize Imports（Settings -> Keymap -> Optimize Imports）快捷键；
 5. Android 开发者工具可以参考这里：**[Android 开发者工具][Android 开发者工具]**；
@@ -1064,7 +1064,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 　　　　　　　　　　　　　　　——powered by Blankj
 
 [Package by features, not layers]: https://medium.com/@cesarmcferreira/package-by-features-not-layers-2d076df1964d#.mp782izhh
-[iosched]: https://github.com/google/iosched/tree/master/android/src/main/java/com/google/samples/apps/iosched
+[iosched]: https://github.com/google/iosched
 [安卓开发规范（updating）]: https://github.com/Blankj/AndroidStandardDevelop
 [Android 开发者工具]: http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0526/7973.html
 [Android Studio下对资源进行分包]: http://www.jianshu.com/p/8e893581b9c7
