@@ -25,7 +25,7 @@
 
 1. 尽量使用最新版的 IDE 进行开发；
 2. 编码格式统一为 **UTF-8**；
-3. 编辑完 .java、.xml 等文件后一定要**格式化**（基本格式方面使用 AS 默认模板即可）；
+3. 编辑完 `.java`、`.xml` 等文件后一定要 **格式化**（基本格式方面使用 AS 默认模板即可）；
 4. 删除多余的 import，减少警告出现，可利用 AS 的 Optimize Imports（Settings -> Keymap -> Optimize Imports）快捷键；
 5. Android 开发者工具可以参考这里：**[Android 开发者工具][Android 开发者工具]**；
 
@@ -34,11 +34,11 @@
 
 代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文的方式。正确的英文拼写和语法可以让阅读者易于理解，避免歧义。
 
-> 注意：即使纯拼音命名方式也要避免采用。但 alibaba、taobao、youku、hangzhou 等国际通用的名称，可视同英文。
+> 注意：即使纯拼音命名方式也要避免采用。但 `alibaba`、`taobao`、`youku`、`hangzhou` 等国际通用的名称，可视同英文。
 
 #### 3.1 包名
 
-包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为 com、edu、gov、net、org 等，二级包名为公司名，三级包名根据应用进行命名，后面就是对包名的划分了，关于包名的划分，推荐使用按功能分，一开始我们也是按照层去分包的，很坑爹。按照功能分可能你不是很好区分在哪个功能中，不过也比你按照层区分要好找很多。具体可以参考这篇博文：**[Package by features, not layers][Package by features, not layers]**，当然，我们大谷歌也有相应的 sample：**[iosched][iosched]**，其结构如下所示，很值得学习。
+包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为 `com`、`edu`、`gov`、`net`、`org` 等，二级包名为公司名，三级包名根据应用进行命名，后面就是对包名的划分了，关于包名的划分，推荐使用按功能分，一开始我们也是按照层去分包的，很坑爹。按照功能分可能你不是很好区分在哪个功能中，不过也比你按照层区分要好找很多。具体可以参考这篇博文：**[Package by features, not layers][Package by features, not layers]**，当然，我们大谷歌也有相应的 Sample：**[iosched][iosched]**，其结构如下所示，很值得学习。
 
 ```
 java
@@ -328,7 +328,7 @@ PBL 中包的大小无限增长是合理的，因为功能越添越多，而 PBF
 
 #### 3.2 类名
 
-类名都以 UpperCamelCase 风格编写。
+类名都以 `UpperCamelCase` 风格编写。
 
 类名通常是名词或名词短语，接口名称有时可能是形容词或形容词短语。现在还没有特定的规则或行之有效的约定来命名注解类型。
 
@@ -355,7 +355,7 @@ PBL 中包的大小无限增长是合理的，因为功能越添越多，而 PBF
 
 #### 3.3 方法名
 
-方法名都以 lowerCamelCase 风格编写。
+方法名都以 `lowerCamelCase` 风格编写。
 
 方法名通常是动词或动词短语。
 
@@ -377,7 +377,7 @@ PBL 中包的大小无限增长是合理的，因为功能越添越多，而 PBF
 
 #### 3.4 常量名
 
-常量名命名模式为 CONSTANT_CASE，全部字母大写，用下划线分隔单词。那到底什么算是一个常量？
+常量名命名模式为 `CONSTANT_CASE`，全部字母大写，用下划线分隔单词。那到底什么算是一个常量？
 
 每个常量都是一个静态 `final` 字段，但不是所有静态 `final` 字段都是常量。在决定一个字段是否是一个常量时，考虑它是否真的感觉像是一个常量。例如，如果任何一个该实例的观测状态是可变的，则它几乎肯定不会是一个常量。只是永远不打算改变对象一般是不够的，它要真的一直不变才能将它示为常量。
 
@@ -401,7 +401,7 @@ static final String[] nonEmptyArray = {"these", "can", "change"};
 
 #### 3.5 非常量字段名
 
-非常量字段名以 lowerCamelCase 风格的基础上改造为如下风格：基本结构为 scopeVariableNameType。
+非常量字段名以 `lowerCamelCase` 风格的基础上改造为如下风格：基本结构为 scopeVariableNameType。
 
 **scope：范围**
 
@@ -457,12 +457,12 @@ public class MyClass {
 
 #### 3.6 参数名
 
-参数名以 lowerCamelCase 风格编写，参数应该避免用单个字符命名。
+参数名以 `lowerCamelCase` 风格编写，参数应该避免用单个字符命名。
 
 
 #### 3.7 局部变量名
 
-局部变量名以 lowerCamelCase 风格编写，比起其它类型的名称，局部变量名可以有更为宽松的缩写。
+局部变量名以 `lowerCamelCase` 风格编写，比起其它类型的名称，局部变量名可以有更为宽松的缩写。
 
 虽然缩写更宽松，但还是要避免用单字符进行命名，除了临时变量和循环变量。
 
@@ -583,7 +583,7 @@ public class MyClass {
 > 注意：使用 Android Studio 的插件 SelectorChapek 可以快速生成 selector，前提是命名要规范。
 
 
-#### 4.3 动画文件（anim 文件夹下）
+#### 4.3 动画文件（`anim` 文件夹下）
 
 全部小写，采用下划线命名法，加前缀区分。
 
@@ -591,7 +591,7 @@ public class MyClass {
 
 例如：`refresh_progress.xml`、`market_cart_add.xml`、`market_cart_remove.xml`。
 
-普通的 tween 动画采用如下表格中的命名方式：`动画类型_方向`
+普通的 `tween` 动画采用如下表格中的命名方式：`动画类型_方向`
 
 | 名称                | 说明      |
 | ----------------- | ------- |
@@ -606,7 +606,7 @@ public class MyClass {
 | `shrink_to_middle`  | 中间缩小    |
 
 
-#### 4.4 values 中 name 命名
+#### 4.4 `values` 中 name 命名
 
 ##### 4.4.1 `colors.xml`
 
@@ -722,9 +722,9 @@ public class MyClass {
     />
 ```
 
-你或许需要为按钮控件做同样的事情，不要停止在那里。将一组相关的和重复 `android:****` 的属性放到一个通用的 `style` 中。
+你或许需要为按钮控件做同样的事情，不要停止在那里。将一组相关的和重复 `android:xxxx` 的属性放到一个通用的 `style` 中。
 
-**将一个大的 `styles.xml` 文件分割成多个文件**， 你可以有多个 `styles.xml` 文件。Android SDK 支持其它文件，`styles.xml` 这个文件名称并没有作用，起作用的是在文件里的 `<style>` 标签。因此你可以有多个 style 文件，如 `styles.xml`、`styles_home.xml`、`styles_item_details.xml`、`styles_forms.xml`。不同于资源文件路径需要为系统构建起的有意义，在 `res/values` 目录下的文件可以任意命名。
+**将一个大的 `styles.xml` 文件分割成多个文件**， 你可以有多个 `styles.xml` 文件。Android SDK 支持其它文件，`styles.xml` 这个文件名称并没有作用，起作用的是在文件里的 `<style>` 标签。因此你可以有多个 `style` 文件，如 `styles.xml`、`styles_home.xml`、`styles_item_details.xml`、`styles_forms.xml`。不同于资源文件路径需要为系统构建起的有意义，在 `res/values` 目录下的文件可以任意命名。
 
 
 #### 4.5 layout 中的 id 命名
@@ -747,9 +747,9 @@ Android 开发存在着众多版本的不同，比如 `compileSdkVersion`、`min
 
 别再闭门造车了，用用最新最火的技术吧，安利一波：**[Android 流行框架查速表][Android 流行框架查速表]**，顺便带上自己的干货：**[Android 开发人员不得不收集的代码][Android 开发人员不得不收集的代码]**。
 
-希望 Team 能用时下较新的技术，对开源库的选取，一般都需要选择比较稳定的版本，作者在维护的项目，要考虑作者对issue的解决，以及开发者的知名度等各方面。选取之后，一定的封装是必要的。
+希望 Team 能用时下较新的技术，对开源库的选取，一般都需要选择比较稳定的版本，作者在维护的项目，要考虑作者对 issue 的解决，以及开发者的知名度等各方面。选取之后，一定的封装是必要的。
 
-个人推荐Team可使用如下优秀轮子：
+个人推荐 Team 可使用如下优秀轮子：
 
 * **[Retrofit][Retrofit]**
 * **[RxAndroid][RxAndroid]**
@@ -903,7 +903,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 11. 项目引入 `RxAndroid` 响应式编程，可以极大的减少逻辑代码；
 
-12. 通过引入事件总线，如：`EventBus`、`AndroidEventBus`、`RxBus`，它允许我们在 `DataLayer` 中发送事件，以便`ViewLayer`中的多个组件都能够订阅到这些事件，减少回调；
+12. 通过引入事件总线，如：`EventBus`、`AndroidEventBus`、`RxBus`，它允许我们在 `DataLayer` 中发送事件，以便 `ViewLayer` 中的多个组件都能够订阅到这些事件，减少回调；
 
 13. 尽可能使用局部变量；
 
@@ -957,11 +957,11 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
   使用单例可以减轻加载的负担、缩短加载的时间、提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面：
 
-  （1）控制资源的使用，通过线程同步来控制资源的并发访问
+  （1）控制资源的使用，通过线程同步来控制资源的并发访问。
 
-  （2）控制实例的产生，以达到节约资源的目的
+  （2）控制实例的产生，以达到节约资源的目的。
 
-  （3）控制数据的共享，在不建立直接关联的条件下，让多个不相关的进程或线程之间实现通信
+  （3）控制数据的共享，在不建立直接关联的条件下，让多个不相关的进程或线程之间实现通信。
 
 21. 把一个基本数据类型转为字符串，`基本数据类型.toString()` 是最快的方式，`String.valueOf(数据)` 次之，`数据 + ""` 最慢；
 
@@ -1055,7 +1055,8 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 ## 版本日志
 
-* 17/03/06: 发布初版 ；
+* 17/11/29: 格式化中英混排；
+* 17/03/06: 发布初版；
 * 17/03/07: 修订目录排版，完善某些细节；
 * 17/03/08: 规范排版，修复typor及新增一些规范；
 * 17/03/13: 新增其他注释；
@@ -1067,7 +1068,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 [iosched]: https://github.com/google/iosched
 [安卓开发规范（updating）]: https://github.com/Blankj/AndroidStandardDevelop
 [Android 开发者工具]: http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0526/7973.html
-[Android Studio下对资源进行分包]: http://www.jianshu.com/p/8e893581b9c7
+[Android Studio 下对资源进行分包]: http://www.jianshu.com/p/8e893581b9c7
 [Android 开发之版本统一规范]: http://www.jianshu.com/p/db6ef4cfa5d1
 [Android 流行框架查速表]: http://www.ctolib.com/cheatsheets-Android-ch.html
 [Android 开发人员不得不收集的代码]: https://github.com/Blankj/AndroidUtilCode
