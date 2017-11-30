@@ -867,25 +867,25 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 3. 启动 `Activity` 的话建议使用AS自带的模板，输入 `starter` 即可，如下所示：
 
-```java
-public static void start(Context context, String data) {
-      Intent starter = new Intent(context, MainActivity.class);
-      starter.putExtra("data", data);
-      context.startActivity(starter);
-}
-```
+    ```java
+    public static void start(Context context, String data) {
+          Intent starter = new Intent(context, MainActivity.class);
+          starter.putExtra("data", data);
+          context.startActivity(starter);
+    }
+    ```
 
-同理，启动 `Fragment` 输入 `newInstance` 即可，如下所示：
+    同理，启动 `Fragment` 输入 `newInstance` 即可，如下所示：
 
-```java
-public static MainFragment newInstance(String data) {
-      Bundle args = new Bundle();
-      args.putString("data", data);
-      MainFragment fragment = new MainFragment();
-      fragment.setArguments(args);
-      return fragment;
-}
-```
+    ```java
+    public static MainFragment newInstance(String data) {
+          Bundle args = new Bundle();
+          args.putString("data", data);
+          MainFragment fragment = new MainFragment();
+          fragment.setArguments(args);
+          return fragment;
+    }
+    ```
 
 4. 方法基本上都按照调用的先后顺序在各自区块中排列；
 
@@ -911,41 +911,41 @@ public static MainFragment newInstance(String data) {
 
 15. 尽量减少对变量的重复计算；
 
-如下面的操作：
+    如下面的操作：
 
-```java
-for (int i = 0; i < list.size(); i++) {
-      ...
-}
-```
+    ```java
+    for (int i = 0; i < list.size(); i++) {
+          ...
+    }
+    ```
 
-建议替换为：
+    建议替换为：
 
-```java
-for (int i = 0, len = list.size(); i < len; i++) {
-      ...
-}
-```
+    ```java
+    for (int i = 0, len = list.size(); i < len; i++) {
+          ...
+    }
+    ```
 
 16. 尽量采用懒加载的策略，即在需要的时候才创建；
 
-例如：
+    例如：
 
-```java
-String str = "aaa";
-if (i == 1) {
-      list.add(str);
-}
-```
+    ```java
+    String str = "aaa";
+    if (i == 1) {
+          list.add(str);
+    }
+    ```
 
-建议替换为：
+    建议替换为：
 
-```java
-if (i == 1) {
-      String str = "aaa";
-      list.add(str);
-}
-```
+    ```java
+    if (i == 1) {
+          String str = "aaa";
+          list.add(str);
+    }
+    ```
 
 17. 不要在循环中使用 `try…catch…`，应该把其放在最外层；
 
@@ -954,7 +954,8 @@ if (i == 1) {
 19. 尽量使用 `HashMap`、`ArrayList`、`StringBuilder`，除非线程安全需要，否则不推荐使用 `Hashtable`、`Vector`、`StringBuffer`，后三者由于使用同步机制而导致了性能开销；
 
 20. 尽量在合适的场合使用单例；
-使用单例可以减轻加载的负担、缩短加载的时间、提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面：
+
+    使用单例可以减轻加载的负担、缩短加载的时间、提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面：
 
     1. 控制资源的使用，通过线程同步来控制资源的并发访问。
 
