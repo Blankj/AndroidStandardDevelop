@@ -405,13 +405,13 @@ static final String[] nonEmptyArray = {"these", "can", "change"};
 
 **scope：范围**
 
-非公有，非静态字段命名以 m 开头。
+非公有，非静态字段命名以 `m` 开头。
 
-静态字段命名以 s 开头。
+静态字段命名以 `s` 开头。
 
-公有非静态字段命名以 p 开头。
+公有非静态字段命名以 `p` 开头。
 
-公有静态字段（全局变量）命名以 g 开头。
+公有静态字段（全局变量）命名以 `g` 开头。
 
 例子：
 
@@ -426,7 +426,7 @@ public class MyClass {
 }
 ```
 
-使用 1 字符前缀来表示作用范围，1 个字符的前缀必须小写，前缀后面是由表意性强的一个单词或多个单词组成的名字，而且每个单词的首写字母大写，其它字母小写，这样保证了对变量名能够进行正确的断句。
+使用 1 个字符前缀来表示作用范围，1 个字符的前缀必须小写，前缀后面是由表意性强的一个单词或多个单词组成的名字，而且每个单词的首写字母大写，其它字母小写，这样保证了对变量名能够进行正确的断句。
 
 **Type：类型**
 
@@ -828,9 +828,15 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 ```java
 /*
- * This is          // And so           /* Or you can
- * okay.            // is this.          * even do this. */
+ * This is
+ * okay.
  */
+
+// And so
+// is this.
+
+/* Or you can
+* even do this. */
 ```
 
 注释不要封闭在由星号或其它字符绘制的框架里。
