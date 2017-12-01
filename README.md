@@ -485,112 +485,17 @@ public class MyClass {
 
 ### 4 资源文件规范
 
-#### 4.1 资源布局文件（XML 文件（`layout` 布局文件））
+资源文件命名为全部小写，采用下划线命名法，之后出现的命名规则中，大括号中的为可选部分。
 
-全部小写，采用下划线命名法。
+如果想对资源文件进行分包可以参考我这篇文章：**[Android Studio 下对资源进行分包][Android Studio 下对资源进行分包]**。
 
-##### 4.1.1 `contentView` 命名
+#### 4.1 动画资源文件（`anim/` 和 `animator/`）
 
-必须以全部单词小写，单词间以下划线分割，使用名词或名词词组。
+安卓主要包含属性动画和视图动画，其视图动画包括补间动画和逐帧动画。属性动画文件需要放在 `res/animator/` 目录下，视图动画文件需放在 `res/anim/` 目录下。
 
-所有 `Activity` 或 `Fragment` 的 `contentView` 必须与其类名对应，对应规则为：将所有字母都转为小写，将类型和功能调换（也就是后缀变前缀）。
+命名规则：`{模块名_}逻辑名称`，例如：`refresh_progress.xml`、`market_cart_add.xml`、`market_cart_remove.xml`。
 
-例如：`activity_main.xml`
-
-
-##### 4.1.2 `Dialog` 命名
-
-规则：`dialog_描述.xml`
-
-例如：`dialog_hint.xml`
-
-
-##### 4.1.3 `PopupWindow` 命名
-
-规则：`ppw_描述.xml`
-
-例如：`ppw_info.xml`
-
-
-##### 4.1.4 列表项命名
-
-规则：`item_描述.xml`
-
-例如：`item_city.xml`
-
-
-##### 4.1.5 包含项命名
-
-规则：`模块_(位置)描述.xml`
-
-例如：`activity_main_head.xml`、`activity_main_bottom.xml`
-
-注意：通用的包含项命名采用：`项目名称缩写_描述.xml`
-
-例如：`xxxx_title.xml`
-
-
-#### 4.2 资源文件（图片 `drawable` 文件夹下）
-
-全部小写，采用下划线命名法，加前缀区分
-
-命名模式：可加后缀 `_small` 表示小图，`_big` 表示大图，逻辑名称可由多个单词加下划线组成，采用以下规则：
-
-* `用途_模块名_逻辑名称`
-* `用途_模块名_颜色`
-* `用途_逻辑名称`
-* `用途_颜色`
-
-说明：用途也指控件类型（具体见附录[UI 控件缩写表](#ui 控件缩写表)）
-
-例如：
-
-| 名称                      | 说明                      |
-| ----------------------- | ----------------------- |
-| `btn_main_home.png`       | 按键 `用途_模块名_逻辑名称`         |
-| `divider_maket_white.png` | 分割线 `用途_模块名_颜色`          |
-| `ic_edit.png`             | 图标 `用途_逻辑名称`             |
-| `bg_main.png`             | 背景 `用途_逻辑名称`             |
-| `btn_red.png`             | 红色按键 `用途_颜色`             |
-| `btn_red_big.png`         | 红色大按键 `用途_颜色`            |
-| `ic_head_small.png`       | 小头像 `用途_逻辑名称`            |
-| `bg_input.png`            | 输入框背景 `用途_逻辑名称`          |
-| `divider_white.png`       | 白色分割线 `用途_颜色`            |
-| `bg_main_head`            | 主模块头部背景图片 `用途_模块名_逻辑名称`  |
-| `def_search_cell`         | 默认搜索界面单元图片 `用途_模块名_逻辑名称` |
-| `ic_more_help`            | 更多帮助图标 `用途_逻辑名称`         |
-| `divider_list_line`       | 列表分割线 `用途_逻辑名称`          |
-| `sel_search_ok`           | 搜索界面确认选择器 `用途_模块名_逻辑名称`  |
-| `shape_music_ring`        | 音乐界面环形形状 `用途_模块名_逻辑名称`   |
-
-如果有多种形态，如按钮选择器：`sel_btn_xx.xml`
-
-| 名称                   | 说明                           |
-| -------------------- | ---------------------------- |
-| `sel_btn_xx`           | 按钮图片使用 `btn_整体效果`（selector）   |
-| `btn_xx_normal`        | 按钮图片使用 `btn_正常情况效果`           |
-| `btn_xx_pressed`       | 按钮图片使用 `btn_点击时候效果`           |
-| `btn_xx_focused`       | `state_focused` 聚焦效果          |
-| `btn_xx_disabled`      | `state_enabled` 不可用效果        |
-| `btn_xx_checked`       | `state_checked` 选中效果          |
-| `btn_xx_selected`      | `state_selected` 选中效果         |
-| `btn_xx_hovered`       | `state_hovered` 悬停效果          |
-| `btn_xx_checkable`     | `state_checkable` 可选效果        |
-| `btn_xx_activated`     | `state_activated` 激活的         |
-| `btn_xx_window_focused` | `state_window_focused`       |
-
-> 注意：使用 Android Studio 的插件 SelectorChapek 可以快速生成 selector，前提是命名要规范。
-
-
-#### 4.3 动画文件（`anim` 文件夹下）
-
-全部小写，采用下划线命名法，加前缀区分。
-
-具体动画采用以下规则：`模块名_逻辑名称`。
-
-例如：`refresh_progress.xml`、`market_cart_add.xml`、`market_cart_remove.xml`。
-
-普通的 `tween` 动画采用如下表格中的命名方式：`动画类型_方向`
+如果是普通的补间动画或者属性动画，可采用如下表格中的命名方式：`动画类型_方向`。
 
 | 名称                | 说明      |
 | ----------------- | ------- |
@@ -605,9 +510,120 @@ public class MyClass {
 | `shrink_to_middle`  | 中间缩小    |
 
 
-#### 4.4 `values` 中 name 命名
+#### 4.2 颜色资源文件（`color/`）
 
-##### 4.4.1 `colors.xml`
+专门存放颜色相关的资源文件。
+
+命名规则：`用途_逻辑名称`，例如：`sel_btn_font.xml`。
+
+说明：`用途` 也指控件类型（具体见附录[UI 控件缩写表](#ui-控件缩写表)）。
+
+颜色资源也可以放于 `res/drawable/` 目录，引用时则用 `@drawable` 来引用，但不推荐这么做，最好还是把两者分开。
+
+
+#### 4.3 图片资源文件（`drawable/` 和 `mipmap/`）
+
+`res/drawable/` 目录下放的是位图文件（.png、.9.png、.jpg、.gif）或编译为可绘制对象资源子类型的 XML 文件，而 `res/mipmap/` 目录下放的是不同密度的启动图标，所以 `res/mipmap/` 只用于存放启动图标，其余图片资源文件都应该放到 `res/drawable/` 目录下。
+
+命名规则：`用途_{模块名_}逻辑名称`、`用途_{模块名_}颜色`、`用途_逻辑名称`、`用途_颜色`。
+
+说明：`用途` 也指控件类型（具体见附录[UI 控件缩写表](#ui-控件缩写表)），逻辑名称可由多个单词加下划线组成，最后可加后缀 `_small` 表示小图，`_big` 表示大图。
+
+例如：
+
+| 名称                      | 说明                      |
+| ----------------------- | ----------------------- |
+| `btn_main_about.png`       | 主页关于按键 `用途_模块名_逻辑名称`         |
+| `btn_back.png`       | 返回按键 `用途_逻辑名称`         |
+| `divider_maket_white.png` | 商城白色分割线 `用途_模块名_颜色`          |
+| `ic_edit.png`             | 编辑图标 `用途_逻辑名称`             |
+| `bg_main.png`             | 主页背景 `用途_逻辑名称`             |
+| `btn_red.png`             | 红色按键 `用途_颜色`             |
+| `btn_red_big.png`         | 红色大按键 `用途_颜色`            |
+| `ic_head_small.png`       | 小头像图标 `用途_逻辑名称`            |
+| `bg_input.png`            | 输入框背景 `用途_逻辑名称`          |
+| `divider_white.png`       | 白色分割线 `用途_颜色`            |
+| `bg_main_head.png`            | 主页头部背景 `用途_模块名_逻辑名称`  |
+| `def_search_cell.png`         | 搜索页面默认单元图片 `用途_模块名_逻辑名称` |
+| `ic_more_help.png`            | 更多帮助图标 `用途_逻辑名称`         |
+| `divider_list_line.png`       | 列表分割线 `用途_逻辑名称`          |
+| `sel_search_ok.xml`           | 搜索界面确认选择器 `用途_模块名_逻辑名称`  |
+| `shape_music_ring.xml`        | 音乐界面环形形状 `用途_模块名_逻辑名称`   |
+
+如果有多种形态，如按钮选择器：`sel_btn_xx.xml`，采用如下命名：
+
+| 名称                   | 说明                           |
+| -------------------- | ---------------------------- |
+| `sel_btn_xx`           | 作用在 `btn_xx` 上的 `selector`    |
+| `btn_xx_normal`        | 默认状态效果           |
+| `btn_xx_pressed`       | `state_pressed` 点击效果           |
+| `btn_xx_focused`       | `state_focused` 聚焦效果          |
+| `btn_xx_disabled`      | `state_enabled` 不可用效果        |
+| `btn_xx_checked`       | `state_checked` 选中效果          |
+| `btn_xx_selected`      | `state_selected` 选中效果         |
+| `btn_xx_hovered`       | `state_hovered` 悬停效果          |
+| `btn_xx_checkable`     | `state_checkable` 可选效果        |
+| `btn_xx_activated`     | `state_activated` 激活效果         |
+| `btn_xx_window_focused` | `state_window_focused` 窗口聚焦效果       |
+
+> 注意：使用 Android Studio 的插件 SelectorChapek 可以快速生成 selector，前提是命名要规范。
+
+
+#### 4.4 布局资源文件（`layout/`）
+
+##### 4.4.1 `contentView` 命名
+
+必须以全部单词小写，单词间以下划线分割，使用名词或名词词组。
+
+所有 `Activity` 或 `Fragment` 的 `contentView` 必须与其类名对应，对应规则为：将所有字母都转为小写，将类型和功能调换（也就是后缀变前缀）。
+
+例如：`activity_main.xml`
+
+
+##### 4.4.2 `Dialog` 命名
+
+规则：`dialog_描述.xml`
+
+例如：`dialog_hint.xml`
+
+
+##### 4.4.3 `PopupWindow` 命名
+
+规则：`ppw_描述.xml`
+
+例如：`ppw_info.xml`
+
+
+##### 4.4.4 列表项命名
+
+规则：`item_描述.xml`
+
+例如：`item_city.xml`
+
+
+##### 4.4.5 包含项命名
+
+规则：`模块_(位置)描述.xml`
+
+例如：`activity_main_head.xml`、`activity_main_bottom.xml`
+
+注意：通用的包含项命名采用：`项目名称缩写_描述.xml`
+
+例如：`xxxx_title.xml`
+
+
+#### 4.5 菜单资源文件（`menu/`）
+
+菜单相关的资源文件应放在该目录下。
+
+命名规则：`{模块名_}逻辑名称`，例如：`main_drawer.xml`、`navigation_menu.xml`。
+
+
+#### 4.6 values 资源文件（`values/`）
+
+`values` 资源文件下的文件都以 `s` 结尾，如 `attrs.xml`、`colors.xml`、`dimens.xml`，起作用的不是文件名称，而是 `<resources>` 标签下的各种标签，比如 `<style>` 决定样式，`<color>` 决定颜色，所以，可以把一个大的 `xml` 文件分割成多个小的文件，比如可以有多个 `style` 文件，如 `styles.xml`、`styles_home.xml`、`styles_item_details.xml`、`styles_forms.xml`。
+
+##### 4.6.1 `colors.xml`
 
 `colors.xml` 的 `name` 命名使用下划线命名法，在你的 `colors.xml` 文件中应该只是映射颜色的名称一个 ARGB 值，而没有其它的。不要使用它为不同的按钮来定义 ARGB 值。
 
@@ -653,7 +669,7 @@ public class MyClass {
 > 注意：如果某些颜色和主题有关，那就单独写一个 `colors_theme.xml`。
 
 
-##### 4.4.2 `dimens.xml`
+##### 4.6.2 `dimens.xml`
 
 像对待 `colors.xml` 一样对待 `dimens.xml` 文件，与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。 一个好的例子，如下所示：
 
@@ -684,7 +700,7 @@ public class MyClass {
 布局时在写 `margins` 和 `paddings` 时，你应该使用 `spacing_xx` 尺寸格式来布局，而不是像对待 `string` 字符串一样直接写值，像这样规范的尺寸很容易修改或重构，会使应用所有用到的尺寸一目了然。 这样写会非常有感觉，会使组织和改变风格或布局是非常容易。
 
 
-##### 4.4.3 `strings.xml`
+##### 4.6.3 `strings.xml`
 
 `strings` 的 `name` 命名使用下划线命名法，采用以下规则：`模块名+逻辑名称`，这样方便同一个界面的所有 string 都放到一起，方便查找。
 
@@ -699,9 +715,9 @@ public class MyClass {
 | `loading`           | 加载文字    |
 
 
-##### 4.4.4 `styles.xml`
+##### 4.6.4 `styles.xml`
 
-`style` 的 `name` 命名使用大驼峰命名法，几乎每个项目都需要适当的使用 `style` 文件，因为对于一个视图来说有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在 `style` 文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的 `style` 文件，例如：
+`style` 的 `name` 命名使用大驼峰命名法，几乎每个项目都需要适当的使用 `style` 文件，因为对于一个视图来说，有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在 `style` 文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的 `style` 文件，例如：
 
 ```
 <style name="ContentText">
@@ -721,18 +737,14 @@ public class MyClass {
     />
 ```
 
-你或许需要为按钮控件做同样的事情，不要停止在那里。将一组相关的和重复 `android:xxxx` 的属性放到一个通用的 `style` 中。
-
-**将一个大的 `styles.xml` 文件分割成多个文件**， 你可以有多个 `styles.xml` 文件。Android SDK 支持其它文件，`styles.xml` 这个文件名称并没有作用，起作用的是在文件里的 `<style>` 标签。因此你可以有多个 `style` 文件，如 `styles.xml`、`styles_home.xml`、`styles_item_details.xml`、`styles_forms.xml`。不同于资源文件路径需要为系统构建起的有意义，在 `res/values` 目录下的文件可以任意命名。
+或许你需要为按钮控件做同样的事情，不要停止在那里，将一组相关的和重复 `android:xxxx` 的属性放到一个通用的 `style` 中。
 
 
-#### 4.5 layout 中的 id 命名
+#### 4.7 id 命名
 
-命名模式为：`view 缩写_模块名_逻辑名`，比如 `btn_main_search`。
+命名规则：`view缩写_{模块名}_逻辑名`，例如： `btn_main_search`、`btn_back`。
 
 使用 Android Studio 的插件 ButterKnife Zelezny，生成注解非常方便，原生的话可以使用 Android Code Generator 插件。
-
-如果想对资源文件进行分包可以参考我这篇文章：**[Android Studio 下对资源进行分包][Android Studio 下对资源进行分包]**。
 
 
 ### 5 版本统一规范
@@ -980,7 +992,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 ## 附录
 
-### UI控件缩写表
+### UI 控件缩写表
 
 | 名称             | 缩写   |
 | -------------- | ---- |
@@ -1055,6 +1067,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 ## 版本日志
 
+* 17/12/01: 对资源文件规范进行重构；
 * 17/11/29: 格式化中英混排；
 * 17/03/06: 发布初版；
 * 17/03/07: 修订目录排版，完善某些细节；
