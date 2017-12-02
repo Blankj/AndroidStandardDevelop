@@ -530,7 +530,7 @@ if (condition)
 
 #### 4.3 类成员的顺序
 
-没有单一的正确解决方案，但使用逻辑和一致的顺序将提高代码的可学性和可读性，推荐使用如下排序：
+这并没有唯一的正确解决方案，但如果都使用一致的顺序将会提高代码的可读性，推荐使用如下排序：
 
 1. 常量
 2. 字段
@@ -573,8 +573,7 @@ public class MainActivity extends Activity {
 
 ```java
 public class MainActivity extends Activity {
-
-	//Order matches Activity lifecycle
+    //Order matches Activity lifecycle
     @Override
     public void onCreate() {}
 
