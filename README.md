@@ -1168,6 +1168,8 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 [阿里巴巴 Java 开发手册][阿里巴巴 Java 开发手册]
 
+[android-guidelines][https://github.com/ribot/android-guidelines]
+
 [Google Java 编程风格指南][Google Java 编程风格指南]
 
 [小细节，大用途，35 个 Java 代码性能优化总结！][小细节，大用途，35 个 Java 代码性能优化总结！]
@@ -1211,5 +1213,6 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 [Android 开发最佳实践]: https://github.com/futurice/android-best-practices/blob/master/translations/Chinese/README.cn.md
 [Android 编码规范]: http://www.jianshu.com/p/0a984f999592
 [阿里巴巴 Java 开发手册]: https://102.alibaba.com/newsInfo.htm?newsId=6
+[android-guidelines]: https://github.com/ribot/android-guidelines
 [Google Java 编程风格指南]: http://www.hawstein.com/posts/google-java-style.html
 [小细节，大用途，35 个 Java 代码性能优化总结！]: http://www.jianshu.com/p/436943216526
