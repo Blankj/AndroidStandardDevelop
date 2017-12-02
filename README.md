@@ -5,12 +5,13 @@
 * [1 前言](#1-前言)
 * [2 AS 规范](#2-as-规范)
 * [3 命名规范](#3-命名规范)
-* [4 资源文件规范](#4-资源文件规范)
-* [5 版本统一规范](#5-版本统一规范)
-* [6 第三方库规范](#6-第三方库规范)
-* [7 注释规范](#7-注释规范)
-* [8 测试规范](#8-测试规范)
-* [9 其他的一些规范](#9-其他的一些规范)
+* [4 代码样式规范](#4-代码样式规范)
+* [5 资源文件规范](#5-资源文件规范)
+* [6 版本统一规范](#6-版本统一规范)
+* [7 第三方库规范](#7-第三方库规范)
+* [8 注释规范](#8-注释规范)
+* [9 测试规范](#9-测试规范)
+* [10 其他的一些规范](#10-其他的一些规范)
 
 
 ### 1 前言
@@ -277,52 +278,52 @@ PBF（按功能分包 Package By Feature）与 PBL（按层分包 Package By Lay
 
 * package 内高内聚，package 间低耦合
 
-哪块要添新功能，只改某一个 package 下的东西。
+    哪块要添新功能，只改某一个 package 下的东西。
 
-按 class 职能分层（PBL）降低了代码耦合，但带来了 package 耦合，要添新功能，需要改 model、dbHelper、view、service 等等，需要改动好几个 package 下的代码，改动的地方越多，越容易产生新问题，不是吗？
+    按 class 职能分层（PBL）降低了代码耦合，但带来了 package 耦合，要添新功能，需要改 model、dbHelper、view、service 等等，需要改动好几个 package 下的代码，改动的地方越多，越容易产生新问题，不是吗？
 
-按功能分包（PBF），featureA 相关的所有东西都在 featureA 包，feature 内高内聚高度模块化，不同 feature 之间低耦合，相关的东西都放在一起，还好找。
+    按功能分包（PBF），featureA 相关的所有东西都在 featureA 包，feature 内高内聚高度模块化，不同 feature 之间低耦合，相关的东西都放在一起，还好找。
 
 * package 有私有作用域（package-private scope）
 
-你负责开发这块功能，这个目录下所有东西都是你的。
+    你负责开发这块功能，这个目录下所有东西都是你的。
 
-PBL 的方式是把所有工具方法都放在 util 包下，小张开发新功能时候发现需要一个 xxUtil，但它又不是通用的，那应该放在哪里？没办法，按照分层原则，我们还得放在 util 包下，好像不太合适，但放在其它包更不合适，功能越来越多，util 类也越定义越多。后来小李负责开发一块功能时发现需要一个 xxUtil，同样不通用，去 util 包一看，怎么已经有了，而且还没法复用，只好放弃 xx 这个名字，改为 xxxUtil……，因为 PBL 的 package 没有私有作用域，每一个包都是 public（跨包方法调用是很平常的事情，每一个包对其它包来说都是可访问的）。
+    PBL 的方式是把所有工具方法都放在 util 包下，小张开发新功能时候发现需要一个 xxUtil，但它又不是通用的，那应该放在哪里？没办法，按照分层原则，我们还得放在 util 包下，好像不太合适，但放在其它包更不合适，功能越来越多，util 类也越定义越多。后来小李负责开发一块功能时发现需要一个 xxUtil，同样不通用，去 util 包一看，怎么已经有了，而且还没法复用，只好放弃 xx 这个名字，改为 xxxUtil……，因为 PBL 的 package 没有私有作用域，每一个包都是 public（跨包方法调用是很平常的事情，每一个包对其它包来说都是可访问的）。
 
-如果是 PBF，小张的 xxUtil 自然放在 feautreA 下，小李的 xxUtil 在 featureB 下，如果觉得 util 好像是通用的，就去 util 包看看要不要把工具方法添进 xxUtil, class 命名冲突没有了。
+    如果是 PBF，小张的 xxUtil 自然放在 feautreA 下，小李的 xxUtil 在 featureB 下，如果觉得 util 好像是通用的，就去 util 包看看要不要把工具方法添进 xxUtil, class 命名冲突没有了。
 
-PBF 的 package 有私有作用域，featureA 不应该访问 featureB 下的任何东西（如果非访问不可，那就说明接口定义有问题）。
+    PBF 的 package 有私有作用域，featureA 不应该访问 featureB 下的任何东西（如果非访问不可，那就说明接口定义有问题）。
 
 * 很容易删除功能
 
-统计发现新功能没人用，这个版本那块功能得去掉。
+    统计发现新功能没人用，这个版本那块功能得去掉。
 
-如果是 PBL，得从功能入口到整个业务流程把受到牵连的所有能删的代码和 class 都揪出来删掉，一不小心就完蛋。
+    如果是 PBL，得从功能入口到整个业务流程把受到牵连的所有能删的代码和 class 都揪出来删掉，一不小心就完蛋。
 
-如果是 PBF，好说，先删掉对应包，再删掉功能入口（删掉包后入口肯定报错了），完事。
+    如果是 PBF，好说，先删掉对应包，再删掉功能入口（删掉包后入口肯定报错了），完事。
 
 * 高度抽象
 
-解决问题的一般方法是从抽象到具体，PBF 包名是对功能模块的抽象，包内的 class 是实现细节，符合从抽象到具体，而 PBL 弄反了。
+    解决问题的一般方法是从抽象到具体，PBF 包名是对功能模块的抽象，包内的 class 是实现细节，符合从抽象到具体，而 PBL 弄反了。
 
-PBF 从确定 AppName 开始，根据功能模块划分 package，再考虑每块的具体实现细节，而 PBL 从一开始就要考虑要不要 dao 层，要不要 com 层等等。
+    PBF 从确定 AppName 开始，根据功能模块划分 package，再考虑每块的具体实现细节，而 PBL 从一开始就要考虑要不要 dao 层，要不要 com 层等等。
 
 * 只通过 class 来分离逻辑代码
 
-PBL 既分离 class 又分离 package，而 PBF 只通过 class 来分离逻辑代码。
+    PBL 既分离 class 又分离 package，而 PBF 只通过 class 来分离逻辑代码。
 
-没有必要通过 package 分离，因为 PBL 中也可能出现尴尬的情况：
+    没有必要通过 package 分离，因为 PBL 中也可能出现尴尬的情况：
 
-```
-├─service
-        │      MainServ.java
-```
+    ```
+    ├─service
+            │      MainServ.java
+    ```
 
-按照 PBL, service 包下的所有东西都是 Controller，应该不需要 Serv 后缀，但实际上通常为了码起来方便，直接 import service 包，Serv 后缀是为了避免引入的 class 和当前包下的 class 命名冲突，当然，不用后缀也可以，得写清楚包路径，比如 `new net.ayqy.service. Main()`，麻烦；而 PBF 就很方便，无需 import，直接 `new MainServ()` 即可。
+    按照 PBL, service 包下的所有东西都是 Controller，应该不需要 Serv 后缀，但实际上通常为了码起来方便，直接 import service 包，Serv 后缀是为了避免引入的 class 和当前包下的 class 命名冲突，当然，不用后缀也可以，得写清楚包路径，比如 `new net.ayqy.service. Main()`，麻烦；而 PBF 就很方便，无需 import，直接 `new MainServ()` 即可。
 
 * package 的大小有意义了
 
-PBL 中包的大小无限增长是合理的，因为功能越添越多，而 PBF 中包太大（包里 class 太多）表示这块需要重构（划分子包）。
+    PBL 中包的大小无限增长是合理的，因为功能越添越多，而 PBF 中包太大（包里 class 太多）表示这块需要重构（划分子包）。
 
 
 #### 3.2 类名
@@ -408,20 +409,17 @@ static final String[] nonEmptyArray = {"these", "can", "change"};
 
 静态字段命名以 `s` 开头。
 
-公有非静态字段命名以 `p` 开头。
+其他字段以小写字母开头。
 
-公有静态字段（全局变量）命名以 `g` 开头。
-
-例子：
+例如：
 
 ```java
 public class MyClass {
-      int mPackagePrivate;  
-      private int mPrivate;  
-      protected int mProtected;
-      private static MyClass sSingleton;  
-      public int pField;
-      public static int gField;
+    public int publicField;
+    private static MyClass sSingleton;
+    int mPackagePrivate;
+    private int mPrivate;
+    protected int mProtected;
 }
 ```
 
@@ -483,19 +481,151 @@ public class MyClass {
 更多还可参考：**[阿里巴巴 Java 开发手册][阿里巴巴 Java 开发手册]**
 
 
-### 4 资源文件规范
+### 4 代码样式规范
 
-资源文件命名为全部小写，采用下划线命名法，之后出现的命名规则中，大括号中的为可选部分。
+#### 4.1 使用标准大括号样式
+
+左大括号不单独占一行，与其前面的代码位于同一行：
+
+```java
+class MyClass {
+    int func() {
+        if (something) {
+            // ...
+        } else if (somethingElse) {
+            // ...
+        } else {
+            // ...
+        }
+    }
+}
+```
+
+我们需要在条件语句周围添加大括号。例外情况：如果整个条件语句（条件和主体）适合放在同一行，那么您可以（但不是必须）将其全部放在一行上。例如，我们接受以下样式：
+
+```java
+if (condition) {
+    body();
+}
+```
+
+同样也接受以下样式：
+
+```java
+if (condition) body();
+```
+
+但不接受以下样式：
+
+```java
+if (condition)
+    body();  // bad!
+```
+
+
+#### 4.2 编写简短方法
+
+在可行的情况下，尽量编写短小精炼的方法。我们了解，有些情况下较长的方法是恰当的，因此对方法的代码长度没有做出硬性限制。如果某个方法的代码超出 40 行，请考虑是否可以在不破坏程序结构的前提下对其拆解。
+
+
+#### 4.3 类成员的顺序
+
+没有单一的正确解决方案，但使用逻辑和一致的顺序将提高代码的可学性和可读性，推荐使用如下排序：
+
+1. 常量
+2. 字段
+3. 构造函数
+4. 重写函数和回调
+5. 公有函数
+6. 私有函数
+7. 内部类或接口
+
+例如：
+
+```java
+public class MainActivity extends Activity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private String mTitle;
+    private TextView mTextViewTitle;
+
+    @Override
+    public void onCreate() {
+        ...
+    }
+
+    public void setTitle(String title) {
+    	mTitle = title;
+    }
+
+    private void setUpView() {
+        ...
+    }
+
+    static class AnInnerClass {
+
+    }
+}
+```
+
+如果类继承于 Android 组件（例如 `Activity` 或 `Fragment`），那么把重写函数按照他们的生命周期进行排序是一个非常好的习惯，例如，`Activity` 实现了 `onCreate()`、`onDestroy()`、`onPause()`、`onResume()`，它的正确排序如下所示：
+
+```java
+public class MainActivity extends Activity {
+
+	//Order matches Activity lifecycle
+    @Override
+    public void onCreate() {}
+
+    @Override
+    public void onResume() {}
+
+    @Override
+    public void onPause() {}
+
+    @Override
+    public void onDestroy() {}
+}
+```
+
+
+#### 4.4 函数参数的排序
+
+在 Android 开发过程中，`Context` 在函数参数中是再常见不过的了，我们最好把 `Context` 作为其第一个参数。
+
+正相反，我们把回调接口应该作为其最后一个参数。
+
+例如：
+
+```java
+// Context always goes first
+public User loadUser(Context context, int userId);
+
+// Callbacks always go last
+public void loadUserAsync(Context context, int userId, UserCallback callback);
+```
+
+
+### 5 资源文件规范
+
+资源文件命名为全部小写，采用下划线命名法。
 
 如果想对资源文件进行分包可以参考我这篇文章：**[Android Studio 下对资源进行分包][Android Studio 下对资源进行分包]**。
 
-#### 4.1 动画资源文件（`anim/` 和 `animator/`）
+#### 5.1 动画资源文件（`anim/` 和 `animator/`）
 
 安卓主要包含属性动画和视图动画，其视图动画包括补间动画和逐帧动画。属性动画文件需要放在 `res/animator/` 目录下，视图动画文件需放在 `res/anim/` 目录下。
 
-命名规则：`{模块名_}逻辑名称`，例如：`refresh_progress.xml`、`market_cart_add.xml`、`market_cart_remove.xml`。
+命名规则：`{模块名_}逻辑名称`。
 
-如果是普通的补间动画或者属性动画，可采用如下表格中的命名方式：`动画类型_方向`。
+说明：`模块名` 为可选，`逻辑名称` 可由多个单词加下划线组成。
+
+例如：`refresh_progress.xml`、`market_cart_add.xml`、`market_cart_remove.xml`。
+
+如果是普通的补间动画或者属性动画，可采用：`动画类型_方向` 的命名方式。
+
+例如：
 
 | 名称                | 说明      |
 | ----------------- | ------- |
@@ -510,45 +640,45 @@ public class MyClass {
 | `shrink_to_middle`  | 中间缩小    |
 
 
-#### 4.2 颜色资源文件（`color/`）
+#### 5.2 颜色资源文件（`color/`）
 
 专门存放颜色相关的资源文件。
 
-命名规则：`用途_逻辑名称`，例如：`sel_btn_font.xml`。
+命名规则：`类型_逻辑名称`。
 
-说明：`用途` 也指控件类型（具体见附录[UI 控件缩写表](#ui-控件缩写表)）。
+例如：`sel_btn_font.xml`。
 
 颜色资源也可以放于 `res/drawable/` 目录，引用时则用 `@drawable` 来引用，但不推荐这么做，最好还是把两者分开。
 
 
-#### 4.3 图片资源文件（`drawable/` 和 `mipmap/`）
+#### 5.3 图片资源文件（`drawable/` 和 `mipmap/`）
 
 `res/drawable/` 目录下放的是位图文件（.png、.9.png、.jpg、.gif）或编译为可绘制对象资源子类型的 XML 文件，而 `res/mipmap/` 目录下放的是不同密度的启动图标，所以 `res/mipmap/` 只用于存放启动图标，其余图片资源文件都应该放到 `res/drawable/` 目录下。
 
-命名规则：`用途_{模块名_}逻辑名称`、`用途_{模块名_}颜色`、`用途_逻辑名称`、`用途_颜色`。
+命名规则：`类型{_模块名}_逻辑名称`、`类型{_模块名}_颜色`。
 
-说明：`用途` 也指控件类型（具体见附录[UI 控件缩写表](#ui-控件缩写表)），逻辑名称可由多个单词加下划线组成，最后可加后缀 `_small` 表示小图，`_big` 表示大图。
+说明：`模块名` 为可选；`类型` 可以是[可绘制对象资源类型](可绘制对象资源类型)，也可以是控件类型（具体见附录[UI 控件缩写表](#ui-控件缩写表)）；最后可加后缀 `_small` 表示小图，`_big` 表示大图。
 
 例如：
 
 | 名称                      | 说明                      |
 | ----------------------- | ----------------------- |
-| `btn_main_about.png`       | 主页关于按键 `用途_模块名_逻辑名称`         |
-| `btn_back.png`       | 返回按键 `用途_逻辑名称`         |
-| `divider_maket_white.png` | 商城白色分割线 `用途_模块名_颜色`          |
-| `ic_edit.png`             | 编辑图标 `用途_逻辑名称`             |
-| `bg_main.png`             | 主页背景 `用途_逻辑名称`             |
-| `btn_red.png`             | 红色按键 `用途_颜色`             |
-| `btn_red_big.png`         | 红色大按键 `用途_颜色`            |
-| `ic_head_small.png`       | 小头像图标 `用途_逻辑名称`            |
-| `bg_input.png`            | 输入框背景 `用途_逻辑名称`          |
-| `divider_white.png`       | 白色分割线 `用途_颜色`            |
-| `bg_main_head.png`            | 主页头部背景 `用途_模块名_逻辑名称`  |
-| `def_search_cell.png`         | 搜索页面默认单元图片 `用途_模块名_逻辑名称` |
-| `ic_more_help.png`            | 更多帮助图标 `用途_逻辑名称`         |
-| `divider_list_line.png`       | 列表分割线 `用途_逻辑名称`          |
-| `sel_search_ok.xml`           | 搜索界面确认选择器 `用途_模块名_逻辑名称`  |
-| `shape_music_ring.xml`        | 音乐界面环形形状 `用途_模块名_逻辑名称`   |
+| `btn_main_about.png`       | 主页关于按键 `类型_模块名_逻辑名称`         |
+| `btn_back.png`       | 返回按键 `类型_逻辑名称`         |
+| `divider_maket_white.png` | 商城白色分割线 `类型_模块名_颜色`          |
+| `ic_edit.png`             | 编辑图标 `类型_逻辑名称`             |
+| `bg_main.png`             | 主页背景 `类型_逻辑名称`             |
+| `btn_red.png`             | 红色按键 `类型_颜色`             |
+| `btn_red_big.png`         | 红色大按键 `类型_颜色`            |
+| `ic_head_small.png`       | 小头像图标 `类型_逻辑名称`            |
+| `bg_input.png`            | 输入框背景 `类型_逻辑名称`          |
+| `divider_white.png`       | 白色分割线 `类型_颜色`            |
+| `bg_main_head.png`            | 主页头部背景 `类型_模块名_逻辑名称`  |
+| `def_search_cell.png`         | 搜索页面默认单元图片 `类型_模块名_逻辑名称` |
+| `ic_more_help.png`            | 更多帮助图标 `类型_逻辑名称`         |
+| `divider_list_line.png`       | 列表分割线 `类型_逻辑名称`          |
+| `sel_search_ok.xml`           | 搜索界面确认选择器 `类型_模块名_逻辑名称`  |
+| `shape_music_ring.xml`        | 音乐界面环形形状 `类型_模块名_逻辑名称`   |
 
 如果有多种形态，如按钮选择器：`sel_btn_xx.xml`，采用如下命名：
 
@@ -569,61 +699,37 @@ public class MyClass {
 > 注意：使用 Android Studio 的插件 SelectorChapek 可以快速生成 selector，前提是命名要规范。
 
 
-#### 4.4 布局资源文件（`layout/`）
+#### 5.4 布局资源文件（`layout/`）
 
-##### 4.4.1 `contentView` 命名
+命名规则：`类型_模块名`、`类型{_模块名}_逻辑名称`。
 
-必须以全部单词小写，单词间以下划线分割，使用名词或名词词组。
+说明：`模块名` 为可选。
 
-所有 `Activity` 或 `Fragment` 的 `contentView` 必须与其类名对应，对应规则为：将所有字母都转为小写，将类型和功能调换（也就是后缀变前缀）。
+例如：
 
-例如：`activity_main.xml`
-
-
-##### 4.4.2 `Dialog` 命名
-
-规则：`dialog_描述.xml`
-
-例如：`dialog_hint.xml`
-
-
-##### 4.4.3 `PopupWindow` 命名
-
-规则：`ppw_描述.xml`
-
-例如：`ppw_info.xml`
+| 名称                      | 说明                      |
+| ----------------------- | ----------------------- |
+| `activity_main.xml`| 主窗体 `类型_模块名`|
+| `activity_main_head.xml`| 主窗体头部 `类型_模块名_逻辑名称`|
+| `fragment_music.xml`| 音乐片段 `类型_模块名`|
+| `fragment_music_player.xml`| 音乐片段的播放器 `类型_模块名_逻辑名称`|
+| `dialog_loading.xml`| 加载对话框 `类型_逻辑名称`|
+| `ppw_info.xml`| 信息弹窗（PopupWindow） `类型_逻辑名称`|
+| `item_song.xml`| 歌曲列表项 `类型_逻辑名称`|
 
 
-##### 4.4.4 列表项命名
-
-规则：`item_描述.xml`
-
-例如：`item_city.xml`
-
-
-##### 4.4.5 包含项命名
-
-规则：`模块_(位置)描述.xml`
-
-例如：`activity_main_head.xml`、`activity_main_bottom.xml`
-
-注意：通用的包含项命名采用：`项目名称缩写_描述.xml`
-
-例如：`xxxx_title.xml`
-
-
-#### 4.5 菜单资源文件（`menu/`）
+#### 5.5 菜单资源文件（`menu/`）
 
 菜单相关的资源文件应放在该目录下。
 
-命名规则：`{模块名_}逻辑名称`，例如：`main_drawer.xml`、`navigation_menu.xml`。
+命名规则：`{模块名_}逻辑名称`，`模块名_` 为可选，例如：`main_drawer.xml`、`navigation_menu.xml`。
 
 
-#### 4.6 values 资源文件（`values/`）
+#### 5.6 values 资源文件（`values/`）
 
 `values` 资源文件下的文件都以 `s` 结尾，如 `attrs.xml`、`colors.xml`、`dimens.xml`，起作用的不是文件名称，而是 `<resources>` 标签下的各种标签，比如 `<style>` 决定样式，`<color>` 决定颜色，所以，可以把一个大的 `xml` 文件分割成多个小的文件，比如可以有多个 `style` 文件，如 `styles.xml`、`styles_home.xml`、`styles_item_details.xml`、`styles_forms.xml`。
 
-##### 4.6.1 `colors.xml`
+##### 5.6.1 `colors.xml`
 
 `colors.xml` 的 `name` 命名使用下划线命名法，在你的 `colors.xml` 文件中应该只是映射颜色的名称一个 ARGB 值，而没有其它的。不要使用它为不同的按钮来定义 ARGB 值。
 
@@ -669,7 +775,7 @@ public class MyClass {
 > 注意：如果某些颜色和主题有关，那就单独写一个 `colors_theme.xml`。
 
 
-##### 4.6.2 `dimens.xml`
+##### 5.6.2 `dimens.xml`
 
 像对待 `colors.xml` 一样对待 `dimens.xml` 文件，与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。 一个好的例子，如下所示：
 
@@ -700,7 +806,7 @@ public class MyClass {
 布局时在写 `margins` 和 `paddings` 时，你应该使用 `spacing_xx` 尺寸格式来布局，而不是像对待 `string` 字符串一样直接写值，像这样规范的尺寸很容易修改或重构，会使应用所有用到的尺寸一目了然。 这样写会非常有感觉，会使组织和改变风格或布局是非常容易。
 
 
-##### 4.6.3 `strings.xml`
+##### 5.6.3 `strings.xml`
 
 `strings` 的 `name` 命名使用下划线命名法，采用以下规则：`模块名+逻辑名称`，这样方便同一个界面的所有 string 都放到一起，方便查找。
 
@@ -715,7 +821,7 @@ public class MyClass {
 | `loading`           | 加载文字    |
 
 
-##### 4.6.4 `styles.xml`
+##### 5.6.4 `styles.xml`
 
 `style` 的 `name` 命名使用大驼峰命名法，几乎每个项目都需要适当的使用 `style` 文件，因为对于一个视图来说，有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在 `style` 文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的 `style` 文件，例如：
 
@@ -740,21 +846,23 @@ public class MyClass {
 或许你需要为按钮控件做同样的事情，不要停止在那里，将一组相关的和重复 `android:xxxx` 的属性放到一个通用的 `style` 中。
 
 
-#### 4.7 id 命名
+#### 5.7 id 命名
 
 命名规则：`view缩写_{模块名}_逻辑名`，例如： `btn_main_search`、`btn_back`。
 
-使用 Android Studio 的插件 ButterKnife Zelezny，生成注解非常方便，原生的话可以使用 Android Code Generator 插件。
+如果在项目中有用黄油刀的话，使用 AS 的插件：ButterKnife Zelezny，可以非常方便帮助你生成注解；没用黄油刀的话可以使用 Android Code Generator 插件。
 
 
-### 5 版本统一规范
+### 6 版本统一规范
 
 Android 开发存在着众多版本的不同，比如 `compileSdkVersion`、`minSdkVersion`、`targetSdkVersion` 以及项目中依赖第三方库的版本，不同的 module 及不同的开发人员都有不同的版本，所以需要一个统一版本规范的文件。
 
 具体可以参考我写的这篇博文：**[Android 开发之版本统一规范][Android 开发之版本统一规范]**。
 
+如果是开发多个系统级别的应用，当多个应用同时用到相同的 `so` 库时，一定要确保 `so` 库的版本一致，否则可能会引发应用崩溃。
 
-### 6 第三方库规范
+
+### 7 第三方库规范
 
 别再闭门造车了，用用最新最火的技术吧，安利一波：**[Android 流行框架查速表][Android 流行框架查速表]**，顺便带上自己的干货：**[Android 开发人员不得不收集的代码][Android 开发人员不得不收集的代码]**。
 
@@ -773,11 +881,11 @@ Android 开发存在着众多版本的不同，比如 `compileSdkVersion`、`min
 * **[Tinker][Tinker]**（选用）
 
 
-### 7 注释规范
+### 8 注释规范
 
 为了减少他人阅读你代码的痛苦值，请在关键地方做好注释。
 
-#### 7.1 类注释
+#### 8.1 类注释
 
 每个类完成后应该有作者姓名和联系方式的注释，对自己的代码负责。
 
@@ -813,7 +921,7 @@ public class WelcomeActivity {
 这样便可在每次新建类的时候自动加上该头注释。
 
 
-#### 7.2 方法注释
+#### 8.2 方法注释
 
 每一个成员方法（包括自定义成员方法、覆盖方法、属性方法）的方法头都必须做方法头注释，在方法前一行输入 `/** + 回车` 或者设置 `Fix doc comment`（Settings -> Keymap -> Fix doc comment）快捷键，AS 便会帮你生成模板，我们只需要补全参数即可，如下所示。
 
@@ -833,7 +941,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 }
 ```
 
-#### 7.3 块注释
+#### 8.3 块注释
 
 块注释与其周围的代码在同一缩进级别。它们可以是 `/* ... */` 风格，也可以是 `// ...` 风格（**`//`后最好带一个空格**）。对于多行的 `/* ... */` 注释，后续行必须从 `*` 开始， 并且与前一行的 `*` 对齐。以下示例注释都是 OK 的。
 
@@ -854,7 +962,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 > Tip：在写多行注释时，如果你希望在必要时能重新换行（即注释像段落风格一样），那么使用 `/* ... */`。
 
-#### 7.4 其他一些注释
+#### 8.4 其他一些注释
 
 AS 已帮你集成了一些注释模板，我们只需要直接使用即可，在代码中输入 `todo`、`fixme` 等这些注释模板，回车后便会出现如下注释。
 
@@ -864,14 +972,14 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 ```
 
 
-### 8 测试规范
+### 9 测试规范
 
 业务开发完成之后，开发人员做单元测试，单元测试完成之后，保证单元测试全部通过同时单元测试代码覆盖率达到一定程度（这个需要开发和测试约定，理论上越高越好），开发提测。
 
 // TODO...
 
 
-### 9 其他的一些规范
+### 10 其他的一些规范
 
 1. 合理布局，有效运用 `<merge>`、`<ViewStub>`、`<include>` 标签；
 
@@ -981,6 +1089,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 23. 最后不要忘了内存泄漏的检测；
 
+
 ---
 
 最后啰嗦几句：
@@ -1021,11 +1130,11 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 | 名称                   | 缩写                                       |
 | -------------------- | ---------------------------------------- |
-| icon                 | ic （主要用在 App 的图标）                          |
+| icon                 | ic（主要用在 App 的图标）                          |
 | color                | cl（主要用于颜色值）                              |
 | average              | avg                                      |
 | background           | bg（主要用于布局和子布局的背景）                        |
-| selector             | sel 主要用于某一 view 多种状态，不仅包括 Listview 中的 selector，还包括按钮的 selector） |
+| selector             | sel（主要用于某一 view 多种状态，不仅包括 Listview 中的 selector，还包括按钮的 selector） |
 | buffer               | buf                                      |
 | control              | ctrl                                     |
 | default              | def                                      |
@@ -1067,6 +1176,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 ## 版本日志
 
+* 17/12/02: 新增代码样式规范；
 * 17/12/01: 对资源文件规范进行重构；
 * 17/11/29: 格式化中英混排；
 * 17/03/06: 发布初版；
@@ -1082,6 +1192,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 [安卓开发规范（updating）]: https://github.com/Blankj/AndroidStandardDevelop
 [Android 开发者工具]: http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0526/7973.html
 [Android Studio 下对资源进行分包]: http://www.jianshu.com/p/8e893581b9c7
+[可绘制对象资源类型]: https://developer.android.com/guide/topics/resources/drawable-resource.html
 [Android 开发之版本统一规范]: http://www.jianshu.com/p/db6ef4cfa5d1
 [Android 流行框架查速表]: http://www.ctolib.com/cheatsheets-Android-ch.html
 [Android 开发人员不得不收集的代码]: https://github.com/Blankj/AndroidUtilCode
