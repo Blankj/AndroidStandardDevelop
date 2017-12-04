@@ -1,4 +1,4 @@
-# 安卓开发规范（updating）
+# 安卓开发规范（完结版）
 
 ## 摘要
 
@@ -16,7 +16,7 @@
 
 ### 1 前言
 
-为了利于项目维护以及规范开发，促进成员之间 Code Review 的效率，故提出以下开发规范，如有更好建议，欢迎到 GitHub 提 issue，原文地址：**[安卓开发规范（updating）][安卓开发规范（updating）]**
+为了有利于项目维护、增强代码可读性、提升 Code Review 效率以及规范团队安卓开发，故提出以下安卓开发规范，该规范结合本人多年的开发经验并吸取多家之精华，可谓是本人的呕心沥血之作，称其为当前最完善的安卓开发规范一点也不为过，如有更好建议，欢迎到 GitHub 提 issue，原文地址：**[安卓开发规范（完结版）][安卓开发规范（完结版）]**。后续可能会根据该规范出一个 `CheckStyle` 插件来检查是否规范，当然也支持在 CI 上进行检查。
 
 
 ### 2 AS 规范
@@ -25,7 +25,7 @@
 
 1. 尽量使用最新版的 IDE 进行开发；
 2. 编码格式统一为 **UTF-8**；
-3. 编辑完 `.java`、`.xml` 等文件后一定要 **格式化**（基本格式方面使用 AS 默认模板即可）；
+3. 编辑完 .java、.xml 等文件后一定要 **格式化**（基本格式方面使用 AS 默认模板即可）；
 4. 删除多余的 import，减少警告出现，可利用 AS 的 Optimize Imports（Settings -> Keymap -> Optimize Imports）快捷键；
 5. Android 开发者工具可以参考这里：**[Android 开发者工具][Android 开发者工具]**；
 
@@ -38,243 +38,7 @@
 
 #### 3.1 包名
 
-包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为 `com`、`edu`、`gov`、`net`、`org` 等，二级包名为公司名，三级包名根据应用进行命名，后面就是对包名的划分了，关于包名的划分，推荐使用按功能分，一开始我们也是按照层去分包的，很坑爹。按照功能分可能你不是很好区分在哪个功能中，不过也比你按照层区分要好找很多。具体可以参考这篇博文：**[Package by features, not layers][Package by features, not layers]**，当然，我们大谷歌也有相应的 Sample：**[iosched][iosched]**，其结构如下所示，很值得学习。
-
-```
-java
-└─com
-    └─google
-        └─samples
-            └─apps
-                └─iosched
-                    │  AppApplication.java  定义Application类
-                    │  Config.java          定义配置数据（常量）
-                    │
-                    ├─about
-                    │      AboutActivity.java
-                    │
-                    ├─appwidget
-                    │      ScheduleWidgetProvider.java
-                    │      ScheduleWidgetRemoteViewsService.java
-                    │
-                    ├─debug
-                    │  │  DebugAction.java
-                    │  │  DebugActivity.java
-                    │  │  DebugFragment.java
-                    │  │
-                    │  └─actions
-                    │          DisplayUserDataDebugAction.java
-                    │          ForceAppDataSyncNowAction.java
-                    │          ForceSyncNowAction.java
-                    │          ...
-                    │
-                    ├─explore
-                    │  │  ExploreIOActivity.java
-                    │  │  ExploreIOFragment.java
-                    │  │  ExploreModel.java
-                    │  │  ...
-                    │  │
-                    │  └─data
-                    │          ItemGroup.java
-                    │          LiveStreamData.java
-                    │          MessageData.java
-                    │          ...
-                    │
-                    ├─feedback
-                    │      FeedbackApiHelper.java
-                    │      FeedbackConstants.java
-                    │      FeedbackHelper.java
-                    │      ...
-                    │
-                    ├─framework
-                    │      FragmentListener.java
-                    │      LoaderIdlingResource.java
-                    │      Model.java
-                    │      ...定义interface并实现
-                    │
-                    ├─gcm
-                    │  │  GCMCommand.java
-                    │  │  GCMIntentService.java
-                    │  │  GCMRedirectedBroadcastReceiver.java
-                    │  │  ...
-                    │  │
-                    │  └─command
-                    │          AnnouncementCommand.java
-                    │          NotificationCommand.java
-                    │          SyncCommand.java
-                    │          ...
-                    │
-                    ├─io
-                    │  │  BlocksHandler.java
-                    │  │  HandlerException.java
-                    │  │  HashtagsHandler.java
-                    │  │  ...处理model
-                    │  │
-                    │  ├─map
-                    │  │  └─model
-                    │  │          MapData.java
-                    │  │          Marker.java
-                    │  │          Tile.java
-                    │  │
-                    │  └─model
-                    │          Block.java
-                    │          DataManifest.java
-                    │          Hashtag.java
-                    │          ...
-                    │
-                    ├─map
-                    │  │  InlineInfoFragment.java
-                    │  │  MapActivity.java
-                    │  │  MapFragment.java
-                    │  │  ...
-                    │  │
-                    │  └─util
-                    │          CachedTileProvider.java
-                    │          MarkerLoadingTask.java
-                    │          MarkerModel.java
-                    │          ...
-                    │
-                    ├─model
-                    │      ScheduleHelper.java
-                    │      ScheduleItem.java
-                    │      ScheduleItemHelper.java
-                    │      ...定义model以及实现model相关操作
-                    │
-                    ├─myschedule
-                    │      MyScheduleActivity.java
-                    │      MyScheduleAdapter.java
-                    │      MyScheduleFragment.java
-                    │      ...
-                    │
-                    ├─provider
-                    │      ScheduleContract.java
-                    │      ScheduleContractHelper.java
-                    │      ScheduleDatabase.java
-                    │      ...实现ContentProvider
-                    │      （也在此处定义provider依赖的其它类，比如db操作）
-                    │
-                    ├─receiver
-                    │      SessionAlarmReceiver.java
-                    │
-                    ├─service
-                    │      DataBootstrapService.java
-                    │      SessionAlarmService.java
-                    │      SessionCalendarService.java
-                    │
-                    ├─session
-                    │      SessionDetailActivity.java
-                    │      SessionDetailConstants.java
-                    │      SessionDetailFragment.java
-                    │      ...
-                    │
-                    ├─settings
-                    │      ConfMessageCardUtils.java
-                    │      SettingsActivity.java
-                    │      SettingsUtils.java
-                    │
-                    ├─social
-                    │      SocialActivity.java
-                    │      SocialFragment.java
-                    │      SocialModel.java
-                    │
-                    ├─sync
-                    │  │  ConferenceDataHandler.java
-                    │  │  RemoteConferenceDataFetcher.java
-                    │  │  SyncAdapter.java
-                    │  │  ...
-                    │  │
-                    │  └─userdata
-                    │      │  AbstractUserDataSyncHelper.java
-                    │      │  OnSuccessListener.java
-                    │      │  UserAction.java
-                    │      │  ...
-                    │      │
-                    │      ├─gms
-                    │      │      DriveHelper.java
-                    │      │      GMSUserDataSyncHelper.java
-                    │      │
-                    │      └─util
-                    │              UserActionHelper.java
-                    │              UserDataHelper.java
-                    │
-                    ├─ui
-                    │  │  BaseActivity.java
-                    │  │  CheckableLinearLayout.java
-                    │  │  SearchActivity.java
-                    │  │  ...BaseActivity以及自定义UI组件
-                    │  │
-                    │  └─widget
-                    │          AspectRatioView.java
-                    │          BakedBezierInterpolator.java
-                    │          BezelImageView.java
-                    │          ...自定义小UI控件
-                    │
-                    ├─util
-                    │      AboutUtils.java
-                    │      AccountUtils.java
-                    │      AnalyticsHelper.java
-                    │      ...工具类，提供静态方法
-                    │
-                    ├─videolibrary
-                    │      VideoLibraryActivity.java
-                    │      VideoLibraryFilteredActivity.java
-                    │      VideoLibraryFilteredFragment.java
-                    │      ...
-                    │
-                    └─welcome
-                            AccountFragment.java
-                            AttendingFragment.java
-                            ConductFragment.java
-                            ...
-```
-
-参考 Google I/O 2015 的代码结构，按功能分包具体可以这样做：
-
-```
-src
-└─com
-    └─domain
-        └─app
-            │  AppApplication.java  定义Application类
-            │  Config.java          定义配置数据（常量）
-            │
-            ├─framework
-            │      定义interface以及相关基类
-            │
-            ├─io
-            │      数据定义（model）、数据操作（比如json解析，但不包括db操作）
-            │
-            ├─model
-            │      定义model（数据结构以及getter/setter、compareTo、equals等等，不含复杂操作）
-            │      以及modelHelper（提供便于操作model的api）
-            │
-            ├─provider
-            │      实现ContentProvider，及其依赖的db操作
-            │
-            ├─receiver
-            │      实现Receiver
-            │
-            ├─service
-            │      实现Service（比如IntentService），用于在独立线程中异步do stuff
-            │
-            ├─ui
-            │      实现BaseActivity，以及自定义view和widget，相关的Adapter也放这里
-            │
-            ├─util
-            │      实现工具类，提供静态方法
-            │
-            ├─feature1
-            │      Item.java                定义model
-            │      ItemHelper.java          实现modelHelper
-            │      feature1Activity.java    定义UI
-            │      feature1DAO.java         私有db操作
-            │      feature1Utils.java       私有工具函数
-            │      ...其它私有class
-            │
-            ├─...其它feature
-```
-
-PBF（按功能分包 Package By Feature）与 PBL（按层分包 Package By Layer）相比较有如下优势：
+包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为 `com`、`edu`、`gov`、`net`、`org` 等，二级包名为公司名，三级包名根据应用进行命名，后面就是对包名的划分了，关于包名的划分，推荐使用按功能分，一开始我们也是按照层去分包的，很坑爹。按照功能分可能你不是很好区分在哪个功能中，不过也比你按照层区分要好找很多，具体可以参考这篇博文：**[Package by features, not layers][Package by features, not layers]**。且 PBF（按功能分包 Package By Feature）与 PBL（按层分包 Package By Layer）相比较有如下优势：
 
 * package 内高内聚，package 间低耦合
 
@@ -325,6 +89,83 @@ PBF（按功能分包 Package By Feature）与 PBL（按层分包 Package By Lay
 
     PBL 中包的大小无限增长是合理的，因为功能越添越多，而 PBF 中包太大（包里 class 太多）表示这块需要重构（划分子包）。
 
+当然，我们大谷歌也有相应的 Sample：**[todo-mvp][todo-mvp]**，其结构如下所示，很值得学习。
+
+```
+com
+└── example
+    └── android
+        └── architecture
+            └── blueprints
+                └── todoapp
+                    ├── BasePresenter.java
+                    ├── BaseView.java
+                    ├── addedittask
+                    │   ├── AddEditTaskActivity.java
+                    │   ├── AddEditTaskContract.java
+                    │   ├── AddEditTaskFragment.java
+                    │   └── AddEditTaskPresenter.java
+                    ├── data
+                    │   ├── Task.java
+                    │   └── source
+                    │       ├── TasksDataSource.java
+                    │       ├── TasksRepository.java
+                    │       ├── local
+                    │       │   ├── TasksDbHelper.java
+                    │       │   ├── TasksLocalDataSource.java
+                    │       │   └── TasksPersistenceContract.java
+                    │       └── remote
+                    │           └── TasksRemoteDataSource.java
+                    ├── statistics
+                    │   ├── StatisticsActivity.java
+                    │   ├── StatisticsContract.java
+                    │   ├── StatisticsFragment.java
+                    │   └── StatisticsPresenter.java
+                    ├── taskdetail
+                    │   ├── TaskDetailActivity.java
+                    │   ├── TaskDetailContract.java
+                    │   ├── TaskDetailFragment.java
+                    │   └── TaskDetailPresenter.java
+                    ├── tasks
+                    │   ├── ScrollChildSwipeRefreshLayout.java
+                    │   ├── TasksActivity.java
+                    │   ├── TasksContract.java
+                    │   ├── TasksFilterType.java
+                    │   ├── TasksFragment.java
+                    │   └── TasksPresenter.java
+                    └── util
+                        ├── ActivityUtils.java
+                        ├── EspressoIdlingResource.java
+                        └── SimpleCountingIdlingResource.java
+```
+
+参考以上的代码结构，按功能分包具体可以这样做：
+
+```
+com
+└── domain
+    └── app
+        ├── App.java 定义 Application 类
+        ├── Config.java 定义配置数据（常量）
+        ├── base 基础组件
+        ├── custom_view 自定义视图
+        ├── data 数据处理
+        │   ├── DataManager.java 数据管理器，
+        │   ├── local 来源于本地的数据，比如 SP，Database，File
+        │   ├── model 定义 model（数据结构以及 getter/setter、compareTo、equals 等等，不含复杂操作）
+        │   └── remote 来源于远端的数据
+        ├── feature 功能
+        │   ├── feature0 功能 0
+        │   │   ├── featrue0Activity.java
+        │   │   ├── featrue0Fragment.java
+        │   │   ├── xxAdapter.java
+        │   │   └── ... 其他 class
+        │   └── ...其他功能
+        ├── injection 依赖注入
+        ├── util 工具类
+        └── widget 小部件
+```
+
 
 #### 3.2 类名
 
@@ -334,17 +175,17 @@ PBF（按功能分包 Package By Feature）与 PBL（按层分包 Package By Lay
 
 名词，采用大驼峰命名法，尽量避免缩写，除非该缩写是众所周知的， 比如 HTML、URL，如果类名称中包含单词缩写，则单词缩写的每个字母均应大写。
 
-| 类                  | 描述                                       | 例如                                       |
-| :----------------- | :--------------------------------------- | :--------------------------------------- |
-| `Activity` 类         | `Activity` 为后缀标识                            | 欢迎页面类 `WelcomeActivity`                     |
-| `Adapter` 类           | `Adapter` 为后缀标识                            | 新闻详情适配器 `NewDetailAdapter`                 |
-| 解析类                | `Parser` 为后缀标识                              | 首页解析类 `HomePosterParser`                    |
-| 工具方法类              | `Utils` 或 `Manager` 为后缀标识（与系统或第三方的 `Utils` 区分）或功能 + `Utils` | 线程池管理类：`ThreadPoolManager` 日志工具类：`LogUtils`（`Logger` 也可）打印工具类：`PrinterUtils` |
-| 数据库类               | 以 `DBHelper` 后缀标识                            | 新闻数据库：`NewDBHelper`                       |
-| `Service` 类           | 以 `Service` 为后缀标识                            | 时间服务 `TimeService`                          |
-| `BroadcastReceiver` 类 | 以 `Receiver` 为后缀标识                           | 推送接收 `JPushReceiver`                        |
-| `ContentProvider` 类   | 以 `Provider` 为后缀标识                           | `ShareProvider`                            |
-| 自定义的共享基础类          | 以 `Base` 开头                                  | `BaseActivity`, `BaseFragment`                |
+| 类                     | 描述                                       | 例如                                       |
+| :-------------------- | :--------------------------------------- | :--------------------------------------- |
+| `Activity` 类          | `Activity` 为后缀标识                         | 欢迎页面类 `WelcomeActivity`                  |
+| `Adapter` 类           | `Adapter` 为后缀标识                          | 新闻详情适配器 `NewDetailAdapter`               |
+| 解析类                   | `Parser` 为后缀标识                           | 首页解析类 `HomePosterParser`                 |
+| 工具方法类                 | `Utils` 或 `Manager` 为后缀标识（与系统或第三方的 `Utils` 区分）或功能 + `Utils` | 线程池管理类：`ThreadPoolManager` 日志工具类：`LogUtils`（`Logger` 也可）打印工具类：`PrinterUtils` |
+| 数据库类                  | 以 `DBHelper` 后缀标识                        | 新闻数据库：`NewDBHelper`                      |
+| `Service` 类           | 以 `Service` 为后缀标识                        | 时间服务 `TimeService`                       |
+| `BroadcastReceiver` 类 | 以 `Receiver` 为后缀标识                       | 推送接收 `JPushReceiver`                     |
+| `ContentProvider` 类   | 以 `Provider` 为后缀标识                       | `ShareProvider`                          |
+| 自定义的共享基础类             | 以 `Base` 开头                              | `BaseActivity`, `BaseFragment`           |
 
 测试类的命名以它要测试的类的名称开始，以 Test 结束。例如：`HashTest` 或 `HashIntegrationTest`。
 
@@ -359,20 +200,20 @@ PBF（按功能分包 Package By Feature）与 PBL（按层分包 Package By Lay
 
 方法名通常是动词或动词短语。
 
-| 方法                     | 说明                                   |
-| :--------------------- | ------------------------------------ |
-| `initXX()`               | 初始化相关方法，使用 init 为前缀标识，如初始化布局 `initView()` |
+| 方法                          | 说明                                       |
+| :-------------------------- | ---------------------------------------- |
+| `initXX()`                  | 初始化相关方法，使用 init 为前缀标识，如初始化布局 `initView()` |
 | `isXX()`, `checkXX()`       | 方法返回值为 boolean 型的请使用 is/check 为前缀标识      |
-| `getXX()`                | 返回某个值的方法，使用 get 为前缀标识                  |
-| `setXX()`                | 设置某个属性值                              |
-| `handleXX()`, `processXX()` | 对数据进行处理的方法                           |
-| `displayXX()`, `showXX()`   | 弹出提示框和提示信息，使用 display/show 为前缀标识       |
-| `updateXX()`             | 更新数据                                 |
-| `saveXX()`               | 保存数据                                 |
-| `resetXX()`              | 重置数据                                 |
-| `clearXX()`              | 清除数据                                 |
-| `removeXX()`             | 移除数据或者视图等，如 `removeView()`             |
-| `drawXX()`               | 绘制数据或效果相关的，使用 draw 前缀标识                |
+| `getXX()`                   | 返回某个值的方法，使用 get 为前缀标识                    |
+| `setXX()`                   | 设置某个属性值                                  |
+| `handleXX()`, `processXX()` | 对数据进行处理的方法                               |
+| `displayXX()`, `showXX()`   | 弹出提示框和提示信息，使用 display/show 为前缀标识         |
+| `updateXX()`                | 更新数据                                     |
+| `saveXX()`                  | 保存数据                                     |
+| `resetXX()`                 | 重置数据                                     |
+| `clearXX()`                 | 清除数据                                     |
+| `removeXX()`                | 移除数据或者视图等，如 `removeView()`               |
+| `drawXX()`                  | 绘制数据或效果相关的，使用 draw 前缀标识                  |
 
 
 #### 3.4 常量名
@@ -435,12 +276,12 @@ public class MyClass {
 
 例如，请使用 `mCustomerStrFirst` 和 `mCustomerStrLast`，而不要使用 `mFirstCustomerStr` 和 `mLastCustomerStr`。
 
-| 量词列表  | 量词后缀说明      |
-| ----- | ----------- |
+| 量词列表    | 量词后缀说明      |
+| ------- | ----------- |
 | `First` | 一组变量中的第一个   |
 | `Last`  | 一组变量中的最后一个  |
 | `Next`  | 一组变量中的下一个变量 |
-| `Prev`  | 一组变量中的上一个   |
+| `Pre`   | 一组变量中的上一个   |
 | `Cur`   | 一组变量中的当前变量  |
 
 说明：
@@ -606,13 +447,172 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 ```
 
 
+#### 4.5 字符串常量的命名和值
+
+Android SDK 中的很多类都用到了键值对函数，比如`SharedPreferences`、`Bundle`、`Intent`，所以，即便是一个小应用，我们最终也不得不编写大量的字符串常量。
+
+当时用到这些类的时候，我们 **必须** 将它们的键定义为 `static final` 字段，并遵循以下指示作为前缀。
+
+| 类                  | 字段名前缀       |
+| ------------------ | ----------- |
+| SharedPreferences  | `PREF_`     |
+| Bundle             | `BUNDLE_`   |
+| Fragment Arguments | `ARGUMENT_` |
+| Intent Extra       | `EXTRA_`    |
+| Intent Action      | `ACTION_`   |
+
+说明：虽然 `Fragment.getArguments()` 得到的也是 `Bundle` ，但因为这是 `Bundle` 的常用用法，所以特意为此定义一个不同的前缀。
+
+例如：
+
+```java
+// 注意：字段的值与名称相同以避免重复问题
+static final String PREF_EMAIL = "PREF_EMAIL";
+static final String BUNDLE_AGE = "BUNDLE_AGE";
+static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
+
+// 与意图相关的项使用完整的包名作为值的前缀
+static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
+static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
+```
+
+
+#### 4.6 Activities 和 Fragments 的传参
+
+当 `Activity` 或 `Fragment` 传递数据通过 `Intent` 或 `Bundle` 时，不同值的键须遵循上一条所提及到的。
+
+当 `Activity` 或 `Fragment` 启动需要传递参数时，那么它需要提供一个 `public static` 的函数来帮助启动或创建它。
+
+这方面，AS 已帮你写好了相关的 Live Templates，启动相关 `Activity` 的只需要在其内部输入 `starter` 即可生成它的启动器，如下所示：
+
+```java
+public static void start(Context context, User user) {
+      Intent starter = new Intent(context, MainActivity.class);
+      starter.putParcelableExtra(EXTRA_USER, user);
+      context.startActivity(starter);
+}
+```
+
+同理，启动相关 `Fragment` 在其内部输入 `newInstance` 即可，如下所示：
+
+```java
+public static MainFragment newInstance(User user) {
+      Bundle args = new Bundle();
+      args.putParcelable(ARGUMENT_USER, user);
+      MainFragment fragment = new MainFragment();
+      fragment.setArguments(args);
+      return fragment;
+}
+```
+
+> 注意：这些函数需要放在 `onCreate()` 之前的类的顶部；如果我们使用了这种方式，那么 `extras` 和 `arguments` 的键应该是 `private` 的，因为它们不再需要暴露给其他类来使用。
+
+
+#### 4.7 行长限制
+
+代码中每一行文本的长度都应该不超过 100 个字符。虽然关于此规则存在很多争论，但最终决定仍是以 100 个字符为上限，如果行长超过了 100，我们通常有两种方法来缩减行长。
+
+* 提取一个局部变量或方法（最好）。
+* 应用换行将一行换成多行。
+
+不过存在以下例外情况：
+
+* 如果备注行包含长度超过 100 个字符的示例命令或文字网址，那么为了便于剪切和粘贴，该行可以超过 100 个字符。
+* 导入语句行可以超出此限制，因为用户很少会看到它们（这也简化了工具编写流程）。
+
+##### 4.7.1 换行策略
+
+这没有一个准确的解决方案来决定如何换行，通常不同的解决方案都是有效的，但是有一些规则可以应用于常见的情况。
+
+##### 4.7.1.1 操作符的换行
+
+除赋值操作符之外，我们把换行符放在操作符之前，例如：
+
+```java
+int longName = anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne
+        + theFinalOne;
+```
+
+赋值操作符的换行我们放在其后，例如：
+
+```java
+int longName =
+        anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne + theFinalOne;
+```
+
+
+##### 4.7.1.2 函数链的换行
+
+当同一行中调用多个函数时（比如使用构建器时），对每个函数的调用应该在新的一行中，我们把换行符插入在 `.` 之前。
+
+例如：
+
+```java
+Picasso.with(context).load("https://blankj.com/images/avatar.jpg").into(ivAvatar);
+```
+
+我们应该使用如下规则：
+
+```java
+Picasso.with(context)
+        .load("https://blankj.com/images/avatar.jpg")
+        .into(ivAvatar);
+```
+
+
+##### 4.7.1.3 多参数的换行
+
+当一个方法有很多参数或者参数很长的时候，我们应该在每个 `,` 后面进行换行。
+
+比如：
+
+```java
+loadPicture(context, "https://blankj.com/images/avatar.jpg", ivAvatar, "Avatar of the user", clickListener);
+```
+
+我们应该使用如下规则：
+
+```java
+loadPicture(context,
+        "https://blankj.com/images/avatar.jpg",
+        ivAvatar,
+        "Avatar of the user"
+        clickListener,);
+```
+
+
+##### 4.7.1.4 RxJava 链式的换行
+
+RxJava 的每个操作符都需要换新行，并且把换行符插入在 `.` 之前。
+
+例如：
+
+```java
+public Observable<Location> syncLocations() {
+    return mDatabaseHelper.getAllLocations()
+            .concatMap(new Func1<Location, Observable<? extends Location>>() {
+                @Override
+                 public Observable<? extends Location> call(Location location) {
+                     return mRetrofitService.getLocation(location.id);
+                 }
+            })
+            .retry(new Func2<Integer, Throwable, Boolean>() {
+                 @Override
+                 public Boolean call(Integer numRetries, Throwable throwable) {
+                     return throwable instanceof RetrofitError;
+                 }
+            });
+}
+```
+
+
 ### 5 资源文件规范
 
 资源文件命名为全部小写，采用下划线命名法。
 
 如果想对资源文件进行分包可以参考我这篇文章：**[Android Studio 下对资源进行分包][Android Studio 下对资源进行分包]**。
 
-#### 5.1 动画资源文件（`anim/` 和 `animator/`）
+#### 5.1 动画资源文件（anim/ 和 animator/）
 
 安卓主要包含属性动画和视图动画，其视图动画包括补间动画和逐帧动画。属性动画文件需要放在 `res/animator/` 目录下，视图动画文件需放在 `res/anim/` 目录下。
 
@@ -626,8 +626,8 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 
 例如：
 
-| 名称                | 说明      |
-| ----------------- | ------- |
+| 名称                  | 说明      |
+| ------------------- | ------- |
 | `fade_in`           | 淡入      |
 | `fade_out`          | 淡出      |
 | `push_down_in`      | 从下方推入   |
@@ -639,7 +639,7 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 | `shrink_to_middle`  | 中间缩小    |
 
 
-#### 5.2 颜色资源文件（`color/`）
+#### 5.2 颜色资源文件（color/）
 
 专门存放颜色相关的资源文件。
 
@@ -650,7 +650,7 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 颜色资源也可以放于 `res/drawable/` 目录，引用时则用 `@drawable` 来引用，但不推荐这么做，最好还是把两者分开。
 
 
-#### 5.3 图片资源文件（`drawable/` 和 `mipmap/`）
+#### 5.3 图片资源文件（drawable/ 和 mipmap/）
 
 `res/drawable/` 目录下放的是位图文件（.png、.9.png、.jpg、.gif）或编译为可绘制对象资源子类型的 XML 文件，而 `res/mipmap/` 目录下放的是不同密度的启动图标，所以 `res/mipmap/` 只用于存放启动图标，其余图片资源文件都应该放到 `res/drawable/` 目录下。
 
@@ -660,45 +660,45 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 
 例如：
 
-| 名称                      | 说明                      |
-| ----------------------- | ----------------------- |
-| `btn_main_about.png`       | 主页关于按键 `类型_模块名_逻辑名称`         |
-| `btn_back.png`       | 返回按键 `类型_逻辑名称`         |
-| `divider_maket_white.png` | 商城白色分割线 `类型_模块名_颜色`          |
-| `ic_edit.png`             | 编辑图标 `类型_逻辑名称`             |
-| `bg_main.png`             | 主页背景 `类型_逻辑名称`             |
+| 名称                        | 说明                       |
+| ------------------------- | ------------------------ |
+| `btn_main_about.png`      | 主页关于按键 `类型_模块名_逻辑名称`     |
+| `btn_back.png`            | 返回按键 `类型_逻辑名称`           |
+| `divider_maket_white.png` | 商城白色分割线 `类型_模块名_颜色`      |
+| `ic_edit.png`             | 编辑图标 `类型_逻辑名称`           |
+| `bg_main.png`             | 主页背景 `类型_逻辑名称`           |
 | `btn_red.png`             | 红色按键 `类型_颜色`             |
 | `btn_red_big.png`         | 红色大按键 `类型_颜色`            |
-| `ic_head_small.png`       | 小头像图标 `类型_逻辑名称`            |
+| `ic_head_small.png`       | 小头像图标 `类型_逻辑名称`          |
 | `bg_input.png`            | 输入框背景 `类型_逻辑名称`          |
 | `divider_white.png`       | 白色分割线 `类型_颜色`            |
-| `bg_main_head.png`            | 主页头部背景 `类型_模块名_逻辑名称`  |
-| `def_search_cell.png`         | 搜索页面默认单元图片 `类型_模块名_逻辑名称` |
-| `ic_more_help.png`            | 更多帮助图标 `类型_逻辑名称`         |
-| `divider_list_line.png`       | 列表分割线 `类型_逻辑名称`          |
-| `sel_search_ok.xml`           | 搜索界面确认选择器 `类型_模块名_逻辑名称`  |
-| `shape_music_ring.xml`        | 音乐界面环形形状 `类型_模块名_逻辑名称`   |
+| `bg_main_head.png`        | 主页头部背景 `类型_模块名_逻辑名称`     |
+| `def_search_cell.png`     | 搜索页面默认单元图片 `类型_模块名_逻辑名称` |
+| `ic_more_help.png`        | 更多帮助图标 `类型_逻辑名称`         |
+| `divider_list_line.png`   | 列表分割线 `类型_逻辑名称`          |
+| `sel_search_ok.xml`       | 搜索界面确认选择器 `类型_模块名_逻辑名称`  |
+| `shape_music_ring.xml`    | 音乐界面环形形状 `类型_模块名_逻辑名称`   |
 
 如果有多种形态，如按钮选择器：`sel_btn_xx.xml`，采用如下命名：
 
-| 名称                   | 说明                           |
-| -------------------- | ---------------------------- |
-| `sel_btn_xx`           | 作用在 `btn_xx` 上的 `selector`    |
-| `btn_xx_normal`        | 默认状态效果           |
-| `btn_xx_pressed`       | `state_pressed` 点击效果           |
-| `btn_xx_focused`       | `state_focused` 聚焦效果          |
-| `btn_xx_disabled`      | `state_enabled` 不可用效果        |
-| `btn_xx_checked`       | `state_checked` 选中效果          |
-| `btn_xx_selected`      | `state_selected` 选中效果         |
-| `btn_xx_hovered`       | `state_hovered` 悬停效果          |
-| `btn_xx_checkable`     | `state_checkable` 可选效果        |
-| `btn_xx_activated`     | `state_activated` 激活效果         |
-| `btn_xx_window_focused` | `state_window_focused` 窗口聚焦效果       |
+| 名称                      | 说明                            |
+| ----------------------- | ----------------------------- |
+| `sel_btn_xx`            | 作用在 `btn_xx` 上的 `selector`    |
+| `btn_xx_normal`         | 默认状态效果                        |
+| `btn_xx_pressed`        | `state_pressed` 点击效果          |
+| `btn_xx_focused`        | `state_focused` 聚焦效果          |
+| `btn_xx_disabled`       | `state_enabled` 不可用效果         |
+| `btn_xx_checked`        | `state_checked` 选中效果          |
+| `btn_xx_selected`       | `state_selected` 选中效果         |
+| `btn_xx_hovered`        | `state_hovered` 悬停效果          |
+| `btn_xx_checkable`      | `state_checkable` 可选效果        |
+| `btn_xx_activated`      | `state_activated` 激活效果        |
+| `btn_xx_window_focused` | `state_window_focused` 窗口聚焦效果 |
 
 > 注意：使用 Android Studio 的插件 SelectorChapek 可以快速生成 selector，前提是命名要规范。
 
 
-#### 5.4 布局资源文件（`layout/`）
+#### 5.4 布局资源文件（layout/）
 
 命名规则：`类型_模块名`、`类型{_模块名}_逻辑名称`。
 
@@ -706,33 +706,33 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 
 例如：
 
-| 名称                      | 说明                      |
-| ----------------------- | ----------------------- |
-| `activity_main.xml`| 主窗体 `类型_模块名`|
-| `activity_main_head.xml`| 主窗体头部 `类型_模块名_逻辑名称`|
-| `fragment_music.xml`| 音乐片段 `类型_模块名`|
-| `fragment_music_player.xml`| 音乐片段的播放器 `类型_模块名_逻辑名称`|
-| `dialog_loading.xml`| 加载对话框 `类型_逻辑名称`|
-| `ppw_info.xml`| 信息弹窗（PopupWindow） `类型_逻辑名称`|
-| `item_song.xml`| 歌曲列表项 `类型_逻辑名称`|
+| 名称                          | 说明                          |
+| --------------------------- | --------------------------- |
+| `activity_main.xml`         | 主窗体 `类型_模块名`                |
+| `activity_main_head.xml`    | 主窗体头部 `类型_模块名_逻辑名称`         |
+| `fragment_music.xml`        | 音乐片段 `类型_模块名`               |
+| `fragment_music_player.xml` | 音乐片段的播放器 `类型_模块名_逻辑名称`      |
+| `dialog_loading.xml`        | 加载对话框 `类型_逻辑名称`             |
+| `ppw_info.xml`              | 信息弹窗（PopupWindow） `类型_逻辑名称` |
+| `item_song.xml`             | 歌曲列表项 `类型_逻辑名称`             |
 
 
-#### 5.5 菜单资源文件（`menu/`）
+#### 5.5 菜单资源文件（menu/）
 
 菜单相关的资源文件应放在该目录下。
 
 命名规则：`{模块名_}逻辑名称`，`模块名_` 为可选，例如：`main_drawer.xml`、`navigation_menu.xml`。
 
 
-#### 5.6 values 资源文件（`values/`）
+#### 5.6 values 资源文件（values/）
 
-`values` 资源文件下的文件都以 `s` 结尾，如 `attrs.xml`、`colors.xml`、`dimens.xml`，起作用的不是文件名称，而是 `<resources>` 标签下的各种标签，比如 `<style>` 决定样式，`<color>` 决定颜色，所以，可以把一个大的 `xml` 文件分割成多个小的文件，比如可以有多个 `style` 文件，如 `styles.xml`、`styles_home.xml`、`styles_item_details.xml`、`styles_forms.xml`。
+`values/` 资源文件下的文件都以 `s` 结尾，如 `attrs.xml`、`colors.xml`、`dimens.xml`，起作用的不是文件名称，而是 `<resources>` 标签下的各种标签，比如 `<style>` 决定样式，`<color>` 决定颜色，所以，可以把一个大的 `xml` 文件分割成多个小的文件，比如可以有多个 `style` 文件，如 `styles.xml`、`styles_home.xml`、`styles_item_details.xml`、`styles_forms.xml`。
 
-##### 5.6.1 `colors.xml`
+##### 5.6.1 colors.xml
 
-`colors.xml` 的 `name` 命名使用下划线命名法，在你的 `colors.xml` 文件中应该只是映射颜色的名称一个 ARGB 值，而没有其它的。不要使用它为不同的按钮来定义 ARGB 值。
+`<color>` 的 `name` 命名使用下划线命名法，在你的 `colors.xml` 文件中应该只是映射颜色的名称一个 ARGB 值，而没有其它的。不要使用它为不同的按钮来定义 ARGB 值。
 
-**不要这样做**
+例如，不要像下面这样做：
 
 ```xml
   <resources>
@@ -746,9 +746,9 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
       <color name="comment_shadow">#323232</color>
 ```
 
-使用这种格式，你会非常容易的开始重复定义 ARGB 值，这使如果需要改变基本色变的很复杂。同时，这些定义是跟一些环境关联起来的，如 `button` 或者 `comment`, 应该放到一个按钮风格中，而不是在 `colors.xml` 文件中。
+使用这种格式，会非常容易重复定义 ARGB 值，而且如果应用要改变基色的话会非常困难。同时，这些定义是跟一些环境关联起来的，如 `button` 或者 `comment`，应该放到一个按钮风格中，而不是在 `colors.xml` 文件中。
 
-**相反，这样做：**
+相反，应该这样做：
 
 ```xml
   <resources>
@@ -774,7 +774,7 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 > 注意：如果某些颜色和主题有关，那就单独写一个 `colors_theme.xml`。
 
 
-##### 5.6.2 `dimens.xml`
+##### 5.6.2 dimens.xml
 
 像对待 `colors.xml` 一样对待 `dimens.xml` 文件，与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。 一个好的例子，如下所示：
 
@@ -802,15 +802,15 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 </resources>
 ```
 
-布局时在写 `margins` 和 `paddings` 时，你应该使用 `spacing_xx` 尺寸格式来布局，而不是像对待 `string` 字符串一样直接写值，像这样规范的尺寸很容易修改或重构，会使应用所有用到的尺寸一目了然。 这样写会非常有感觉，会使组织和改变风格或布局是非常容易。
+布局时在写 `margins` 和 `paddings` 时，你应该使用 `spacing_xx` 尺寸格式来布局，而不是像对待 `string` 字符串一样直接写值，像这样规范的尺寸很容易修改或重构，会使应用所有用到的尺寸一目了然。 这样写会非常有感觉，会使组织和改变风格或布局非常容易。
 
 
-##### 5.6.3 `strings.xml`
+##### 5.6.3 strings.xml
 
-`strings` 的 `name` 命名使用下划线命名法，采用以下规则：`模块名+逻辑名称`，这样方便同一个界面的所有 string 都放到一起，方便查找。
+`<string>` 的 `name` 命名使用下划线命名法，采用以下规则：`{模块名_}逻辑名称`，这样方便同一个界面的所有 `string` 都放到一起，方便查找。
 
-| 名称                | 说明      |
-| ----------------- | ------- |
+| 名称                  | 说明      |
+| ------------------- | ------- |
 | `main_menu_about`   | 主菜单按键文字 |
 | `friend_title`      | 好友模块标题栏 |
 | `friend_dialog_del` | 好友删除提示  |
@@ -820,9 +820,9 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 | `loading`           | 加载文字    |
 
 
-##### 5.6.4 `styles.xml`
+##### 5.6.4 styles.xml
 
-`style` 的 `name` 命名使用大驼峰命名法，几乎每个项目都需要适当的使用 `style` 文件，因为对于一个视图来说，有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在 `style` 文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的 `style` 文件，例如：
+`<style>` 的 `name` 命名使用大驼峰命名法，几乎每个项目都需要适当的使用 `styles.xml` 文件，因为对于一个视图来说，有一个重复的外观是很常见的，将所有的外观细节属性（`colors`、`padding`、`font`）放在 `styles.xml` 文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的 `styles.xml` 文件，例如：
 
 ```
 <style name="ContentText">
@@ -842,7 +842,7 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
     />
 ```
 
-或许你需要为按钮控件做同样的事情，不要停止在那里，将一组相关的和重复 `android:xxxx` 的属性放到一个通用的 `style` 中。
+或许你需要为按钮控件做同样的事情，不要停止在那里，将一组相关的和重复 `android:xxxx` 的属性放到一个通用的 `<style>` 中。
 
 
 #### 5.7 id 命名
@@ -961,6 +961,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 > Tip：在写多行注释时，如果你希望在必要时能重新换行（即注释像段落风格一样），那么使用 `/* ... */`。
 
+
 #### 8.4 其他一些注释
 
 AS 已帮你集成了一些注释模板，我们只需要直接使用即可，在代码中输入 `todo`、`fixme` 等这些注释模板，回车后便会出现如下注释。
@@ -973,9 +974,25 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 ### 9 测试规范
 
-业务开发完成之后，开发人员做单元测试，单元测试完成之后，保证单元测试全部通过同时单元测试代码覆盖率达到一定程度（这个需要开发和测试约定，理论上越高越好），开发提测。
+业务开发完成之后，开发人员做单元测试，单元测试完成之后，保证单元测试全部通过，同时单元测试代码覆盖率达到一定程度（这个需要开发和测试约定，理论上越高越好），开发提测。
 
-// TODO...
+#### 9.1 单元测试
+
+测试类的名称应该是所测试类的名称加 `Test`，我们创建 `DatabaseHelper` 的测试类，其名应该叫 `DatabaseHelperTest`。
+
+测试函数被 `@Test` 所注解，函数名通常以被测试的方法为前缀，然后跟随是前提条件和预期的结果。
+
+* 模板：`void methodName前提条件和预期结果()`
+* 例子：`void signInWithEmptyEmailFails()`
+
+> 注意：如果函数足够清晰，那么前提条件和预期的结果是可以省略的。
+
+有时一个类可能包含大量的方法，同时需要对每个方法进行几次测试。在这种情况下，建议将测试类分成多个类。例如，如果 `DataManager` 包含很多方法，我们可能要把它分成 `DataManagerSignInTest`、`DataManagerLoadUsersTest` 等等。
+
+
+#### 9.2 Espresso 测试
+
+每个 Espresso 测试通常是针对 `Activity`，所以其测试名就是其被测的 `Activity` 的名称加 `Test`，比如 `SignInActivityTest`。
 
 
 ### 10 其他的一些规范
@@ -984,51 +1001,29 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 2. `Activity` 和 `Fragment` 里面有许多重复的操作以及操作步骤，所以我们都需要提供一个 `BaseActivity` 和 `BaseFragment`，让所有的 `Activity` 和 `Fragment` 都继承这个基类。
 
-3. 启动 `Activity` 的话建议使用AS自带的模板，输入 `starter` 即可，如下所示：
+3. 方法基本上都按照调用的先后顺序在各自区块中排列；
 
-    ```java
-    public static void start(Context context, String data) {
-          Intent starter = new Intent(context, MainActivity.class);
-          starter.putExtra("data", data);
-          context.startActivity(starter);
-    }
-    ```
+4. 相关功能作为小区块放在一起（或者封装掉）；
 
-    同理，启动 `Fragment` 输入 `newInstance` 即可，如下所示：
+5. 当一个类有多个构造函数，或是多个同名函数，这些函数应该按顺序出现在一起，中间不要放进其它函数；
 
-    ```java
-    public static MainFragment newInstance(String data) {
-          Bundle args = new Bundle();
-          args.putString("data", data);
-          MainFragment fragment = new MainFragment();
-          fragment.setArguments(args);
-          return fragment;
-    }
-    ```
+6. 数据提供统一的入口。无论是在 MVP、MVC 还是 MVVM 中，提供一个统一的数据入口，都可以让代码变得更加易于维护。比如可使用一个 `DataManager`，把 `http`、`preference`、`eventpost`、`database` 都放在 `DataManger` 里面进行操作，我们只需要与 `DataManger`打交道；
 
-4. 方法基本上都按照调用的先后顺序在各自区块中排列；
+7. 多用组合，少用继承；
 
-5. 相关功能作为小区块放在一起（或者封装掉）；
+8. 提取方法，去除重复代码。对于必要的工具类抽取也很重要，这在以后的项目中是可以重用的。
 
-6. 当一个类有多个构造函数，或是多个同名方法，这些函数/方法应该按顺序出现在一起，中间不要放进其它函数/方法；
+9. 可引入 `Dagger2` 减少模块之间的耦合性。`Dagger2` 是一个依赖注入框架，使用代码自动生成创建依赖关系需要的代码。减少很多模板化的代码，更易于测试，降低耦合，创建可复用可互换的模块；
 
-7. 数据提供统一的入口。无论是在 MVP、MVC 还是 MVVM 中，提供一个统一的数据入口，都可以让代码变得更加易于维护。比如可使用一个 `DataManager`，把 `http`、`preference`、`eventpost`、`database` 都放在 `DataManger` 里面进行操作，我们只需要与 `DataManger`打交道；
+10. 项目引入 `RxAndroid` 响应式编程，可以极大的减少逻辑代码；
 
-8. 多用组合，少用继承；
+11. 通过引入事件总线，如：`EventBus`、`AndroidEventBus`、`RxBus`，它允许我们在 `DataLayer` 中发送事件，以便 `ViewLayer` 中的多个组件都能够订阅到这些事件，减少回调；
 
-9. 提取方法，去除重复代码。对于必要的工具类抽取也很重要，这在以后的项目中是可以重用的。
+12. 尽可能使用局部变量；
 
-10. 可引入 `Dagger2` 减少模块之间的耦合性。`Dagger2` 是一个依赖注入框架，使用代码自动生成创建依赖关系需要的代码。减少很多模板化的代码，更易于测试，降低耦合，创建可复用可互换的模块；
+13. 及时关闭流；
 
-11. 项目引入 `RxAndroid` 响应式编程，可以极大的减少逻辑代码；
-
-12. 通过引入事件总线，如：`EventBus`、`AndroidEventBus`、`RxBus`，它允许我们在 `DataLayer` 中发送事件，以便 `ViewLayer` 中的多个组件都能够订阅到这些事件，减少回调；
-
-13. 尽可能使用局部变量；
-
-14. 及时关闭流；
-
-15. 尽量减少对变量的重复计算；
+14. 尽量减少对变量的重复计算；
 
     如下面的操作：
 
@@ -1046,7 +1041,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
     }
     ```
 
-16. 尽量采用懒加载的策略，即在需要的时候才创建；
+15. 尽量采用懒加载的策略，即在需要的时候才创建；
 
     例如：
 
@@ -1066,13 +1061,13 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
     }
     ```
 
-17. 不要在循环中使用 `try…catch…`，应该把其放在最外层；
+16. 不要在循环中使用 `try…catch…`，应该把其放在最外层；
 
-18. 使用带缓冲的输入输出流进行 IO 操作；
+17. 使用带缓冲的输入输出流进行 IO 操作；
 
-19. 尽量使用 `HashMap`、`ArrayList`、`StringBuilder`，除非线程安全需要，否则不推荐使用 `Hashtable`、`Vector`、`StringBuffer`，后三者由于使用同步机制而导致了性能开销；
+18. 尽量使用 `HashMap`、`ArrayList`、`StringBuilder`，除非线程安全需要，否则不推荐使用 `Hashtable`、`Vector`、`StringBuffer`，后三者由于使用同步机制而导致了性能开销；
 
-20. 尽量在合适的场合使用单例；
+19. 尽量在合适的场合使用单例；
 
     使用单例可以减轻加载的负担、缩短加载的时间、提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面：
 
@@ -1082,11 +1077,11 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
     3. 控制数据的共享，在不建立直接关联的条件下，让多个不相关的进程或线程之间实现通信。
 
-21. 把一个基本数据类型转为字符串，`基本数据类型.toString()` 是最快的方式，`String.valueOf(数据)` 次之，`数据 + ""` 最慢；
+20. 把一个基本数据类型转为字符串，`基本数据类型.toString()` 是最快的方式，`String.valueOf(数据)` 次之，`数据 + ""` 最慢；
 
-22. 使用 AS 自带的 Lint 来优化代码结构（什么，你不会？右键 module、目录或者文件，选择 Analyze -> Inspect Code）；
+21. 使用 AS 自带的 Lint 来优化代码结构（什么，你不会？右键 module、目录或者文件，选择 Analyze -> Inspect Code）；
 
-23. 最后不要忘了内存泄漏的检测；
+22. 最后不要忘了内存泄漏的检测；
 
 
 ---
@@ -1129,7 +1124,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 | 名称                   | 缩写                                       |
 | -------------------- | ---------------------------------------- |
-| icon                 | ic（主要用在 App 的图标）                          |
+| icon                 | ic（主要用在 App 的图标）                         |
 | color                | cl（主要用于颜色值）                              |
 | average              | avg                                      |
 | background           | bg（主要用于布局和子布局的背景）                        |
@@ -1168,7 +1163,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 [阿里巴巴 Java 开发手册][阿里巴巴 Java 开发手册]
 
-[android-guidelines][https://github.com/ribot/android-guidelines]
+[Project and code style guidelines][Project and code style guidelines]
 
 [Google Java 编程风格指南][Google Java 编程风格指南]
 
@@ -1177,6 +1172,8 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 ## 版本日志
 
+* 17/12/04: 完善按功能分包，定该版为完结版；
+* 17/12/03: 完善代码样式规范和测试规范；
 * 17/12/02: 新增代码样式规范；
 * 17/12/01: 对资源文件规范进行重构；
 * 17/11/29: 格式化中英混排；
@@ -1186,15 +1183,15 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 * 17/03/13: 新增其他注释；
 * 17/03/14: 包名划分为按功能划分；
 
-　　　　　　　　　　　　　　　——powered by Blankj
+　　　　　　　　　　　　　　　     ——powered by Blankj
 
 [Package by features, not layers]: https://medium.com/@cesarmcferreira/package-by-features-not-layers-2d076df1964d#.mp782izhh
-[iosched]: https://github.com/google/iosched
-[安卓开发规范（updating）]: https://github.com/Blankj/AndroidStandardDevelop
+[todo-mvp]: https://github.com/googlesamples/android-architecture/tree/todo-mvp/
+[安卓开发规范（完结版）]: https://github.com/Blankj/AndroidStandardDevelop
 [Android 开发者工具]: http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0526/7973.html
-[Android Studio 下对资源进行分包]: http://www.jianshu.com/p/8e893581b9c7
+[Android Studio 下对资源进行分包]: https://blankj.com/2016/09/21/android-studio-classify-src-package/
 [可绘制对象资源类型]: https://developer.android.com/guide/topics/resources/drawable-resource.html
-[Android 开发之版本统一规范]: http://www.jianshu.com/p/db6ef4cfa5d1
+[Android 开发之版本统一规范]: https://blankj.com/2016/09/21/android-keep-version-unity/
 [Android 流行框架查速表]: http://www.ctolib.com/cheatsheets-Android-ch.html
 [Android 开发人员不得不收集的代码]: https://github.com/Blankj/AndroidUtilCode
 [Retrofit]: https://github.com/square/retrofit
@@ -1213,6 +1210,6 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 [Android 开发最佳实践]: https://github.com/futurice/android-best-practices/blob/master/translations/Chinese/README.cn.md
 [Android 编码规范]: http://www.jianshu.com/p/0a984f999592
 [阿里巴巴 Java 开发手册]: https://102.alibaba.com/newsInfo.htm?newsId=6
-[android-guidelines]: https://github.com/ribot/android-guidelines
+[Project and code style guidelines]: https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md
 [Google Java 编程风格指南]: http://www.hawstein.com/posts/google-java-style.html
 [小细节，大用途，35 个 Java 代码性能优化总结！]: http://www.jianshu.com/p/436943216526
