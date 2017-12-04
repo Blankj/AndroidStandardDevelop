@@ -54,7 +54,7 @@
 
     PBL 的方式是把所有工具方法都放在 util 包下，小张开发新功能时候发现需要一个 xxUtil，但它又不是通用的，那应该放在哪里？没办法，按照分层原则，我们还得放在 util 包下，好像不太合适，但放在其它包更不合适，功能越来越多，util 类也越定义越多。后来小李负责开发一块功能时发现需要一个 xxUtil，同样不通用，去 util 包一看，怎么已经有了，而且还没法复用，只好放弃 xx 这个名字，改为 xxxUtil……，因为 PBL 的 package 没有私有作用域，每一个包都是 public（跨包方法调用是很平常的事情，每一个包对其它包来说都是可访问的）。
 
-    如果是 PBF，小张的 xxUtil 自然放在 feautreA 下，小李的 xxUtil 在 featureB 下，如果觉得 util 好像是通用的，就去 util 包看看要不要把工具方法添进 xxUtil, class 命名冲突没有了。
+    如果是 PBF，小张的 xxUtil 自然放在 featureA 下，小李的 xxUtil 在 featureB 下，如果觉得 util 好像是通用的，就去 util 包看看要不要把工具方法添进 xxUtil, class 命名冲突没有了。
 
     PBF 的 package 有私有作用域，featureA 不应该访问 featureB 下的任何东西（如果非访问不可，那就说明接口定义有问题）。
 
@@ -79,11 +79,11 @@
     没有必要通过 package 分离，因为 PBL 中也可能出现尴尬的情况：
 
     ```
-    ├─service
-            │      MainServ.java
+    ├── service
+            ├── MainService.java
     ```
 
-    按照 PBL, service 包下的所有东西都是 Controller，应该不需要 Serv 后缀，但实际上通常为了码起来方便，直接 import service 包，Serv 后缀是为了避免引入的 class 和当前包下的 class 命名冲突，当然，不用后缀也可以，得写清楚包路径，比如 `new net.ayqy.service. Main()`，麻烦；而 PBF 就很方便，无需 import，直接 `new MainServ()` 即可。
+    按照 PBL, service 包下的所有东西都是 Service，应该不需要 Service 后缀，但实际上通常为了方便，直接 import service 包，Service 后缀是为了避免引入的 class 和当前包下的 class 命名冲突，当然，不用后缀也可以，得写清楚包路径，比如 `new com.domain.service.MainService()`，麻烦；而 PBF 就很方便，无需 import，直接 `new MainService()` 即可。
 
 * package 的大小有意义了
 
@@ -156,8 +156,8 @@ com
         │   └── remote 来源于远端的数据
         ├── feature 功能
         │   ├── feature0 功能 0
-        │   │   ├── featrue0Activity.java
-        │   │   ├── featrue0Fragment.java
+        │   │   ├── feature0Activity.java
+        │   │   ├── feature0Fragment.java
         │   │   ├── xxAdapter.java
         │   │   └── ... 其他 class
         │   └── ...其他功能
@@ -1007,7 +1007,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 5. 当一个类有多个构造函数，或是多个同名函数，这些函数应该按顺序出现在一起，中间不要放进其它函数；
 
-6. 数据提供统一的入口。无论是在 MVP、MVC 还是 MVVM 中，提供一个统一的数据入口，都可以让代码变得更加易于维护。比如可使用一个 `DataManager`，把 `http`、`preference`、`eventpost`、`database` 都放在 `DataManger` 里面进行操作，我们只需要与 `DataManger`打交道；
+6. 数据提供统一的入口。无论是在 MVP、MVC 还是 MVVM 中，提供一个统一的数据入口，都可以让代码变得更加易于维护。比如可使用一个 `DataManager`，把 `http`、`preference`、`eventpost`、`database` 都放在 `DataManager` 里面进行操作，我们只需要与 `DataManager`打交道；
 
 7. 多用组合，少用继承；
 
@@ -1065,7 +1065,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 17. 使用带缓冲的输入输出流进行 IO 操作；
 
-18. 尽量使用 `HashMap`、`ArrayList`、`StringBuilder`，除非线程安全需要，否则不推荐使用 `Hashtable`、`Vector`、`StringBuffer`，后三者由于使用同步机制而导致了性能开销；
+18. 尽量使用 `HashMap`、`ArrayList`、`StringBuilder`，除非线程安全需要，否则不推荐使用 `HashTable`、`Vector`、`StringBuffer`，后三者由于使用同步机制而导致了性能开销；
 
 19. 尽量在合适的场合使用单例；
 
@@ -1128,7 +1128,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 | color                | cl（主要用于颜色值）                              |
 | average              | avg                                      |
 | background           | bg（主要用于布局和子布局的背景）                        |
-| selector             | sel（主要用于某一 view 多种状态，不仅包括 Listview 中的 selector，还包括按钮的 selector） |
+| selector             | sel（主要用于某一 view 多种状态，不仅包括 ListView 中的 selector，还包括按钮的 selector） |
 | buffer               | buf                                      |
 | control              | ctrl                                     |
 | default              | def                                      |
@@ -1172,16 +1172,16 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 ## 版本日志
 
-* 17/12/04: 完善按功能分包，定该版为完结版；
+* 17/12/04: 完善按功能分包，修复 typor，定该版为完结版；
 * 17/12/03: 完善代码样式规范和测试规范；
 * 17/12/02: 新增代码样式规范；
 * 17/12/01: 对资源文件规范进行重构；
 * 17/11/29: 格式化中英混排；
-* 17/03/06: 发布初版；
-* 17/03/07: 修订目录排版，完善某些细节；
-* 17/03/08: 规范排版，修复typor及新增一些规范；
-* 17/03/13: 新增其他注释；
 * 17/03/14: 包名划分为按功能划分；
+* 17/03/13: 新增其他注释；
+* 17/03/08: 规范排版，修复 typor 及新增一些规范；
+* 17/03/07: 修订目录排版，完善某些细节；
+* 17/03/06: 发布初版；
 
 　　　　　　　　　　　　　　　     ——powered by Blankj
 
