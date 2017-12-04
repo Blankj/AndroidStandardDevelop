@@ -175,17 +175,17 @@ com
 
 名词，采用大驼峰命名法，尽量避免缩写，除非该缩写是众所周知的， 比如 HTML、URL，如果类名称中包含单词缩写，则单词缩写的每个字母均应大写。
 
-| 类                     | 描述                                       | 例如                                       |
-| :-------------------- | :--------------------------------------- | :--------------------------------------- |
-| `Activity` 类          | `Activity` 为后缀标识                         | 欢迎页面类 `WelcomeActivity`                  |
-| `Adapter` 类           | `Adapter` 为后缀标识                          | 新闻详情适配器 `NewsDetailAdapter`              |
-| 解析类                   | `Parser` 为后缀标识                           | 首页解析类 `HomePosterParser`                 |
-| 工具方法类                 | `Utils` 或 `Manager` 为后缀标识（与系统或第三方的 `Utils` 区分）或功能 + `Utils` | 线程池管理类：`ThreadPoolManager`<br>日志工具类：`LogUtils`（`Logger` 也可）<br>打印工具类：`PrinterUtils` |
-| 数据库类                  | 以 `DBHelper` 后缀标识                        | 新闻数据库：`NewsDBHelper`                     |
-| `Service` 类           | 以 `Service` 为后缀标识                        | 时间服务 `TimeService`                       |
-| `BroadcastReceiver` 类 | 以 `Receiver` 为后缀标识                       | 推送接收 `JPushReceiver`                     |
-| `ContentProvider` 类   | 以 `Provider` 为后缀标识                       | `ShareProvider`                          |
-| 自定义的共享基础类             | 以 `Base` 开头                              | `BaseActivity`, `BaseFragment`           |
+| 类                     | 描述                        | 例如                                       |
+| :-------------------- | :------------------------ | :--------------------------------------- |
+| `Activity` 类          | `Activity` 为后缀标识          | 欢迎页面类 `WelcomeActivity`                  |
+| `Adapter` 类           | `Adapter` 为后缀标识           | 新闻详情适配器 `NewsDetailAdapter`              |
+| 解析类                   | `Parser` 为后缀标识            | 首页解析类 `HomePosterParser`                 |
+| 工具方法类                 | `Utils` 或 `Manager` 为后缀标识 | 线程池管理类：`ThreadPoolManager`<br>日志工具类：`LogUtils`（`Logger` 也可）<br>打印工具类：`PrinterUtils` |
+| 数据库类                  | 以 `DBHelper` 后缀标识         | 新闻数据库：`NewsDBHelper`                     |
+| `Service` 类           | 以 `Service` 为后缀标识         | 时间服务 `TimeService`                       |
+| `BroadcastReceiver` 类 | 以 `Receiver` 为后缀标识        | 推送接收 `JPushReceiver`                     |
+| `ContentProvider` 类   | 以 `Provider` 为后缀标识        | `ShareProvider`                          |
+| 自定义的共享基础类             | 以 `Base` 开头               | `BaseActivity`, `BaseFragment`           |
 
 测试类的命名以它要测试的类的名称开始，以 Test 结束。例如：`HashTest` 或 `HashIntegrationTest`。
 
