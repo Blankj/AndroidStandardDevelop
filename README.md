@@ -576,8 +576,8 @@ loadPicture(context, "https://blankj.com/images/avatar.jpg", ivAvatar, "Avatar o
 loadPicture(context,
         "https://blankj.com/images/avatar.jpg",
         ivAvatar,
-        "Avatar of the user"
-        clickListener,);
+        "Avatar of the user",
+        clickListener);
 ```
 
 
