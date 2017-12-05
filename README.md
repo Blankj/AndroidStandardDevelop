@@ -25,7 +25,7 @@
 
 1. 尽量使用最新版的 IDE 进行开发；
 2. 编码格式统一为 **UTF-8**；
-3. 编辑完 .java、.xml 等文件后一定要 **格式化**（基本格式方面使用 AS 默认模板即可）；
+3. 编辑完 .java、.xml 等文件后一定要 **格式化，格式化，格式化**（如果团队有公共的样式包，那就遵循它，否则统一使用 AS 默认模板即可）；
 4. 删除多余的 import，减少警告出现，可利用 AS 的 Optimize Imports（Settings -> Keymap -> Optimize Imports）快捷键；
 5. Android 开发者工具可以参考这里：**[Android 开发者工具][Android 开发者工具]**；
 
@@ -38,7 +38,7 @@
 
 #### 3.1 包名
 
-包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为 `com`、`edu`、`gov`、`net`、`org` 等，二级包名为公司名，三级包名根据应用进行命名，后面就是对包名的划分了，关于包名的划分，推荐使用按功能分，一开始我们也是按照层去分包的，很坑爹。按照功能分可能你不是很好区分在哪个功能中，不过也比你按照层区分要好找很多，具体可以参考这篇博文：**[Package by features, not layers][Package by features, not layers]**。且 PBF（按功能分包 Package By Feature）与 PBL（按层分包 Package By Layer）相比较有如下优势：
+包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。一级包名是顶级域名，通常为 `com`、`edu`、`gov`、`net`、`org` 等，二级包名为公司名，三级包名根据应用进行命名，后面就是对包名的划分了，关于包名的划分，推荐采用 PBF（按功能分包 Package By Feature），一开始我们采用的也是 PBL（按层分包 Package By Layer），很坑爹。PBF 可能不是很好区分在哪个功能中，不过也比 PBL 要好找很多，且 PBF 与 PBL 相比较有如下优势：
 
 * package 内高内聚，package 间低耦合
 
@@ -89,7 +89,7 @@
 
     PBL 中包的大小无限增长是合理的，因为功能越添越多，而 PBF 中包太大（包里 class 太多）表示这块需要重构（划分子包）。
 
-当然，我们大谷歌也有相应的 Sample：**[todo-mvp][todo-mvp]**，其结构如下所示，很值得学习。
+如要知道更多好处，可以查看这篇博文：**[Package by features, not layers][Package by features, not layers]**，当然，我们大谷歌也有相应的 Sample：**[todo-mvp][todo-mvp]**，其结构如下所示，很值得学习。
 
 ```
 com
@@ -209,10 +209,10 @@ com
 | `handleXX()`, `processXX()` | 对数据进行处理的方法                               |
 | `displayXX()`, `showXX()`   | 弹出提示框和提示信息，使用 display/show 为前缀标识         |
 | `updateXX()`                | 更新数据                                     |
-| `saveXX()`                  | 保存数据                                     |
+| `saveXX()`, `insertXX()`    | 保存或插入数据                                     |
 | `resetXX()`                 | 重置数据                                     |
 | `clearXX()`                 | 清除数据                                     |
-| `removeXX()`                | 移除数据或者视图等，如 `removeView()`               |
+| `removeXX()`, `deleteXX()`  | 移除数据或者视图等，如 `removeView()`               |
 | `drawXX()`                  | 绘制数据或效果相关的，使用 draw 前缀标识                  |
 
 
@@ -220,7 +220,7 @@ com
 
 常量名命名模式为 `CONSTANT_CASE`，全部字母大写，用下划线分隔单词。那到底什么算是一个常量？
 
-每个常量都是一个静态 `final` 字段，但不是所有静态 `final` 字段都是常量。在决定一个字段是否是一个常量时，考虑它是否真的感觉像是一个常量。例如，如果任何一个该实例的观测状态是可变的，则它几乎肯定不会是一个常量。只是永远不打算改变对象一般是不够的，它要真的一直不变才能将它示为常量。
+每个常量都是一个 `static final` 字段，但不是所有 `static final` 字段都是常量。在决定一个字段是否是一个常量时，得考虑它是否真的感觉像是一个常量。例如，如果观测任何一个该实例的状态是可变的，则它几乎肯定不会是一个常量。只是永远不打算改变的对象一般是不够的，它要真的一直不变才能将它示为常量。
 
 ```java
 // Constants
@@ -242,9 +242,13 @@ static final String[] nonEmptyArray = {"these", "can", "change"};
 
 #### 3.5 非常量字段名
 
-非常量字段名以 `lowerCamelCase` 风格的基础上改造为如下风格：基本结构为 scopeVariableNameType。
+非常量字段名以 `lowerCamelCase` 风格的基础上改造为如下风格：基本结构为 `scope{Type0}VariableName{Type1}`、`type0VariableName{Type1}`、`variableName{Type1}`。
 
-**scope：范围**
+说明：`{}` 中的内容为可选。
+
+> 注意：所有的 VO（值对象）统一采用标准的 lowerCamelCase 风格编写，所有的 DTO（数据传输对象）就按照接口文档中定义的字段名编写。
+
+##### 3.5.1 scope（范围）
 
 非公有，非静态字段命名以 `m` 开头。
 
@@ -266,31 +270,40 @@ public class MyClass {
 
 使用 1 个字符前缀来表示作用范围，1 个字符的前缀必须小写，前缀后面是由表意性强的一个单词或多个单词组成的名字，而且每个单词的首写字母大写，其它字母小写，这样保证了对变量名能够进行正确的断句。
 
-**Type：类型**
 
-考虑到 Android 中使用很多 UI 控件，为避免控件和普通成员变量混淆以及更好达意，所有用来表示控件的成员变量统一加上控件缩写作为后缀（文末附有缩写表）。
+##### 3.5.2 Type0（控件类型）
 
-对于普通变量一般不添加类型后缀，如果统一添加类型后缀，请参考文末的缩写表。
+考虑到 Android 众多的 UI 控件，为避免控件和普通成员变量混淆以及更好地表达意思，所有用来表示控件的成员变量统一加上控件缩写作为前缀（具体见附录[UI 控件缩写表](#ui-控件缩写表)）。
 
-用统一的量词通过在结尾处放置一个量词，就可创建更加统一的变量，它们更容易理解，也更容易搜索。
+例如：`mIvAvatar`、`rvBooks`、`fl_container`。
 
-例如，请使用 `mCustomerStrFirst` 和 `mCustomerStrLast`，而不要使用 `mFirstCustomerStr` 和 `mLastCustomerStr`。
+
+##### 3.5.3 VariableName（变量名）
+
+变量名中可能会出现量词，我们需要创建统一的量词，它们更容易理解，也更容易搜索。
+
+例如：`mFirstBook`、`mPrevBook`、`curBook`。
 
 | 量词列表    | 量词后缀说明      |
 | ------- | ----------- |
 | `First` | 一组变量中的第一个   |
 | `Last`  | 一组变量中的最后一个  |
-| `Next`  | 一组变量中的下一个变量 |
-| `Pre`   | 一组变量中的上一个   |
+| `Next`  | 一组变量中的下一个 |
+| `Prev`  | 一组变量中的上一个   |
 | `Cur`   | 一组变量中的当前变量  |
 
-说明：
 
-集合添加如下后缀：List、Map、Set
+##### 3.5.4 Type1（数据类型）
 
-数组添加如下后缀：Arr
+对于表示集合或者数组的非常量字段名，我们可以添加后缀来增强字段的可读性，比如：
 
-> 注意：所有的 VO（值对象）统一采用标准的 lowerCamelCase 风格编写，所有的 DTO（数据传输对象）就按照接口文档中定义的字段名编写。
+集合添加如下后缀：List、Map、Set。
+
+数组添加如下后缀：Arr。
+
+例如：`mIvAvatarList`、`userArr`、`firstNameSet`。
+
+> 注意：如果数据类型不确定的话，比如表示的是很多书，那么使用其复数形式来表示也可，例如 `mBooks`。
 
 
 #### 3.6 参数名
@@ -510,10 +523,10 @@ public static MainFragment newInstance(User user) {
 
 #### 4.7 行长限制
 
-代码中每一行文本的长度都应该不超过 100 个字符。虽然关于此规则存在很多争论，但最终决定仍是以 100 个字符为上限，如果行长超过了 100，我们通常有两种方法来缩减行长。
+代码中每一行文本的长度都应该不超过 100 个字符。虽然关于此规则存在很多争论，但最终决定仍是以 100 个字符为上限，如果行长超过了 100（AS 窗口右侧的竖线就是设置的行宽末尾 ），我们通常有两种方法来缩减行长。
 
 * 提取一个局部变量或方法（最好）。
-* 应用换行将一行换成多行。
+* 使用换行符将一行换成多行。
 
 不过存在以下例外情况：
 
@@ -618,7 +631,7 @@ public Observable<Location> syncLocations() {
 
 命名规则：`{模块名_}逻辑名称`。
 
-说明：`模块名` 为可选，`逻辑名称` 可由多个单词加下划线组成。
+说明：`{}` 中的内容为可选，`逻辑名称` 可由多个单词加下划线组成。
 
 例如：`refresh_progress.xml`、`market_cart_add.xml`、`market_cart_remove.xml`。
 
@@ -656,7 +669,7 @@ public Observable<Location> syncLocations() {
 
 命名规则：`类型{_模块名}_逻辑名称`、`类型{_模块名}_颜色`。
 
-说明：`模块名` 为可选；`类型` 可以是[可绘制对象资源类型](可绘制对象资源类型)，也可以是控件类型（具体见附录[UI 控件缩写表](#ui-控件缩写表)）；最后可加后缀 `_small` 表示小图，`_big` 表示大图。
+说明：`{}` 中的内容为可选；`类型` 可以是[可绘制对象资源类型](可绘制对象资源类型)，也可以是控件类型（具体见附录[UI 控件缩写表](#ui-控件缩写表)）；最后可加后缀 `_small` 表示小图，`_big` 表示大图。
 
 例如：
 
@@ -702,7 +715,7 @@ public Observable<Location> syncLocations() {
 
 命名规则：`类型_模块名`、`类型{_模块名}_逻辑名称`。
 
-说明：`模块名` 为可选。
+说明：`{}` 中的内容为可选。
 
 例如：
 
@@ -714,14 +727,18 @@ public Observable<Location> syncLocations() {
 | `fragment_music_player.xml` | 音乐片段的播放器 `类型_模块名_逻辑名称`      |
 | `dialog_loading.xml`        | 加载对话框 `类型_逻辑名称`             |
 | `ppw_info.xml`              | 信息弹窗（PopupWindow） `类型_逻辑名称` |
-| `item_song.xml`             | 歌曲列表项 `类型_逻辑名称`             |
+| `item_main_song.xml`        | 主页歌曲列表项 `类型_模块名_逻辑名称`    |
 
 
 #### 5.5 菜单资源文件（menu/）
 
 菜单相关的资源文件应放在该目录下。
 
-命名规则：`{模块名_}逻辑名称`，`模块名_` 为可选，例如：`main_drawer.xml`、`navigation_menu.xml`。
+命名规则：`{模块名_}逻辑名称`
+
+说明：`{}` 中的内容为可选。
+
+例如：`main_drawer.xml`、`navigation.xml`。
 
 
 #### 5.6 values 资源文件（values/）
@@ -847,7 +864,7 @@ public Observable<Location> syncLocations() {
 
 #### 5.7 id 命名
 
-命名规则：`view缩写_{模块名}_逻辑名`，例如： `btn_main_search`、`btn_back`。
+命名规则：`view缩写{_模块名}_逻辑名`，例如： `btn_main_search`、`btn_back`。
 
 如果在项目中有用黄油刀的话，使用 AS 的插件：ButterKnife Zelezny，可以非常方便帮助你生成注解；没用黄油刀的话可以使用 Android Code Generator 插件。
 
@@ -1124,18 +1141,17 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 | 名称                   | 缩写                                       |
 | -------------------- | ---------------------------------------- |
-| icon                 | ic（主要用在 App 的图标）                         |
-| color                | cl（主要用于颜色值）                              |
 | average              | avg                                      |
 | background           | bg（主要用于布局和子布局的背景）                        |
-| selector             | sel（主要用于某一 view 多种状态，不仅包括 ListView 中的 selector，还包括按钮的 selector） |
 | buffer               | buf                                      |
 | control              | ctrl                                     |
+| current              | cur                                      |
 | default              | def                                      |
 | delete               | del                                      |
 | document             | doc                                      |
 | error                | err                                      |
 | escape               | esc                                      |
+| icon                 | ic（主要用在 App 的图标）                         |
 | increment            | inc                                      |
 | infomation           | info                                     |
 | initial              | init                                     |
@@ -1146,10 +1162,12 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 | message              | msg                                      |
 | password             | pwd                                      |
 | position             | pos                                      |
+| previous             | pre                                      |
+| selector             | sel（主要用于某一 view 多种状态，不仅包括 ListView 中的 selector，还包括按钮的 selector） |
 | server               | srv                                      |
 | string               | str                                      |
-| temp                 | tmp                                      |
-| window               | wnd                                      |
+| temporary            | tmp                                      |
+| window               | wnd（win）                                      |
 
 程序中使用单词缩写原则：不要用缩写，除非该缩写是约定俗成的。
 
@@ -1209,7 +1227,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 [Android 包命名规范]: http://www.ayqy.net/blog/android%E5%8C%85%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/
 [Android 开发最佳实践]: https://github.com/futurice/android-best-practices/blob/master/translations/Chinese/README.cn.md
 [Android 编码规范]: http://www.jianshu.com/p/0a984f999592
-[阿里巴巴 Java 开发手册]: https://102.alibaba.com/newsInfo.htm?newsId=6
+[阿里巴巴 Java 开发手册]: https://github.com/alibaba/p3c/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E7%BA%AA%E5%BF%B5%E7%89%88%EF%BC%89.pdf
 [Project and code style guidelines]: https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md
 [Google Java 编程风格指南]: http://www.hawstein.com/posts/google-java-style.html
 [小细节，大用途，35 个 Java 代码性能优化总结！]: http://www.jianshu.com/p/436943216526
