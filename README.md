@@ -44,17 +44,15 @@
 
     哪块要添新功能，只改某一个 package 下的东西。
 
-    按 class 职能分层（PBL）降低了代码耦合，但带来了 package 耦合，要添新功能，需要改 model、dbHelper、view、service 等等，需要改动好几个 package 下的代码，改动的地方越多，越容易产生新问题，不是吗？
+    PBL 降低了代码耦合，但带来了 package 耦合，要添新功能，需要改 model、dbHelper、view、service 等等，需要改动好几个 package 下的代码，改动的地方越多，越容易产生新问题，不是吗？
 
-    按功能分包（PBF），featureA 相关的所有东西都在 featureA 包，feature 内高内聚高度模块化，不同 feature 之间低耦合，相关的东西都放在一起，还好找。
+    PBF 的话 featureA 相关的所有东西都在 featureA 包，feature 内高内聚、高度模块化，不同 feature 之间低耦合，相关的东西都放在一起，还好找。
 
 * package 有私有作用域（package-private scope）
 
     你负责开发这块功能，这个目录下所有东西都是你的。
 
-    PBL 的方式是把所有工具方法都放在 util 包下，小张开发新功能时候发现需要一个 xxUtil，但它又不是通用的，那应该放在哪里？没办法，按照分层原则，我们还得放在 util 包下，好像不太合适，但放在其它包更不合适，功能越来越多，util 类也越定义越多。后来小李负责开发一块功能时发现需要一个 xxUtil，同样不通用，去 util 包一看，怎么已经有了，而且还没法复用，只好放弃 xx 这个名字，改为 xxxUtil……，因为 PBL 的 package 没有私有作用域，每一个包都是 public（跨包方法调用是很平常的事情，每一个包对其它包来说都是可访问的）。
-
-    如果是 PBF，小张的 xxUtil 自然放在 featureA 下，小李的 xxUtil 在 featureB 下，如果觉得 util 好像是通用的，就去 util 包看看要不要把工具方法添进 xxUtil, class 命名冲突没有了。
+    PBL 的方式是把所有工具方法都放在 util 包下，小张开发新功能时候发现需要一个 xxUtil，但它又不是通用的，那应该放在哪里？没办法，按照分层原则，我们还得放在 util 包下，好像不太合适，但放在其它包更不合适，功能越来越多，util 类也越定义越多。后来小李负责开发一块功能时发现需要一个 xxUtil，同样不通用，去 util 包一看，怎么已经有了，而且还没法复用，只好放弃 xx 这个名字，改为 xxxUtil……，因为 PBL 的 package 没有私有作用域，每一个包都是 public（跨包方法调用是很平常的事情，每一个包对其它包来说都是可访问的）；如果是 PBF，小张的 xxUtil 自然放在 featureA 下，小李的 xxUtil 在 featureB 下，如果觉得 util 好像是通用的，就去 util 包看看要不要把工具方法添进 xxUtil, class 命名冲突没有了。
 
     PBF 的 package 有私有作用域，featureA 不应该访问 featureB 下的任何东西（如果非访问不可，那就说明接口定义有问题）。
 
@@ -209,7 +207,7 @@ com
 | `handleXX()`, `processXX()` | 对数据进行处理的方法                               |
 | `displayXX()`, `showXX()`   | 弹出提示框和提示信息，使用 display/show 为前缀标识         |
 | `updateXX()`                | 更新数据                                     |
-| `saveXX()`, `insertXX()`    | 保存或插入数据                                     |
+| `saveXX()`, `insertXX()`    | 保存或插入数据                                  |
 | `resetXX()`                 | 重置数据                                     |
 | `clearXX()`                 | 清除数据                                     |
 | `removeXX()`, `deleteXX()`  | 移除数据或者视图等，如 `removeView()`               |
@@ -284,13 +282,13 @@ public class MyClass {
 
 例如：`mFirstBook`、`mPrevBook`、`curBook`。
 
-| 量词列表    | 量词后缀说明      |
-| ------- | ----------- |
-| `First` | 一组变量中的第一个   |
-| `Last`  | 一组变量中的最后一个  |
-| `Next`  | 一组变量中的下一个 |
-| `Prev`  | 一组变量中的上一个   |
-| `Cur`   | 一组变量中的当前变量  |
+| 量词列表    | 量词后缀说明     |
+| ------- | ---------- |
+| `First` | 一组变量中的第一个  |
+| `Last`  | 一组变量中的最后一个 |
+| `Next`  | 一组变量中的下一个  |
+| `Prev`  | 一组变量中的上一个  |
+| `Cur`   | 一组变量中的当前变量 |
 
 
 ##### 3.5.4 Type1（数据类型）
@@ -727,7 +725,7 @@ public Observable<Location> syncLocations() {
 | `fragment_music_player.xml` | 音乐片段的播放器 `类型_模块名_逻辑名称`      |
 | `dialog_loading.xml`        | 加载对话框 `类型_逻辑名称`             |
 | `ppw_info.xml`              | 信息弹窗（PopupWindow） `类型_逻辑名称` |
-| `item_main_song.xml`        | 主页歌曲列表项 `类型_模块名_逻辑名称`    |
+| `item_main_song.xml`        | 主页歌曲列表项 `类型_模块名_逻辑名称`       |
 
 
 #### 5.5 菜单资源文件（menu/）
@@ -957,6 +955,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 }
 ```
 
+
 #### 8.3 块注释
 
 块注释与其周围的代码在同一缩进级别。它们可以是 `/* ... */` 风格，也可以是 `// ...` 风格（**`//`后最好带一个空格**）。对于多行的 `/* ... */` 注释，后续行必须从 `*` 开始， 并且与前一行的 `*` 对齐。以下示例注释都是 OK 的。
@@ -1162,12 +1161,12 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 | message              | msg                                      |
 | password             | pwd                                      |
 | position             | pos                                      |
-| previous             | pre                                      |
+| previous             | prev                                     |
 | selector             | sel（主要用于某一 view 多种状态，不仅包括 ListView 中的 selector，还包括按钮的 selector） |
 | server               | srv                                      |
 | string               | str                                      |
 | temporary            | tmp                                      |
-| window               | wnd（win）                                      |
+| window               | wnd（win）                                 |
 
 程序中使用单词缩写原则：不要用缩写，除非该缩写是约定俗成的。
 
