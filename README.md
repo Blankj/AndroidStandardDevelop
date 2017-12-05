@@ -273,7 +273,7 @@ public class MyClass {
 
 考虑到 Android 众多的 UI 控件，为避免控件和普通成员变量混淆以及更好地表达意思，所有用来表示控件的成员变量统一加上控件缩写作为前缀（具体见附录[UI 控件缩写表](#ui-控件缩写表)）。
 
-例如：`mIvAvatar`、`rvBooks`、`fl_container`。
+例如：`mIvAvatar`、`rvBooks`、`flContainer`。
 
 
 ##### 3.5.3 VariableName（变量名）
