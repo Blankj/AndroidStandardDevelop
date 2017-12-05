@@ -1115,26 +1115,26 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 | 名称             | 缩写   |
 | -------------- | ---- |
-| TextView       | tv   |
-| EditText       | et   |
-| ImageButton    | ib   |
 | Button         | btn  |
-| ImageView      | iv   |
-| ListView       | lv   |
-| GridView       | gv   |
-| ProgressBar    | pb   |
-| SeekBar        | sb   |
-| RadioButtion   | rb   |
 | CheckBox       | cb   |
-| ScrollView     | sv   |
-| LinearLayout   | ll   |
+| EditText       | et   |
 | FrameLayout    | fl   |
-| RelativeLayout | rl   |
+| GridView       | gv   |
+| ImageButton    | ib   |
+| ImageView      | iv   |
+| LinearLayout   | ll   |
+| ListView       | lv   |
+| ProgressBar    | pb   |
+| RadioButtion   | rb   |
 | RecyclerView   | rv   |
-| WebView        | wv   |
-| VideoView      | vv   |
+| RelativeLayout | rl   |
+| ScrollView     | sv   |
+| SeekBar        | sb   |
 | Spinner        | spn  |
+| TextView       | tv   |
 | ToggleButton   | tb   |
+| VideoView      | vv   |
+| WebView        | wv   |
 
 ### 常见的英文单词缩写表
 
