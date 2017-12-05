@@ -280,14 +280,14 @@ public class MyClass {
 
 变量名中可能会出现量词，我们需要创建统一的量词，它们更容易理解，也更容易搜索。
 
-例如：`mFirstBook`、`mPrevBook`、`curBook`。
+例如：`mFirstBook`、`mPreBook`、`curBook`。
 
 | 量词列表    | 量词后缀说明     |
 | ------- | ---------- |
 | `First` | 一组变量中的第一个  |
 | `Last`  | 一组变量中的最后一个 |
 | `Next`  | 一组变量中的下一个  |
-| `Prev`  | 一组变量中的上一个  |
+| `Pre`   | 一组变量中的上一个  |
 | `Cur`   | 一组变量中的当前变量 |
 
 
@@ -1152,7 +1152,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 | escape               | esc                                      |
 | icon                 | ic（主要用在 App 的图标）                         |
 | increment            | inc                                      |
-| infomation           | info                                     |
+| information          | info                                     |
 | initial              | init                                     |
 | image                | img                                      |
 | Internationalization | I18N                                     |
@@ -1161,12 +1161,12 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 | message              | msg                                      |
 | password             | pwd                                      |
 | position             | pos                                      |
-| previous             | prev                                     |
+| previous             | pre                                      |
 | selector             | sel（主要用于某一 view 多种状态，不仅包括 ListView 中的 selector，还包括按钮的 selector） |
 | server               | srv                                      |
 | string               | str                                      |
 | temporary            | tmp                                      |
-| window               | wnd（win）                                 |
+| window               | win                                      |
 
 程序中使用单词缩写原则：不要用缩写，除非该缩写是约定俗成的。
 
