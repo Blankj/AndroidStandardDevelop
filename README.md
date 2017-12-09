@@ -460,7 +460,7 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 
 #### 4.5 字符串常量的命名和值
 
-Android SDK 中的很多类都用到了键值对函数，比如`SharedPreferences`、`Bundle`、`Intent`，所以，即便是一个小应用，我们最终也不得不编写大量的字符串常量。
+Android SDK 中的很多类都用到了键值对函数，比如 `SharedPreferences`、`Bundle`、`Intent`，所以，即便是一个小应用，我们最终也不得不编写大量的字符串常量。
 
 当时用到这些类的时候，我们 **必须** 将它们的键定义为 `static final` 字段，并遵循以下指示作为前缀。
 
@@ -866,7 +866,7 @@ public Observable<Location> syncLocations() {
 
 #### 5.7 id 命名
 
-命名规则：`view缩写{_模块名}_逻辑名`，例如： `btn_main_search`、`btn_back`。
+命名规则：`view 缩写{_模块名}_逻辑名`，例如： `btn_main_search`、`btn_back`。
 
 如果在项目中有用黄油刀的话，使用 AS 的插件：ButterKnife Zelezny，可以非常方便帮助你生成注解；没用黄油刀的话可以使用 Android Code Generator 插件。
 
@@ -962,7 +962,7 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 
 #### 8.3 块注释
 
-块注释与其周围的代码在同一缩进级别。它们可以是 `/* ... */` 风格，也可以是 `// ...` 风格（**`//`后最好带一个空格**）。对于多行的 `/* ... */` 注释，后续行必须从 `*` 开始， 并且与前一行的 `*` 对齐。以下示例注释都是 OK 的。
+块注释与其周围的代码在同一缩进级别。它们可以是 `/* ... */` 风格，也可以是 `// ...` 风格（**`//` 后最好带一个空格**）。对于多行的 `/* ... */` 注释，后续行必须从 `*` 开始， 并且与前一行的 `*` 对齐。以下示例注释都是 OK 的。
 
 ```java
 /*
@@ -1002,7 +1002,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 测试函数被 `@Test` 所注解，函数名通常以被测试的方法为前缀，然后跟随是前提条件和预期的结果。
 
-* 模板：`void methodName前提条件和预期结果()`
+* 模板：`void methodName 前提条件和预期结果()`
 * 例子：`void signInWithEmptyEmailFails()`
 
 > 注意：如果函数足够清晰，那么前提条件和预期的结果是可以省略的。
@@ -1027,7 +1027,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 
 5. 当一个类有多个构造函数，或是多个同名函数，这些函数应该按顺序出现在一起，中间不要放进其它函数；
 
-6. 数据提供统一的入口。无论是在 MVP、MVC 还是 MVVM 中，提供一个统一的数据入口，都可以让代码变得更加易于维护。比如可使用一个 `DataManager`，把 `http`、`preference`、`eventpost`、`database` 都放在 `DataManager` 里面进行操作，我们只需要与 `DataManager`打交道；
+6. 数据提供统一的入口。无论是在 MVP、MVC 还是 MVVM 中，提供一个统一的数据入口，都可以让代码变得更加易于维护。比如可使用一个 `DataManager`，把 `http`、`preference`、`eventpost`、`database` 都放在 `DataManager` 里面进行操作，我们只需要与 `DataManager` 打交道；
 
 7. 多用组合，少用继承；
 
