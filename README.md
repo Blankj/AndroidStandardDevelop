@@ -1207,6 +1207,13 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 * 17/03/06: 发布初版；
 
 
+## 打个小广告
+
+欢迎加入我的知识星球「**[基你太美](https://t.zsxq.com/FmeqfYF)**」，我会在星球中分享 [AucFrame](https://blankj.com/2019/07/22/auc-frame/) 框架、大厂面经、[AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode) 更详尽的说明...一切我所了解的知识，你可以通过支付进入我的星球「**[基你太美](https://t.zsxq.com/FmeqfYF)**」进行体验，加入后优先观看星球中精华的部分，如果觉得星球的内容对自身没有收益，你可以自行申请退款退出星球，也没必要加我好友；**如果你已确定要留在我的星球，可以通过扫描如下二维码（备注：基你太美）加我个人微信，发送给我你的星球 ID，方便我后续拉你进群(PS：进得越早价格越便宜)。**
+
+![我的二维码](https://raw.githubusercontent.com/Blankj/AndroidUtilCode/master/art/wechat.png)
+
+
 
 [logo]: https://raw.githubusercontent.com/Blankj/AndroidStandardDevelop/master/art/logo.png
 [Package by features, not layers]: https://medium.com/@cesarmcferreira/package-by-features-not-layers-2d076df1964d#.mp782izhh
